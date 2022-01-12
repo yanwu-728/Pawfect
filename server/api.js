@@ -11,6 +11,9 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Dog = require("./models/dog");
+const Participant = require("./models/participant");
+const Event = require("./models/event");
 
 // import authentication library
 const auth = require("./auth");
