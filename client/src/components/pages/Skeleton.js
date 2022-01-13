@@ -15,16 +15,6 @@ import { Date } from "core-js";
 const GOOGLE_CLIENT_ID = "237465931636-o4q19fum61608nv3mh3r299u8d4hq5qp.apps.googleusercontent.com";
 
 const Skeleton = ({ userId, handleLogin, handleLogout }) => {
-  const [breed, setBreed] = useState(null);
-  const [selectedDate, setDate] = useState(null);
-
-  const changeBreed = (event) => {
-    setBreed(event.target.value);
-  };
-
-  const changeDate = (date) => {
-    setDate(moment(date).format('MMMM Do YYYY, h:mm:ss a'));
-  }
 
   return (
     <>
@@ -62,11 +52,6 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
       </ul>
       <h2>How to go from this skeleton to our actual app</h2>
       <a href="http://weblab.to/get-started">Check out this getting started guide</a>
-
-      <Filter changeBreed={changeBreed} changeDate={changeDate}/>
-      <p>The selected breed is {breed}.</p>
-
-      <p>The selected time is {selectedDate}</p>
     </>
   );
 };

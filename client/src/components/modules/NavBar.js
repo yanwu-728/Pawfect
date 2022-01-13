@@ -40,6 +40,7 @@ const NavBar = (props) => {
             className="NavBar-link NavBar-login"
           />
         )}
+        <Link to="/finddog/">Find a Dog!</Link>
       </div>
     </nav>
   );

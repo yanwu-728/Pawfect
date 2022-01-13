@@ -3,6 +3,8 @@ import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Filter from "./modules/Filter.js";
+import FindDog from "./pages/findDog.js";
+import NavBar from "./modules/NavBar.js";
 
 import "../utilities.css";
 
@@ -41,8 +43,10 @@ const App = () => {
 
   return (
     <>
+      <NavBar />
       <Router>
         <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+        <FindDog path="/finddog/" />
         <Filter path="/filter/" />
         <NotFound default />
       </Router>

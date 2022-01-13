@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const Filter = (props) => {
 
     return (
-        <div class="dropdown">
+        <div class="filter">
             <label for="dog-breeds">Breed:</label>
             <select name="dog-breeds" id="dog-breeds" onChange={props.changeBreed}>
                 <option value="noPreference">No Preference</option>
@@ -16,12 +16,18 @@ const Filter = (props) => {
             </select>
             
             <DatePicker 
-            selected={new Date()}
+            selected={null}
             onChange={props.changeDate} 
-            showTimeSelect
-            dateFormat="Pp"
             />
-
+            
+            <label for="locations">Location:</label>
+            <select name="locations" id="locations" onChange={props.changeLocation}>
+                <option value="noPreference">No Preference</option>
+                <option value="MIT">MIT</option>
+                <option value="Harvard">Harvard</option>
+                <option value="Central Squre">Central Square</option>
+                <option value="Back Bay">Back Bay</option>
+            </select>
         </div>
     )
 }
