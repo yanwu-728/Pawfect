@@ -5,6 +5,7 @@ import Skeleton from "./pages/Skeleton.js";
 import FindDog from "./pages/findDog.js";
 import NavBar from "./modules/NavBar.js";
 import MySchedule from "./pages/MySchedule.js";
+import Profile from "./pages/profile.js";
 
 import "../utilities.css";
 
@@ -48,6 +49,7 @@ const App = () => {
         <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
         <FindDog path="/finddog/" />
         <MySchedule path="/MySchedule/"/>
+        <Profile path="/profile/"/>
         <NotFound default />
       </Router>
     </>

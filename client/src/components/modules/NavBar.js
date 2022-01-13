@@ -42,6 +42,7 @@ const NavBar = (props) => {
         )}
         <Link to="/finddog/">Find a Dog!</Link>
         <Link to="/MySchedule/">My Schedule</Link>
+        <Link to="/profile/">Profile</Link>
       </div>
     </nav>
   );
