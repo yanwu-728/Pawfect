@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema({
   googleid: String,
   profilePic: String,
   bio: String,
+  contact: String,
 });
 
 // compile model from schema
