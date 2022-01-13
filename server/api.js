@@ -45,12 +45,72 @@ router.post("/initsocket", (req, res) => {
 // | write your API methods below!|
 // |------------------------------|
 
-router.post("/user");
-router.get("/user");
-router.post("/event");
-router.get("/events");
-router.post("/participant");
-router.get("/participants");
+router.post("/user", (req, res) => {
+  const NewUser = User({
+    name: req.name,
+    googleid: req.googleid,
+    profilePic: req.profilePic,
+    bio: req.bio,
+    contact: req.contact,
+  }) 
+
+  NewUser.save().then((user) => res.send(user));
+});
+
+router.get("/user", (req, res) => {
+  User.findById(req.query.userid).then((user) => {
+    res.send(user);
+  });
+});
+
+router.post("/event", (req, res) => {
+  const NewEvent = Event({
+    eventId: req.query.id,
+    location: req.location,
+    breed: req.breed,
+    time: req.time,
+    noParticipants: req.noParticipants,
+    dogId: req.dogId,
+    intro: req.intro,
+  }) 
+
+  NewEvent.save().then((event) => res.send(event));
+});
+
+router.get("/event", (req, res) => {
+  Event.find({}).then((event) => res.send(event));
+});
+
+router.post("/participant", (req, res) => {
+  const NewParticipant = Participant({
+    participantId: req.participantId,
+    eventId: req.eventId,
+  });
+
+  NewParticipant.save().then((participant) => res.send(participant));
+});
+
+router.get("/participant", (req, res) => {
+  Participant.findById(req.query.eventid).then((participant) => {
+    res.send(participant);
+  });
+});
+
+router.post("/dog", (req, res) => {
+  const NewDog = Dog({
+    dogId: req.dogId,
+    breed: req.breed,
+    dogPic: req.dogPic,
+    ownerId: req.ownerId,
+    bio: req.bio,
+  });
+
+  NewDog.save().then((dog) => res.send(dog));
+});
+
+router.get("/dog", (req, res) => {
+  Dog.find({}).then((dog) => res.send(dog));
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
