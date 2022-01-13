@@ -5,6 +5,7 @@ const EventSchema = new mongoose.Schema({
   location: String,
   breed: String,
   time: Date,
+  noParticipants: Integer,
   dogId: String,
   intro: String,
 });

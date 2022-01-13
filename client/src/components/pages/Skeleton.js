@@ -1,13 +1,31 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
+import { Link } from "@reach/router";
+import Filter from "../modules/Filter.js";
+import moment from 'moment';
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import "../../utilities.css";
 import "./Skeleton.css";
+import { Date } from "core-js";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
-const GOOGLE_CLIENT_ID = "121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = "237465931636-o4q19fum61608nv3mh3r299u8d4hq5qp.apps.googleusercontent.com";
 
 const Skeleton = ({ userId, handleLogin, handleLogout }) => {
+  const [breed, setBreed] = useState(null);
+  const [selectedDate, setDate] = useState(null);
+
+  const changeBreed = (event) => {
+    setBreed(event.target.value);
+  };
+
+  const changeDate = (date) => {
+    setDate(moment(date).format('MMMM Do YYYY, h:mm:ss a'));
+  }
+
   return (
     <>
       {userId ? (
@@ -25,6 +43,9 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           onFailure={(err) => console.log(err)}
         />
       )}
+      <Link to="/filter/" className="NavBar-link">
+          Filter Test
+      </Link>
       <h1>Good luck on your project :)</h1>
       <h2> What you need to change in this skeleton</h2>
       <ul>
@@ -41,6 +62,11 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
       </ul>
       <h2>How to go from this skeleton to our actual app</h2>
       <a href="http://weblab.to/get-started">Check out this getting started guide</a>
+
+      <Filter changeBreed={changeBreed} changeDate={changeDate}/>
+      <p>The selected breed is {breed}.</p>
+
+      <p>The selected time is {selectedDate}</p>
     </>
   );
 };
