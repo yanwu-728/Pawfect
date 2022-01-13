@@ -24,7 +24,6 @@ const FindDog = (props) => {
       <>
         <Filter changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation}/>
         <p>The selected breed is {breed}.</p>
-        
         <p>The selected time is {selectedDate}</p>
         <p>The selected location is {location}.</p>
       </>

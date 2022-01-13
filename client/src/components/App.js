@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
-import Filter from "./modules/Filter.js";
 import FindDog from "./pages/findDog.js";
 import NavBar from "./modules/NavBar.js";
+import MySchedule from "./pages/MySchedule.js";
 
 import "../utilities.css";
 
@@ -43,11 +43,11 @@ const App = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar userId={userId}/>
       <Router>
         <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
         <FindDog path="/finddog/" />
-        <Filter path="/filter/" />
+        <MySchedule path="/MySchedule/"/>
         <NotFound default />
       </Router>
     </>

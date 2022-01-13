@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./NewEventInput.css";
+import "./NewEvent.css";
 import { post } from "../../utilities";
 
 /**
@@ -27,4 +27,6 @@ const NewEventInput = (props) => {
             {/* some HTML code */}
         </div>
     );
-}
+};
+
+export default NewEventInput
