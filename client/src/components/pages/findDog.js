@@ -19,7 +19,8 @@ const FindDog = (props) => {
     const changeLocation = (event) => {
         setLocation(event.target.value);
     }
-  
+    
+    
     return (
       <>
         <Filter changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation}/>

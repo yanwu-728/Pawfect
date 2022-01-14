@@ -11,11 +11,13 @@ const MySchedule = () => {
         get("/api/event").then((eventObjs) => {
             setEvent(eventObjs);
     });
-    }, []);
+    }, []); // Need to query based on userId; also need to take into account events both as organizer and participant
 
     const addNewEvent = (eventObj) => {
         setEvent([eventObj].concat(event));
     };
+
+    
 
     let eventList = null;
     const hasEvent = event.length !== 0;
