@@ -5,8 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 const Filter = (props) => {
 
     return (
-        <div class="filter">
-            <label for="dog-breeds">Breed:</label>
+        <div className="filter">
+            <label htmlFor="dog-breeds">Breed:</label>
             <select name="dog-breeds" id="dog-breeds" onChange={props.changeBreed}>
                 <option value="noPreference">No Preference</option>
                 <option value="goldenRetriever">Golden Retriever</option>
@@ -20,7 +20,7 @@ const Filter = (props) => {
             onChange={props.changeDate} 
             />
             
-            <label for="locations">Location:</label>
+            <label htmlFor="locations">Location:</label>
             <select name="locations" id="locations" onChange={props.changeLocation}>
                 <option value="noPreference">No Preference</option>
                 <option value="MIT">MIT</option>

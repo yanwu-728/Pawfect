@@ -46,7 +46,7 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 router.post("/user", (req, res) => {
-  const NewUser = User({
+  const NewUser = new User({
     name: req.name,
     googleid: req.googleid,
     profilePic: req.profilePic,
@@ -64,15 +64,15 @@ router.get("/user", (req, res) => {
 });
 
 router.post("/event", (req, res) => {
-  const NewEvent = Event({
-    eventId: req.query.id,
-    location: req.location,
-    breed: req.breed,
-    time: req.time,
-    noParticipants: req.noParticipants,
-    dogId: req.dogId,
-    intro: req.intro,
-  }) 
+  const NewEvent = new Event({
+    eventId: req.body.eventId,
+    location: req.body.location,
+    breed: req.body.breed,
+    time: req.body.time,
+    noParticipants: req.body.noParticipants,
+    dogId: req.body.dogId,
+    intro: req.body.intro,
+  }); 
 
   NewEvent.save().then((event) => res.send(event));
 });
@@ -82,7 +82,7 @@ router.get("/event", (req, res) => {
 });
 
 router.post("/participant", (req, res) => {
-  const NewParticipant = Participant({
+  const NewParticipant = new Participant({
     participantId: req.participantId,
     eventId: req.eventId,
   });
@@ -97,7 +97,7 @@ router.get("/participant", (req, res) => {
 });
 
 router.post("/dog", (req, res) => {
-  const NewDog = Dog({
+  const NewDog = new Dog({
     dogId: req.dogId,
     breed: req.breed,
     dogPic: req.dogPic,

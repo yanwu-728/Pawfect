@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import NewEventInput from "../modules/NewEvent.js";
+import {NewEvent} from "../modules/NewEvent.js";
 
 const MySchedule = () => {
     return (
-        <NewEventInput />
+        <NewEvent />
     )
 };
 
