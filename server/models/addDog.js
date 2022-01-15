@@ -17,7 +17,7 @@ const editUser = (props) => {
 
   // called when the user hits "Submit" for a new post
   const handleSubmit = (event) => {
-    post("/api/editUser", {
+    post("/editUser", {
       userid: props.userId,
       newName: newName,
       newBio: newBio,
@@ -28,13 +28,13 @@ const editUser = (props) => {
   return (
     <div>
       <h1>Edit User Profile</h1>
-      <label>Enter username: </label>
+      <label for="cars">Enter username: </label>
       <input type="text" id="username" name="username" value={newName} onChange={handleChange} />
       <div />
-      <label>Enter Bio: </label>
+      <label for="text">Enter Bio: </label>
       <input type="text" id="bio" name="bio" value={newBio} onChange={handleChange} />
       <div />
-      <label>Enter contact info: </label>
+      <label for="contact">Enter contact info: </label>
       <input type="text" id="contact" name="contact" value={newContact} onChange={handleChange} />
       <div />
       <button type="submit" value="Submit" onClick={handleSubmit}>

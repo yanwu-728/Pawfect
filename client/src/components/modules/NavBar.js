@@ -35,11 +35,11 @@ const NavBar = ({ userId, handleLogin, handleLogout }) => {
         <Link to="/" className="NavBar-link">
           Home
         </Link>
-        {userId && (
+        {/* {userId && (
           <Link to={`/profile/${userId}`} className="NavBar-link">
             Profile
           </Link>
-        )}
+        )} */}
 
         <Link to="/finddog/">Find a Dog!</Link>
         <Link to="/MySchedule/">My Schedule</Link>
