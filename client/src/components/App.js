@@ -49,7 +49,7 @@ const App = () => {
         <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
         <FindDog path="/finddog/" />
         <MySchedule path="/MySchedule/"/>
-        <Profile path="/profile/"/>
+        <Profile path="/profile/" userId={userId}/>
         <NotFound default />
       </Router>
     </>
