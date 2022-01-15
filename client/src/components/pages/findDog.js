@@ -10,13 +10,6 @@ import SingleEvent from "../modules/SingleEvent.js";
 const FindDog = (props) => {
   const [event, setEvent] = useState([]);
 
-    useEffect(() => {
-        document.title = "Find Dog";
-        get("/api/event").then((eventObjs) => {
-            setEvent(eventObjs);
-    });
-    }, []);
-
     const [breed, setBreed] = useState(null);
     const [selectedDate, setDate] = useState(null);
     const [location, setLocation] = useState(null);
@@ -33,6 +26,13 @@ const FindDog = (props) => {
         setLocation(event.target.value);
     }
     
+    useEffect(() => {
+      document.title = "Find Dog";
+      get("/api/event").then((eventObjs) => {
+          setEvent(eventObjs);
+  });
+  }, []);
+
     let eventList = null;
     const hasEvent = event.length !== 0;
     if (hasEvent) {

@@ -59,8 +59,7 @@ router.post("/user", (req, res) => {
 });
 
 router.get("/user", (req, res) => {
-  console.log(req.query.userid);
-  User.findById(req.query.userid).then((user) => {
+  User.findById(req.user._id).then((user) => {
     res.send(user);
   });
 });
