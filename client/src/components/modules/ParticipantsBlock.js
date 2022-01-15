@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {get, post} from "../../utilities.js";
 
 
+
 /**
  * Component that holds all the participants for an event
  *
@@ -19,6 +20,7 @@ const ParticipantsBlock = (props) => {
         currentUser = get("/api/user", {userid: props.userId})
     };
     
+    const event = get("/api/singleevent", {eventId: props.eventId});
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -29,22 +31,28 @@ const ParticipantsBlock = (props) => {
             eventId: props.eventId,
         };
         post("/api/participant", body);
-        const newParticipant = new Participant(body);
+        const newParticipant = get("/api/participant", {participantId: props.userId});
         props.addNewParticipant(newParticipant);
       };
 
     return (
         <div>
-            {props.participants.map((participant) => (
+            The participants are: {props.participants.map((participant) => 
             participant.participant_name
-          ))}
+            )}
+          <></>
+          {props.participants.length >= event.noParticipants} ? (
+                Slots have run out!
+          ):(
             <button
             type="submit"
             value="Submit"
             onClick={handleSubmit}
             >
                 Sign Up!
-            </button>
+            </button>  
+          )
+            
         </div>
         
     )

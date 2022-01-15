@@ -86,6 +86,10 @@ router.get("/event", (req, res) => {
   Event.find({}).then((event) => res.send(event));
 });
 
+router.get("/singleevent", (req, res) => {
+  Event.find({_id: req.query.eventId}).then((event) => res.send(event));
+});
+
 router.post("/participant", (req, res) => {
   const NewParticipant = new Participant({
     participantId: req.body.participantId,
@@ -94,6 +98,10 @@ router.post("/participant", (req, res) => {
   });
 
   NewParticipant.save().then((participant) => res.send(participant));
+});
+
+router.get("/participant", (req, res) => {
+  Participant.find({participantId: req.query.participantId}).then((participant) => res.send(participant));
 });
 
 router.get("/participants", (req, res) => {

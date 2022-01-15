@@ -22,7 +22,13 @@ const Card = (props) => {
     }, []);
 
     const addNewParticipant = (participantObj) => {
-        setParticipants(comments.concat([participantObj]));
+        if(participants.find(participant => participant.participantId == participantObj.participantId)){
+
+        }else{
+            setParticipants(participants.concat([participantObj]));
+        }
+        setParticipants(participants.concat([participantObj]));
+        console.log(participants);
       };
     
     return (
