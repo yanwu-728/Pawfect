@@ -38,7 +38,7 @@ const FindDog = (props) => {
     if (hasEvent) {
     eventList = event.map((eventObj) => (
         <Card
-        eventId={eventObj.eventId}
+        eventId={eventObj._id}
         location={eventObj.location}
         breed={eventObj.breed}
         time={eventObj.time}

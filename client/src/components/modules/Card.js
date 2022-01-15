@@ -17,7 +17,7 @@ const Card = (props) => {
 
     useEffect(() => {
         get("/api/participants", { eventId: props.eventId }).then((participants) => {
-        setComments(participants);
+        setParticipants(participants);
         });
     }, []);
 

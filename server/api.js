@@ -97,7 +97,7 @@ router.post("/participant", (req, res) => {
 });
 
 router.get("/participants", (req, res) => {
-  Participant.findById(req.query.eventId).then((participant) => {
+  Participant.find({eventId: req.query.eventId}).then((participant) => {
     res.send(participant);
   });
 });
