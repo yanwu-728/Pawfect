@@ -59,7 +59,12 @@ router.post("/user", (req, res) => {
 });
 
 router.get("/user", (req, res) => {
+  // User.find({_id: req.query.userId}).then((user) => {
+  //   res.send(user);
+  // });
+  console.log(req.user._id);
   User.findById(req.user._id).then((user) => {
+    console.log(`user ${user}`);
     res.send(user);
   });
 });
@@ -91,9 +96,11 @@ router.get("/singleevent", (req, res) => {
 
 router.post("/participant", (req, res) => {
   Participant.findOne({participantId: req.body.participantId, eventId: req.body.eventId}, function(error, result){
+    console.log("called");
     if (!error){
       if (result) {
         console.log("user already exists")
+        res.send({});
       } else {
         const NewParticipant = new Participant({
           participantId: req.body.participantId,
@@ -103,6 +110,7 @@ router.post("/participant", (req, res) => {
         NewParticipant.save().then((participant) => res.send(participant));      }
     } else{
       console.log("error")
+
     }
   })
   

@@ -18,12 +18,14 @@ const ParticipantsBlock =  (props) => {
 
     useEffect(() => {
         document.title = "My Schedule";
+        // console.log(user)
         if (props.userId) {
-            get("/api/user").then((user) => {
-                setUser(user.name)
+            get("/api/user", {userId: props.userId}).then((res) => {
+                console.log(res.name)
+                setUser(res.name);
             });
         };
-    }, []);
+    }, [props.userId]);
     
     const [event, setEvent] = useState([]);
 
@@ -36,6 +38,7 @@ const ParticipantsBlock =  (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(user);
         const body = {
             participant_name: user,
             participantId: props.userId,
@@ -44,10 +47,9 @@ const ParticipantsBlock =  (props) => {
         console.log("onsubmit");
         post("/api/participant", body).then((newParticipant) => {
             console.log(newParticipant);
-            if(newParticipant){
-                props.addNewParticipant(newParticipant).then(
-                    window.confirm('Thank you for signing up!')
-                )
+            if(Object.keys(newParticipant).length !== 0){
+                props.addNewParticipant(newParticipant);
+                    window.confirm('Thank you for signing up!');
             }else{
                 window.confirm('You have already signed up!')
                 };
