@@ -59,18 +59,9 @@ router.post("/user", (req, res) => {
 });
 
 router.get("/user", (req, res) => {
-<<<<<<< HEAD
   User.findById(req.user._id).then((user) => {
-=======
-  console.log(req.query.userid);
-  User.find({'googleid': req.query.userid}).then((user) => {
->>>>>>> 30ff66b0e4d3685352bcd2f2c8259609ca8bbca1
     res.send(user);
   });
-});
-
-router.delete("/deleteUser", (req, res) => {
-  User.deleteOne({'googleid': req.query.googleid});
 });
 
 router.post("/event", (req, res) => {
@@ -94,10 +85,6 @@ router.get("/event", (req, res) => {
   Event.find({}).then((event) => res.send(event));
 });
 
-router.post("/deleteEvent", (req, res) => {
-  Event.deleteOne({eventId: req.body.eventId});
-});
-
 router.get("/singleevent", (req, res) => {
   Event.find({_id: req.query.eventId}).then((event) => res.send(event));
 });
@@ -114,10 +101,6 @@ router.post("/participant", (req, res) => {
 
 router.get("/participant", (req, res) => {
   Participant.find({participantId: req.query.participantId}).then((participant) => res.send(participant));
-});
-
-router.post("/deleteParticipant", (req, res) => {
-  Participant.find({participantId: req.query.participantId});
 });
 
 router.get("/participants", (req, res) => {
@@ -140,10 +123,6 @@ router.post("/dog", (req, res) => {
 
 router.get("/dog", (req, res) => {
   Dog.find({}).then((dog) => res.send(dog));
-});
-
-router.post("/deleteDog", (req, res) => {
-  Dog.find({dogId: req.query.dogId});
 });
 
 // anything else falls to this "not found" case
