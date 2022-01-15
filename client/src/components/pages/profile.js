@@ -36,6 +36,9 @@ const Profile = (props) => {
       </div>
     </>
   );
+  <Link to="/editUser/" className="NavBar-link">
+    Edit User Profile
+  </Link>;
 };
 
 export default Profile;
