@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import SingleEvent from "./SingleEvent.js";
+import SingleEvent2 from "./SingleEvent2.js";
 import ParticipantsBlock from "./ParticipantsBlock.js";
 import {get} from "../../utilities.js";
 
@@ -24,22 +24,18 @@ const Card = (props) => {
     }, []);
 
     const addNewParticipant = (participantObj) => {
-        console.log("STEP 1")
-        if(participants.find((participant) => {return (participant.participantId === participantObj.participantId)})){
-            console.log("repeat signup")
-                window.confirm('You have already signed up!').then(
-                    window.location.reload()
-                )
-        }else{
-            setParticipants(participants.concat([participantObj]));
-        }
-        //setParticipants(participants.concat([participantObj]));
-        // console.log(participants);
+        setParticipants(participants.concat([participantObj]));
       };
     
+      const deleteParticipant = (participantObj) => {
+        setParticipants(participants.filter(function(item){
+            return item !== participantObj
+        }));
+      };
+
     return (
     <div className="Card-container">
-        <SingleEvent
+        <SingleEvent2
         _id={props.eventId}
         location={props.location}
         breed={props.breed}
@@ -53,6 +49,7 @@ const Card = (props) => {
         participants={participants}
         userId={props.userId}
         addNewParticipant={addNewParticipant}
+        deleteParticipant={deleteParticipant}
         />
     </div>
     );

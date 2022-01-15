@@ -51,7 +51,7 @@ const App = () => {
       <Router>
         {/* <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} /> */}
         <FindDog path="/finddog/" userId={userId} />
-        <MySchedule path="/MySchedule/" />
+        <MySchedule path="/MySchedule/" userId={userId}/>
         <Profile path="/profile/" userId={userId} />
         <EditUser path="/editUser/" userId={userId} />
         <AddDog path="/addDog/" userId={userId} />

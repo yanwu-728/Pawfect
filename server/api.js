@@ -73,6 +73,7 @@ router.post("/event", (req, res) => {
   Event.find({}).then((events) => {
     eventsLength = events.length;
     const NewEvent = new Event({
+      userId: req.body.userId,
       eventId: eventsLength,
       location: req.body.location,
       breed: req.body.breed,
@@ -92,6 +93,20 @@ router.get("/event", (req, res) => {
 
 router.get("/singleevent", (req, res) => {
   Event.find({ _id: req.query.eventId }).then((event) => res.send(event));
+});
+
+router.get("/filteredevents", (req, res) => {
+  const body = {};
+  if (req.query.location !== "null"){
+    body.location = req.query.location;
+  };
+  if (req.query.breed !== "null"){
+    body.breed = req.query.breed;
+  };
+  if (req.query.time !== "null"){
+    body.time = req.query.time;
+  };
+  Event.find(body).then((event) => res.send(event));
 });
 
 router.post("/participant", (req, res) => {
@@ -128,6 +143,26 @@ router.get("/participants", (req, res) => {
   Participant.find({ eventId: req.query.eventId }).then((participant) => {
     res.send(participant);
   });
+});
+
+router.get("/participating", (req, res) => {
+  Participant.findOne(
+    { participantId: req.query.userId, eventId: req.query.eventId },
+    function (error, result) {
+      console.log("called");
+      if (!error) {
+        if (result) {
+          console.log("user already signed up");
+          res.send(result);
+        } else {
+          console.log("not signed up")
+          res.send({});
+        }
+      } else {
+        console.log("error");
+      }
+    }
+  );
 });
 
 router.post("/dog", (req, res) => {

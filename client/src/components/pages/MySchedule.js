@@ -4,7 +4,14 @@ import {get} from "../../utilities.js";
 import SingleEvent from "../modules/SingleEvent.js";
 import './MySchedule.css';
 
-const MySchedule = () => {
+/**
+ * My schedule is a page for a user's schedule
+ *
+ * Proptypes
+ * @param {string} userId
+ */
+
+const MySchedule = (props) => {
     const [event, setEvent] = useState([]);
 
     useEffect(() => {
@@ -40,7 +47,7 @@ const MySchedule = () => {
 
     return (
         <div>
-            <NewEvent />
+            <NewEvent userId={props.userId}/>
             <div class='MySchedule-event'>
                 {eventList}
             </div>
