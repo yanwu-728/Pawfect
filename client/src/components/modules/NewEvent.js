@@ -62,36 +62,39 @@ const NewEventInput = (props) => {
 
     return (
         <div>
-            <Filter changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation}/>
-            <p>Please enter the number of participants: </p>
-            <input 
-                type="number"
-                min="1"
-                value={noParticipants}
-                onChange={changeNoParticipant}
-            />
-            <p>Please enter the id of your dog: </p>
-            <input 
-                type="text"
-                value={dogId}
-                onChange={changeDogId}
-            />
-            <p>Please enter description:</p>
-            <input
-                type="text"
-                placeholder= {props.defaultText}
-                value={intro}
-                onChange={changeIntro}
-            />
-            <p>The event is on {selectedDate} at {location} with a {breed} of id {dogId}. Currently, you have {noParticipants} participant(s). </p>
-            <p>Description: {intro}</p>
-            <button
-                type="submit"
-                value="Submit"
-                onClick={handleSubmit}
-            >
-                Submit
-            </button>
+            <div class="NewEvent-selector">
+            <Filter  changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation}/>
+                <p>Please enter the number of participants allowed: </p>
+                <input 
+                    type="number"
+                    min="1"
+                    value={noParticipants}
+                    onChange={changeNoParticipant}
+                />
+                <p>Please enter the id of your dog: </p>
+                <input 
+                    type="text"
+                    value={dogId}
+                    onChange={changeDogId}
+                />
+                <p>Please enter description:</p>
+                <input
+                    type="text"
+                    placeholder= {props.defaultText}
+                    value={intro}
+                    onChange={changeIntro}
+                />
+                <p>The event is on {selectedDate} at {location} with a {breed} of id {dogId}. Currently, you have {noParticipants} participant(s). </p>
+                <p>Description: {intro}</p>
+                <button
+                    type="submit"
+                    value="Submit"
+                    class="NewEvent-button"
+                    onClick={handleSubmit}
+                >
+                    Submit
+                </button>
+            </div>
         </div>
     );
 };
