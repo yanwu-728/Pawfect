@@ -95,25 +95,27 @@ router.get("/singleevent", (req, res) => {
 });
 
 router.post("/participant", (req, res) => {
-  Participant.findOne({participantId: req.body.participantId, eventId: req.body.eventId}, function(error, result){
-    console.log("called");
-    if (!error){
-      if (result) {
-        console.log("user already exists")
-        res.send({});
+  Participant.findOne(
+    { participantId: req.body.participantId, eventId: req.body.eventId },
+    function (error, result) {
+      console.log("called");
+      if (!error) {
+        if (result) {
+          console.log("user already exists");
+          res.send({});
+        } else {
+          const NewParticipant = new Participant({
+            participantId: req.body.participantId,
+            eventId: req.body.eventId,
+            participant_name: req.body.participant_name,
+          });
+          NewParticipant.save().then((participant) => res.send(participant));
+        }
       } else {
-        const NewParticipant = new Participant({
-          participantId: req.body.participantId,
-          eventId: req.body.eventId,
-          participant_name: req.body.participant_name,
-        });
-        NewParticipant.save().then((participant) => res.send(participant));      }
-    } else{
-      console.log("error")
-
+        console.log("error");
+      }
     }
-  })
-  
+  );
 });
 
 router.get("/participant", (req, res) => {
@@ -155,6 +157,18 @@ router.post("/editUser", (req, res) => {
     user.save();
   });
   res.send({});
+});
+
+router.post("/addDog", (req, res) => {
+  const NewDog = new Dog({
+    name: req.body.dogname,
+    dogId: "0",
+    breed: req.body.breed,
+    ownerId: req.body.ownerid,
+    bio: req.body.dogbio,
+  });
+
+  NewDog.save().then((dog) => res.send(dog));
 });
 
 // anything else falls to this "not found" case

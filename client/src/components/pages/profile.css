@@ -36,6 +36,11 @@
   font-weight: 300;
 }
 
+.editUser {
+  text-align: center;
+  display: block;
+}
+
 .Profile-line {
   border-color: var(--grey);
 }

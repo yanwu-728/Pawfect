@@ -7,7 +7,7 @@ import NavBar from "./modules/NavBar.js";
 import MySchedule from "./pages/MySchedule.js";
 import Profile from "./pages/profile.js";
 import EditUser from "./pages/editUser.js";
-// import AddDog from "./pages/addDog.js";
+import AddDog from "./pages/addDog.js";
 
 import "../utilities.css";
 
@@ -54,7 +54,7 @@ const App = () => {
         <MySchedule path="/MySchedule/" />
         <Profile path="/profile/" userId={userId} />
         <EditUser path="/editUser/" userId={userId} />
-        {/* <AddDog path="/addDog/" userId={userId} /> */}
+        <AddDog path="/addDog/" userId={userId} />
         <NotFound default />
       </Router>
     </>

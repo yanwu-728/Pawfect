@@ -19,10 +19,13 @@ const Profile = (props) => {
   }
   return (
     <>
-      <div className="Profile-avatarContainer">
+      {/* <div className="Profile-avatarContainer">
         <div className="Profile-avatar" />
-      </div>
+      </div> */}
       <h1 className="Profile-name u-textCenter">{user.name}</h1>
+      <Link className="u-editUser" to="/editUser/">
+        Edit User Profile
+      </Link>
       <hr className="Profile-linejj" />
       <div className="u-flex">
         <div className="Profile-subContainer u-textCenter">
@@ -36,9 +39,9 @@ const Profile = (props) => {
           <div id="contact">{user.contact}</div>
         </div>
 
-        <Link className="Profile-subContainer u-textCenter" to="/editUser/">
+        {/* <Link className="Profile-subContainer u-textCenter" to="/editUser/">
           Edit User Profile
-        </Link>
+        </Link> */}
 
         <Link to="/addDog/">Click to add your dog!</Link>
       </div>
