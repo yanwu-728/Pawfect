@@ -17,18 +17,20 @@ const Card = (props) => {
 
     useEffect(() => {
         get("/api/participants", { eventId: props.eventId }).then((participants) => {
-        setParticipants(participants);
+            console.log("PARTICIPANTS:");
+            console.log(participants)
+            setParticipants(participants);
         });
     }, []);
 
     const addNewParticipant = (participantObj) => {
-        if(participants.find(participant => participant.participantId == participantObj.participantId)){
+        if(participants.find(participant => participant.participantId === participantObj.participantId)){
 
         }else{
             setParticipants(participants.concat([participantObj]));
         }
-        setParticipants(participants.concat([participantObj]));
-        console.log(participants);
+        //setParticipants(participants.concat([participantObj]));
+        // console.log(participants);
       };
     
     return (
