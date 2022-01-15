@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { get, post } from "../../utilities";
+import { Link } from "@reach/router";
 
 import "../../utilities.css";
 
@@ -40,6 +41,7 @@ const editUser = (props) => {
       <button type="submit" value="Submit" onClick={handleSubmit}>
         Submit
       </button>
+      <Link to="/profile/">Back to Profile</Link>
     </div>
   );
 };

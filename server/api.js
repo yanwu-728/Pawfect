@@ -143,7 +143,7 @@ router.post("/dog", (req, res) => {
 });
 
 router.get("/dog", (req, res) => {
-  Dog.find({}).then((dog) => res.send(dog));
+  Dog.find({ ownerId: req.query.ownerId }).then((dogs) => res.send(dogs));
 });
 
 router.post("/editUser", (req, res) => {
