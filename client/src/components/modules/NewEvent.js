@@ -62,7 +62,7 @@ const NewEventInput = (props) => {
 
     return (
         <div>
-            <div class="NewEvent-selector">
+            <div className="NewEvent-selector">
             <Filter  changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation}/>
                 <p>Please enter the number of participants allowed: </p>
                 <input 
@@ -89,7 +89,7 @@ const NewEventInput = (props) => {
                 <button
                     type="submit"
                     value="Submit"
-                    class="NewEvent-button"
+                    className="NewEvent-button"
                     onClick={handleSubmit}
                 >
                     Submit
