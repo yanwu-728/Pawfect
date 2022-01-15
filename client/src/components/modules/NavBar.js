@@ -10,24 +10,16 @@ const GOOGLE_CLIENT_ID = "237465931636-o4q19fum61608nv3mh3r299u8d4hq5qp.apps.goo
 /**
  * The navigation bar at the top of all pages. Takes no props.
  */
-const NavBar = (props) => {
+const NavBar = ({ userId, handleLogin, handleLogout }) => {
   return (
     <nav className="NavBar-container">
       <div className="NavBar-title u-inlineBlock">Pawfect</div>
       <div className="NavBar-linkContainer u-inlineBlock">
-        <Link to="/" className="NavBar-link">
-          Home
-        </Link>
-        {props.userId && (
-          <Link to={`/profile/${props.userId}`} className="NavBar-link">
-            Profile
-          </Link>
-        )}
-        {props.userId ? (
+        {userId ? (
           <GoogleLogout
             clientId={GOOGLE_CLIENT_ID}
             buttonText="Logout"
-            onLogoutSuccess={props.handleLogout}
+            onLogoutSuccess={handleLogout}
             onFailure={(err) => console.log(err)}
             className="NavBar-link NavBar-login"
           />
@@ -35,11 +27,20 @@ const NavBar = (props) => {
           <GoogleLogin
             clientId={GOOGLE_CLIENT_ID}
             buttonText="Login"
-            onSuccess={props.handleLogin}
+            onSuccess={handleLogin}
             onFailure={(err) => console.log(err)}
             className="NavBar-link NavBar-login"
           />
         )}
+        <Link to="/" className="NavBar-link">
+          Home
+        </Link>
+        {userId && (
+          <Link to={`/profile/${userId}`} className="NavBar-link">
+            Profile
+          </Link>
+        )}
+
         <Link to="/finddog/">Find a Dog!</Link>
         <Link to="/MySchedule/">My Schedule</Link>
         <Link to="/profile/">Profile</Link>

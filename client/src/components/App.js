@@ -33,6 +33,7 @@ const App = () => {
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       setUserId(user._id);
+
       post("/api/initsocket", { socketid: socket.id });
     });
   };
@@ -44,12 +45,12 @@ const App = () => {
 
   return (
     <>
-      <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId}/>
+      <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <Router>
-        <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+        {/* <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} /> */}
         <FindDog path="/finddog/" />
-        <MySchedule path="/MySchedule/"/>
-        <Profile path="/profile/" userId={userId}/>
+        <MySchedule path="/MySchedule/" />
+        <Profile path="/profile/" userId={userId} />
         <NotFound default />
       </Router>
     </>

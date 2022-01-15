@@ -37,7 +37,8 @@ router.get("/whoami", (req, res) => {
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
-  if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
+  if (req.user)
+    socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
 });
 
@@ -52,12 +53,13 @@ router.post("/user", (req, res) => {
     profilePic: req.profilePic,
     bio: req.bio,
     contact: req.contact,
-  }) 
+  });
 
   NewUser.save().then((user) => res.send(user));
 });
 
 router.get("/user", (req, res) => {
+  console.log(req.query.userid);
   User.findById(req.query.userid).then((user) => {
     res.send(user);
   });
@@ -72,7 +74,7 @@ router.post("/event", (req, res) => {
     noParticipants: req.body.noParticipants,
     dogId: req.body.dogId,
     intro: req.body.intro,
-  }); 
+  });
 
   NewEvent.save().then((event) => res.send(event));
 });
