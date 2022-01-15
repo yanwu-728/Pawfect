@@ -64,17 +64,22 @@ router.get("/user", (req, res) => {
 });
 
 router.post("/event", (req, res) => {
-  const NewEvent = new Event({
-    eventId: req.body.eventId,
-    location: req.body.location,
-    breed: req.body.breed,
-    time: req.body.time,
-    noParticipants: req.body.noParticipants,
-    dogId: req.body.dogId,
-    intro: req.body.intro,
-  }); 
 
-  NewEvent.save().then((event) => res.send(event));
+  Event.find({}).then((events) => {
+    eventsLength = events.length;
+    const NewEvent = new Event({
+      eventId: eventsLength,
+      location: req.body.location,
+      breed: req.body.breed,
+      time: req.body.time,
+      noParticipants: req.body.noParticipants,
+      dogId: req.body.dogId,
+      intro: req.body.intro,
+    });
+  
+    NewEvent.save().then((event) => res.send(event));
+  });
+  
 });
 
 router.get("/event", (req, res) => {

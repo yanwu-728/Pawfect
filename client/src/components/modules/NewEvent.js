@@ -13,12 +13,17 @@ import "react-datepicker/dist/react-datepicker.css";
  * @param {(location, breed, selectedDate, noParticipants, dogId, intro) => void} onSubmit: (function) triggered when this post is submitted, takes {storyId, value} as parameters
  */
 const NewEventInput = (props) => {
+    // const [eventId, setEventId] = useState(null);
     const [location, setLocation] = useState("[location]");
     const [breed, setBreed] = useState("[breed]");
     const [selectedDate, setDate] = useState("[date]");
     const [noParticipants, setNoParticipants] = useState(0);
     const [dogId, setDogId] = useState("0");
     const [intro, setIntro] = useState("");
+
+    // const changeEventId = (value) => {
+    //     setEventId(value);
+    // }
 
     const changeLocation = (event) => {
         setLocation(event.target.value);
@@ -53,7 +58,7 @@ const NewEventInput = (props) => {
         setNoParticipants(0);
         setDogId("[dog id]");
         setIntro("");
-      };
+    };
 
     return (
         <div>
@@ -101,7 +106,6 @@ const NewEventInput = (props) => {
 const NewEvent = (props) => {
     const addEvent = (location, breed, selectedDate, noParticipants, dogId, intro) => {
         const body = { 
-            eventId: get("/api/event"),
             location: location,
             breed: breed,
             time: selectedDate,
