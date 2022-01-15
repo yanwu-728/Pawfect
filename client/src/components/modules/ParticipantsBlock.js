@@ -13,7 +13,12 @@ import {get, post} from "../../utilities.js";
  */
 
 const ParticipantsBlock = (props) => {
-    const currentUser = get("/api/user", {userid: props.userId})
+    let currentUser;
+    if (props.userId) {
+        console.log("test");
+        currentUser = get("/api/user", {userid: props.userId})
+    };
+    
 
     const handleSubmit = (event) => {
         event.preventDefault();
