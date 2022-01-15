@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {NewEvent} from "../modules/NewEvent.js";
 import {get} from "../../utilities.js";
 import SingleEvent from "../modules/SingleEvent.js";
+import './MySchedule.css';
 
 const MySchedule = () => {
     const [event, setEvent] = useState([]);
@@ -38,10 +39,12 @@ const MySchedule = () => {
     }
 
     return (
-        <>
+        <div>
             <NewEvent />
-            {eventList}
-        </>
+            <div class='MySchedule-event'>
+                {eventList}
+            </div>
+        </div>
     );
 };
 
