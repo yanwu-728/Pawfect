@@ -47,7 +47,7 @@ const App = () => {
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId}/>
       <Router>
         <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
-        <FindDog path="/finddog/" />
+        <FindDog path="/finddog/" userId={userId}/>
         <MySchedule path="/MySchedule/"/>
         <Profile path="/profile/" userId={userId}/>
         <NotFound default />
