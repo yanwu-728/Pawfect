@@ -20,47 +20,42 @@ const ParticipantsBlock =  (props) => {
         document.title = "My Schedule";
         if (props.userId) {
             get("/api/user").then((user) => {
-                console.log("the user")
-                console.log(user)
                 setUser(user.name)
             });
         };
     }, []);
     
-    console.log(props.participants);
     const [event, setEvent] = useState([]);
 
     useEffect(() => {
         document.title = "My Schedule";
         get("/api/singleevent", {eventId: props.eventId}).then((eventObjs) => {
             setEvent(eventObjs);
-            // console.log("event objects:")
-            // console.log(eventObjs);
     });
     }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.onSubmit && props.onSubmit(user);
         const body = {
             participant_name: user,
             participantId: props.userId,
             eventId: props.eventId,
         };
-        post("/api/participant", body).then(() => {
-            get("/api/participant", {participantId: props.userId}).then((newParticipant) => {
-                props.addNewParticipant(newParticipant);
-            });
-        }).then(
-            window.confirm('Thank you for signing up!')
-            ).then(
-                window.location.reload()
-            );
+        console.log("onsubmit");
+        post("/api/participant", body).then((newParticipant) => {
+            console.log(newParticipant);
+            if(newParticipant){
+                props.addNewParticipant(newParticipant).then(
+                    window.confirm('Thank you for signing up!')
+                )
+            }else{
+                window.confirm('You have already signed up!')
+                };
+        })
         
         
       };
       
-    //   console.log(props.participants.length);      
       
       if (event.length > 0 && props.participants.length >= event[0].noParticipants){
           return (
@@ -73,7 +68,6 @@ const ParticipantsBlock =  (props) => {
         );
       }else{
         if (props.userId){
-            console.log(props.participants)
             return (
           <div>
             The participants are: {props.participants.map((participant) => 

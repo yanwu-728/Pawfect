@@ -90,13 +90,22 @@ router.get("/singleevent", (req, res) => {
 });
 
 router.post("/participant", (req, res) => {
-  const NewParticipant = new Participant({
-    participantId: req.body.participantId,
-    eventId: req.body.eventId,
-    participant_name: req.body.participant_name,
-  });
-
-  NewParticipant.save().then((participant) => res.send(participant));
+  Participant.findOne({participantId: req.body.participantId, eventId: req.body.eventId}, function(error, result){
+    if (!error){
+      if (result) {
+        console.log("user already exists")
+      } else {
+        const NewParticipant = new Participant({
+          participantId: req.body.participantId,
+          eventId: req.body.eventId,
+          participant_name: req.body.participant_name,
+        });
+        NewParticipant.save().then((participant) => res.send(participant));      }
+    } else{
+      console.log("error")
+    }
+  })
+  
 });
 
 router.get("/participant", (req, res) => {

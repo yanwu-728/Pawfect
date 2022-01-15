@@ -24,8 +24,12 @@ const Card = (props) => {
     }, []);
 
     const addNewParticipant = (participantObj) => {
-        if(participants.find(participant => participant.participantId === participantObj.participantId)){
-
+        console.log("STEP 1")
+        if(participants.find((participant) => {return (participant.participantId === participantObj.participantId)})){
+            console.log("repeat signup")
+                window.confirm('You have already signed up!').then(
+                    window.location.reload()
+                )
         }else{
             setParticipants(participants.concat([participantObj]));
         }
