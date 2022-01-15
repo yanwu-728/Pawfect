@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 //import CatHappiness from "../modules/CatHappiness.js";
 import { get } from "../../utilities";
+import { Link } from "@reach/router";
 
 import "../../utilities.css";
 import "./Profile.css";
@@ -26,6 +27,7 @@ const Profile = (props) => {
       <div className="u-flex">
         <div className="Profile-subContainer u-textCenter">
           <h4 className="Profile-subTitle">About me:</h4>
+
           <div id="profile-description">{user.bio}</div>
         </div>
 
@@ -33,12 +35,15 @@ const Profile = (props) => {
           <h4 className="Profile-subTitle">Contact:</h4>
           <div id="contact">{user.contact}</div>
         </div>
+
+        <Link className="Profile-subContainer u-textCenter" to="/editUser/">
+          Edit User Profile
+        </Link>
+
+        <Link to="/addDog/">Click to add your dog!</Link>
       </div>
     </>
   );
-  <Link to="/editUser/" className="NavBar-link">
-    Edit User Profile
-  </Link>;
 };
 
 export default Profile;
