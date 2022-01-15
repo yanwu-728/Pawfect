@@ -117,7 +117,11 @@ const NewEvent = (props) => {
             intro: intro
         };
         
-        post("/api/event", body);
+        post("/api/event", body).then(
+            window.confirm('Thank you for submitting the event!')
+        ).then(
+            window.location.reload()
+        );
     };
     
     return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} />;
