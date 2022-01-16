@@ -28,8 +28,9 @@ const Card = (props) => {
       };
     
       const deleteParticipant = (participantObj) => {
+          console.log("deleting participant from front end");
         setParticipants(participants.filter(function(item){
-            return item !== participantObj
+            return item.participantId !== participantObj.participantId
         }));
       };
 

@@ -5,7 +5,7 @@ import { Link } from "@reach/router";
 import DogCard from "../modules/DogCard.js";
 
 import "../../utilities.css";
-import "./Profile.css";
+import "./profile.css";
 
 const Profile = (props) => {
   const [user, setUser] = useState();
@@ -48,18 +48,18 @@ const Profile = (props) => {
         <div className="Profile-avatar" />
       </div> */}
       <h1 className="Profile-name u-textCenter">{user.name}</h1>
-      <Link className="u-editUser" to="/editUser/">
-        Edit User Profile
-      </Link>
+
+      <button classname="buttons">
+        <Link to="/editUser/">Edit User Profile</Link>
+      </button>
+
       <hr className="Profile-linejj" />
       <div className="u-flex">
+        <div className="Profile-subContainer"></div>
         <div className="Profile-subContainer u-textCenter">
           <h4 className="Profile-subTitle">About me:</h4>
 
           <div id="profile-description">{user.bio}</div>
-        </div>
-
-        <div className="Profile-subContainer u-textCenter">
           <h4 className="Profile-subTitle">Contact:</h4>
           <div id="contact">{user.contact}</div>
         </div>
@@ -67,10 +67,14 @@ const Profile = (props) => {
       <hr className="Profile-line" />
       <div className="u-flex">
         <h4 className="Profile-subTitle">Your Dogs:</h4>
+
         {dogsList}
-        <Link className="u-editUser" to="/addDog/">
-          Click to add your dogs!
-        </Link>
+
+        <button classname="buttons">
+          <Link className="Profile-Links" to="/addDog/">
+            Click to add your dogs!
+          </Link>
+        </button>
       </div>
     </>
   );

@@ -174,6 +174,29 @@ router.get("/participating", (req, res) => {
   );
 });
 
+router.post("/deleteparticipant", (req, res) => {
+  Participant.findOne(
+    { participantId: req.body.participantId, eventId: req.body.eventId },
+    function (error, result) {
+      console.log("called");
+      if (!error) {
+        if (result) {
+          console.log("can withdraw");
+          console.log(result);
+          Participant.remove({participantId: result.participantId, eventId: result.eventId});
+          console.log("removed")
+          res.send(result);
+        } else {
+          console.log("not signed up")
+          res.send({});
+        }
+      } else {
+        console.log("error");
+      }
+    }
+  );
+});
+
 router.post("/dog", (req, res) => {
   const NewDog = new Dog({
     dogId: req.dogId,

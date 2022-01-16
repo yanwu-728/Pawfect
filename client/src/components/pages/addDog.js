@@ -36,10 +36,11 @@ const addDog = (props) => {
       <label>Select dog breed: </label>
 
       <select name="breed" id="breed">
-        <option value={breed}>Golden Retriever</option>
-        <option value={breed}>Labrador</option>
-        <option value={breed}>Shiba Inu</option>
-        <option value={breed}>Corgi</option>
+        <option value="Golden Retriever">Golden Retriever</option>
+        <option value="Labrador">Labrador</option>
+        <option value="Shiba Inu">Shiba Inu</option>
+        <option value="Corgi">Corgi</option>
+        <option value="Other">Other</option>
       </select>
 
       <div />
@@ -52,7 +53,9 @@ const addDog = (props) => {
         Submit
       </button>
 
-      <Link to="/profile/">Back to Profile</Link>
+      <button>
+        <Link to="/profile/">Back to Profile</Link>
+      </button>
     </div>
   );
 };

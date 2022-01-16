@@ -41,7 +41,9 @@ const editUser = (props) => {
       <button type="submit" value="Submit" onClick={handleSubmit}>
         Submit
       </button>
-      <Link to="/profile/">Back to Profile</Link>
+      <button>
+        <Link to="/profile/">Back to Profile</Link>
+      </button>
     </div>
   );
 };

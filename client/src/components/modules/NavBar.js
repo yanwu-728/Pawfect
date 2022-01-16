@@ -41,9 +41,15 @@ const NavBar = ({ userId, handleLogin, handleLogout }) => {
           </Link>
         )} */}
 
-        <Link to="/finddog/">Find a Dog!</Link>
-        <Link to="/MySchedule/">My Schedule</Link>
-        <Link to="/profile/">Profile</Link>
+        <Link to="/finddog/" className="NavBar-link">
+          Find a Dog!
+        </Link>
+        <Link to="/MySchedule/" className="NavBar-link">
+          My Schedule
+        </Link>
+        <Link to="/profile/" className="NavBar-link">
+          Profile
+        </Link>
       </div>
     </nav>
   );

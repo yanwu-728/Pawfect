@@ -60,14 +60,26 @@ const ParticipantsBlock =  (props) => {
     const handleDelete = (event) => {
         event.preventDefault();
         console.log(user);
+        console.log(props.userId);
+        console.log(props.eventId);
         const body = {
             participantId: props.userId,
             eventId: props.eventId,
         };
         console.log("ondelete");
+        // get("/api/participating", body).then((participant) => {
+        //     if(Object.keys(participant).length !== 0){
+        //         post("/api/deleteparticipant", body).then(() => {
+        //             props.deleteParticipant(participant);
+        //         })
+        //         window.confirm('Sorry to see you go :(');
+        //     }else{
+        //         window.confirm('You have not signed up!')
+        //         };
+        // })
         post("/api/deleteparticipant", body).then((participant) => {
-            console.log(newParticipant);
-            if(Object.keys(newParticipant).length !== 0){
+            console.log(participant);
+            if(Object.keys(participant).length !== 0){
                 props.deleteParticipant(participant);
                 window.confirm('Sorry to see you go :(');
             }else{

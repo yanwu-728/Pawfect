@@ -1,0 +1,16 @@
+.SingleDog {
+  display: flex;
+  flex-direction: column;
+  border: solid black;
+  flex-basis: content;
+  justify-content: space-between;
+  background-color: #c9a477;
+  font-family: "Roboto";
+  border-radius: 5px;
+  border-color: #000000;
+}
+
+.subContainer {
+  flex-grow: 1;
+  flex-basis: auto;
+}
