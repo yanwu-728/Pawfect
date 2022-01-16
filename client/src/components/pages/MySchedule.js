@@ -23,16 +23,11 @@ const MySchedule = (props) => {
         });
     }, []);
 
-    console.log('outside');
-    console.log(userId);
-
     useEffect(() => {
         document.title = "My Schedule";
         get("/api/event").then((eventObjs) => {
 
             let display = [];
-            console.log('inside');
-            console.log(userId);
             
             for (let i=0; i<eventObjs.length; i++) {
                 if (eventObjs[i].userId == userId) {
@@ -42,10 +37,6 @@ const MySchedule = (props) => {
             setEvent(display);
     });
     }, [userId]); // Need to query based on userId; also need to take into account events both as organizer and participant
-
-    const addNewEvent = (eventObj) => {
-        setEvent([eventObj].concat(event));
-    };
 
     let eventList = null;
     const hasEvent = event.length !== 0;
