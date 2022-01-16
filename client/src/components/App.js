@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import Home from "./pages/home.js";
 import FindDog from "./pages/findDog.js";
 import NavBar from "./modules/NavBar.js";
 import MySchedule from "./pages/MySchedule.js";
@@ -50,6 +51,7 @@ const App = () => {
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <Router>
         {/* <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} /> */}
+        <Home path="/home/" userId={userId} />
         <FindDog path="/finddog/" userId={userId} />
         <MySchedule path="/MySchedule/" userId={userId}/>
         <Profile path="/profile/" userId={userId} />

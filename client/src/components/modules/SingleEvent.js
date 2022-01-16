@@ -25,22 +25,26 @@ import {get, post} from "../../utilities.js";
     post("/api/deleteEvent", {eventId: props.eventId}).then((event) => {
       console.log(event)
     });
+    window.location.reload();
   };
 
   return (
     <div className='SingleEvent-event'>
-      <li>Date: {moment(props.time).format('MMMM Do YYYY')} </li>
-      <li>Location: {props.location}</li>
-      <li>Breed: {props.breed}</li>
-      <li>Number of Participants Allowed: {props.noParticipants}</li>
-      <li>Note: {props.intro}</li>
+      <div>
+        <li>Date: {moment(props.time).format('MMMM Do YYYY')} </li>
+        <li>Location: {props.location}</li>
+        <li>Breed: {props.breed}</li>
+        <li>Number of Participants Allowed: {props.noParticipants}</li>
+        <li>Note: {props.intro}</li>
+        <hr className="SingleEvent-line"/>
+      </div>
       <button
         type="delete"
         value="Delete"
-        className="NewEvent-button"
+        className="SingleEvent-button"
         onClick={HandleDelete}
       > 
-      Delete 
+        Delete 
       </button>
     </div>
   );

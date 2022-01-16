@@ -32,7 +32,7 @@ const NavBar = ({ userId, handleLogin, handleLogout }) => {
             className="NavBar-link NavBar-login"
           />
         )}
-        <Link to="/" className="NavBar-link">
+        <Link to="/home/" className="NavBar-link">
           Home
         </Link>
         {/* {userId && (
