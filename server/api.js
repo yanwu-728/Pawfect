@@ -71,7 +71,12 @@ router.get("/user", (req, res) => {
 
 router.post("/event", (req, res) => {
   Event.find({}).then((events) => {
-    eventsLength = events[events.length-1].eventId + 1;
+    if (events.length !== 0) {
+      eventsLength = events[events.length-1].eventId + 1;
+    } else {
+      eventsLength = 0;
+    };
+    
     const NewEvent = new Event({
       userId: req.body.userId,
       eventId: eventsLength,

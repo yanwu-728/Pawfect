@@ -14,22 +14,38 @@ import '../modules/NewEvent.css';
 
 const MySchedule = (props) => {
     const [event, setEvent] = useState([]);
+    const [userId, setUserId] = useState("");
+
+    useEffect(() => {
+        document.title = "User";
+        get("/api/user").then((user) => {
+            setUserId(user._id);
+        });
+    }, []);
+
+    console.log('outside');
+    console.log(userId);
 
     useEffect(() => {
         document.title = "My Schedule";
         get("/api/event").then((eventObjs) => {
-            setEvent(eventObjs);
+
+            let display = [];
+            console.log('inside');
+            console.log(userId);
+            
+            for (let i=0; i<eventObjs.length; i++) {
+                if (eventObjs[i].userId == userId) {
+                    display.push(eventObjs[i]);
+                };
+            }
+            setEvent(display);
     });
-    }, []); // Need to query based on userId; also need to take into account events both as organizer and participant
+    }, [userId]); // Need to query based on userId; also need to take into account events both as organizer and participant
 
     const addNewEvent = (eventObj) => {
         setEvent([eventObj].concat(event));
     };
-
-    // const HandleDelete = (eventId) => {
-    //     console.log('handle delete');
-    //     post("/api/deleteEvent", {eventId:eventId});
-    // };
 
     let eventList = null;
     const hasEvent = event.length !== 0;
@@ -46,14 +62,6 @@ const MySchedule = (props) => {
                 dogId={eventObj.dogId}
                 intro={eventObj.intro}
             />
-            {/* <button
-                type="delete"
-                value="Delete"
-                className="NewEvent-button"
-                onClick={HandleDelete(eventObj.eventId)}
-            > 
-                Delete 
-            </button> */}
         </div>
     ));
     } else {
