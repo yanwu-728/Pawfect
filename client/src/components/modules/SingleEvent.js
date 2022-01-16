@@ -19,26 +19,13 @@ import {get, post} from "../../utilities.js";
  */
 
  const SingleEvent = (props) => {
-
-    const HandleDelete = () => {
-      post("/api/deleteEvent", {location: props.location});
-    };
-
     return (
-      <div class='SingleEvent-event'>
+      <div className='SingleEvent-event'>
         <li>Date: {moment(props.time).format('MMMM Do YYYY')} </li>
         <li>Location: {props.location}</li>
         <li>Breed: {props.breed}</li>
         <li>Number of Participants Allowed: {props.noParticipants}</li>
         <li>Note: {props.intro}</li>
-        <button
-          type="delete"
-          value="Delete"
-          class="NewEvent-button"
-          onClick={HandleDelete}
-      > 
-      Delete 
-      </button>
       </div>
     );
   };

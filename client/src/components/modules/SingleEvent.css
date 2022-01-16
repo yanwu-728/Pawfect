@@ -3,7 +3,13 @@
     font-family: 'Roboto';
     border-radius: 5px;
     border-color: #BCCDD7;
-    width: 500px;
+    width: 450px;
     height: 125px;
     top: 127px;
+}
+
+button{
+    display: block;
+    position: flex;
+    right: 10px;
 }
