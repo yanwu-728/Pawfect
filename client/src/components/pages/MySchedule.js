@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {NewEvent} from "../modules/NewEvent.js";
-import {get} from "../../utilities.js";
+import {get, post} from "../../utilities.js";
 import SingleEvent from "../modules/SingleEvent.js";
 import './MySchedule.css';
+import '../modules/NewEvent.css';
 
 /**
  * My schedule is a page for a user's schedule
@@ -25,21 +26,35 @@ const MySchedule = (props) => {
         setEvent([eventObj].concat(event));
     };
 
-    
+    // const HandleDelete = (eventId) => {
+    //     console.log('handle delete');
+    //     post("/api/deleteEvent", {eventId:eventId});
+    // };
 
     let eventList = null;
     const hasEvent = event.length !== 0;
     if (hasEvent) {
     eventList = event.map((eventObj) => (
-        <SingleEvent
-        eventId={eventObj.eventId}
-        location={eventObj.location}
-        breed={eventObj.breed}
-        time={eventObj.time}
-        noParticipants={eventObj.noParticipants}
-        dogId={eventObj.dogId}
-        intro={eventObj.intro}
-        />
+        <div key={eventObj.eventId}>
+            <SingleEvent
+                userId={eventObj.userId}
+                eventId={eventObj.eventId}
+                location={eventObj.location}
+                breed={eventObj.breed}
+                time={eventObj.time}
+                noParticipants={eventObj.noParticipants}
+                dogId={eventObj.dogId}
+                intro={eventObj.intro}
+            />
+            {/* <button
+                type="delete"
+                value="Delete"
+                className="NewEvent-button"
+                onClick={HandleDelete(eventObj.eventId)}
+            > 
+                Delete 
+            </button> */}
+        </div>
     ));
     } else {
         eventList = <div>No event!</div>;
@@ -48,7 +63,7 @@ const MySchedule = (props) => {
     return (
         <div>
             <NewEvent userId={props.userId}/>
-            <div class='MySchedule-event'>
+            <div className='MySchedule-event'>
                 {eventList}
             </div>
         </div>

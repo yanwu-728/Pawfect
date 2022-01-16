@@ -71,7 +71,7 @@ router.get("/user", (req, res) => {
 
 router.post("/event", (req, res) => {
   Event.find({}).then((events) => {
-    eventsLength = events.length;
+    eventsLength = events[events.length-1].eventId + 1;
     const NewEvent = new Event({
       userId: req.body.userId,
       eventId: eventsLength,
@@ -85,6 +85,10 @@ router.post("/event", (req, res) => {
 
     NewEvent.save().then((event) => res.send(event));
   });
+});
+
+router.post("/deleteEvent", (req, res) => {
+  Event.deleteOne({eventId: req.body.eventId});
 });
 
 router.get("/event", (req, res) => {

@@ -51,7 +51,12 @@ const NewEventInput = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.onSubmit && props.onSubmit(location, breed, selectedDate, noParticipants, dogId, intro);
+        try{
+            props.onSubmit && props.onSubmit(location, breed, selectedDate, noParticipants, dogId, intro);
+        } catch (error) {
+            window.alert("Input invalid");
+            window.location.reload();
+        }
         setLocation("[location]");
         setBreed("[breed]");
         setDate("[date]");
