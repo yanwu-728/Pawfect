@@ -10,13 +10,6 @@ import SingleEvent from "../modules/SingleEvent.js";
 const FindDog = (props) => {
   const [event, setEvent] = useState([]);
 
-    useEffect(() => {
-        document.title = "Find Dog";
-        get("/api/event").then((eventObjs) => {
-            setEvent(eventObjs);
-    });
-    }, []);
-
     const [breed, setBreed] = useState(null);
     const [selectedDate, setDate] = useState(null);
     const [location, setLocation] = useState(null);
@@ -26,13 +19,33 @@ const FindDog = (props) => {
     };
   
     const changeDate = (date) => {
-      setDate(moment(date).format("MMMM Do YYYY"));
+      setDate(moment(date).format("MMM Do YY"));
+      // setDate(moment(date).toDate());
     }
 
     const changeLocation = (event) => {
         setLocation(event.target.value);
     }
     
+    useEffect(() => {
+      document.title = "Find Dog";
+      get("/api/event").then((eventObjs) => {
+          setEvent(eventObjs);
+  });
+  }, []);
+
+    const handleSubmit = () => {
+      // useEffect(() => {
+      //   document.title = "Filter";
+      //   get("/api/filteredevents", {location: location, time: selectedDate, breed: breed}).then((eventObjs) => {
+      //     setEvent(eventObjs);
+      //   });
+      // }, []);
+      get("/api/filteredevents", {location: location, time: selectedDate, breed: breed}).then((eventObjs) => {
+        setEvent(eventObjs);
+      });
+    };
+
     let eventList = null;
     const hasEvent = event.length !== 0;
     if (hasEvent) {
@@ -58,6 +71,17 @@ const FindDog = (props) => {
         <p>The selected breed is {breed}.</p>
         <p>The selected time is {selectedDate}</p>
         <p>The selected location is {location}.</p>
+        <p>
+          <button
+        type="submit"
+        value="Submit"
+        className="Filter-button"
+        onClick={handleSubmit}
+        >
+          Find Dog
+        </button>
+        </p>
+        
         <>
         The current events are:
         {eventList}

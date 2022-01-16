@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import SingleEvent from "./SingleEvent.js";
+import SingleEvent2 from "./SingleEvent2.js";
 import ParticipantsBlock from "./ParticipantsBlock.js";
 import {get} from "../../utilities.js";
 
@@ -17,23 +17,25 @@ const Card = (props) => {
 
     useEffect(() => {
         get("/api/participants", { eventId: props.eventId }).then((participants) => {
-        setParticipants(participants);
+            console.log("PARTICIPANTS:");
+            console.log(participants)
+            setParticipants(participants);
         });
     }, []);
 
     const addNewParticipant = (participantObj) => {
-        if(participants.find(participant => participant.participantId == participantObj.participantId)){
-
-        }else{
-            setParticipants(participants.concat([participantObj]));
-        }
         setParticipants(participants.concat([participantObj]));
-        console.log(participants);
       };
     
+      const deleteParticipant = (participantObj) => {
+        setParticipants(participants.filter(function(item){
+            return item !== participantObj
+        }));
+      };
+
     return (
     <div className="Card-container">
-        <SingleEvent
+        <SingleEvent2
         _id={props.eventId}
         location={props.location}
         breed={props.breed}
@@ -47,6 +49,7 @@ const Card = (props) => {
         participants={participants}
         userId={props.userId}
         addNewParticipant={addNewParticipant}
+        deleteParticipant={deleteParticipant}
         />
     </div>
     );

@@ -34,7 +34,7 @@ const NewEventInput = (props) => {
     }
   
     const changeDate = (date) => {
-        setDate(moment(date).format());
+        setDate(moment(date).format("MMM Do YY"));
     }
 
     const changeNoParticipant = (event) => {
@@ -109,11 +109,13 @@ const NewEventInput = (props) => {
  *
  * Proptypes
  * @param {string} defaultText is the placeholder text
+ * @param {string} userId
  */
 
 const NewEvent = (props) => {
     const addEvent = (location, breed, selectedDate, noParticipants, dogId, intro) => {
         const body = { 
+            userId: props.userId,
             location: location,
             breed: breed,
             time: selectedDate,
@@ -128,8 +130,15 @@ const NewEvent = (props) => {
             window.location.reload()
         );
     };
+    if (props.userId){
+        return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} />;
+    }else{
+        return(
+            <div>Please log in to post event!</div>
+        );
+        
+    }
     
-    return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} />;
 };
 
 export { NewEventInput, NewEvent }

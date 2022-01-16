@@ -13,37 +13,85 @@ import {get, post} from "../../utilities.js";
  * @param function addNewParticipant
  */
 
-const ParticipantsBlock = (props) => {
-    let currentUser;
-    if (props.userId) {
-        console.log("test");
-        currentUser = get("/api/user", {userid: props.userId})
-    };
+const ParticipantsBlock =  (props) => {
+    const [user, setUser] = useState(null);
     
-    const event = get("/api/singleevent", {eventId: props.eventId});
+    useEffect(() => {
+        document.title = "My Schedule";
+        // console.log(user)
+        if (props.userId) {
+            get("/api/user", {userId: props.userId}).then((res) => {
+                console.log(res.name)
+                setUser(res.name);
+            });
+        };
+    }, [props.userId]);
+    
+    const [event, setEvent] = useState([]);
+
+    useEffect(() => {
+        document.title = "My Schedule";
+        get("/api/singleevent", {eventId: props.eventId}).then((eventObjs) => {
+            setEvent(eventObjs);
+    });
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.onSubmit && props.onSubmit(currentUser);
         const body = {
-            participant_name: currentUser.name,
+            participant_name: user,
             participantId: props.userId,
             eventId: props.eventId,
         };
-        post("/api/participant", body);
-        const newParticipant = get("/api/participant", {participantId: props.userId});
-        props.addNewParticipant(newParticipant);
+        console.log("onsubmit");
+        post("/api/participant", body).then((newParticipant) => {
+            console.log(newParticipant);
+            if(Object.keys(newParticipant).length !== 0){
+                props.addNewParticipant(newParticipant);
+                    window.confirm('Thank you for signing up!');
+            }else{
+                window.confirm('You have already signed up!')
+                };
+        })
+        
+        
       };
-
-    return (
-        <div>
+      
+    const handleDelete = (event) => {
+        event.preventDefault();
+        console.log(user);
+        const body = {
+            participantId: props.userId,
+            eventId: props.eventId,
+        };
+        console.log("ondelete");
+        post("/api/deleteparticipant", body).then((participant) => {
+            console.log(newParticipant);
+            if(Object.keys(newParticipant).length !== 0){
+                props.deleteParticipant(participant);
+                window.confirm('Sorry to see you go :(');
+            }else{
+                window.confirm('You have not signed up!')
+                };
+        })
+    }
+      
+      if (event.length > 0 && props.participants.length >= event[0].noParticipants){
+          return (
+            <div>
+                The participants are: {props.participants.map((participant) => 
+                participant.participant_name
+                )}
+                    Slots have run out!
+            </div>
+        );
+      }else{
+        if (props.userId){
+            return (
+          <div>
             The participants are: {props.participants.map((participant) => 
             participant.participant_name
             )}
-          <></>
-          {props.participants.length >= event.noParticipants} ? (
-                Slots have run out!
-          ):(
             <button
             type="submit"
             value="Submit"
@@ -51,11 +99,32 @@ const ParticipantsBlock = (props) => {
             >
                 Sign Up!
             </button>  
-          )
+            <button
+            type="delete"
+            value="delete"
+            onClick={handleDelete}
+            >
+                Withdraw :(
+            </button>  
             
         </div>
+      )
+        }else{
+            return (
+                <div>
+                    <p>
+                    The participants are: {props.participants.map((participant) => 
+            participant.participant_name
+            )}
+                    </p>
+                    <p>Log in to sign up!</p>
+                </div>
+            )
+        }
+          
+      };
         
-    )
+
 };
 
 export default ParticipantsBlock;

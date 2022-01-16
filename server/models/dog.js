@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 const DogSchema = new mongoose.Schema({
   dogId: String,
+  name: String,
   breed: String,
-  dogPic: String,
+  // dogPic: String,
   ownerId: String,
   bio: String,
 });

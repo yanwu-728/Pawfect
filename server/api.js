@@ -48,31 +48,32 @@ router.post("/initsocket", (req, res) => {
 
 router.post("/user", (req, res) => {
   const NewUser = new User({
-    name: req.name,
-    googleid: req.googleid,
-    profilePic: req.profilePic,
-    bio: req.bio,
-    contact: req.contact,
+    name: req.body.name,
+    googleid: req.body.googleid,
+    profilePic: req.body.profilePic,
+    bio: req.body.bio,
+    contact: req.body.contact,
   });
 
   NewUser.save().then((user) => res.send(user));
 });
 
 router.get("/user", (req, res) => {
-  console.log(req.query.userid);
-  User.find({'googleid': req.query.userid}).then((user) => {
+  // User.find({_id: req.query.userId}).then((user) => {
+  //   res.send(user);
+  // });
+  console.log(req.user._id);
+  User.findById(req.user._id).then((user) => {
+    console.log(`user ${user}`);
     res.send(user);
   });
 });
 
-router.delete("/deleteUser", (req, res) => {
-  User.deleteOne({'googleid': req.query.googleid});
-});
-
 router.post("/event", (req, res) => {
   Event.find({}).then((events) => {
-    eventsLength = events.length;
+    eventsLength = events[events.length-1].eventId + 1;
     const NewEvent = new Event({
+      userId: req.body.userId,
       eventId: eventsLength,
       location: req.body.location,
       breed: req.body.breed,
@@ -86,40 +87,86 @@ router.post("/event", (req, res) => {
   });
 });
 
-router.get("/event", (req, res) => {
-  Event.find({}).then((event) => res.send(event));
-});
-
 router.post("/deleteEvent", (req, res) => {
   Event.deleteOne({eventId: req.body.eventId});
 });
 
+router.get("/event", (req, res) => {
+  Event.find({}).then((event) => res.send(event));
+});
+
 router.get("/singleevent", (req, res) => {
-  Event.find({_id: req.query.eventId}).then((event) => res.send(event));
+  Event.find({ _id: req.query.eventId }).then((event) => res.send(event));
+});
+
+router.get("/filteredevents", (req, res) => {
+  const body = {};
+  if (req.query.location !== "null"){
+    body.location = req.query.location;
+  };
+  if (req.query.breed !== "null"){
+    body.breed = req.query.breed;
+  };
+  if (req.query.time !== "null"){
+    body.time = req.query.time;
+  };
+  Event.find(body).then((event) => res.send(event));
 });
 
 router.post("/participant", (req, res) => {
-  const NewParticipant = new Participant({
-    participantId: req.body.participantId,
-    eventId: req.body.eventId,
-    participant_name: req.body.participant_name,
-  });
-
-  NewParticipant.save().then((participant) => res.send(participant));
+  Participant.findOne(
+    { participantId: req.body.participantId, eventId: req.body.eventId },
+    function (error, result) {
+      console.log("called");
+      if (!error) {
+        if (result) {
+          console.log("user already exists");
+          res.send({});
+        } else {
+          const NewParticipant = new Participant({
+            participantId: req.body.participantId,
+            eventId: req.body.eventId,
+            participant_name: req.body.participant_name,
+          });
+          NewParticipant.save().then((participant) => res.send(participant));
+        }
+      } else {
+        console.log("error");
+      }
+    }
+  );
 });
 
 router.get("/participant", (req, res) => {
-  Participant.find({participantId: req.query.participantId}).then((participant) => res.send(participant));
-});
-
-router.post("/deleteParticipant", (req, res) => {
-  Participant.find({participantId: req.query.participantId});
+  Participant.find({ participantId: req.query.participantId }).then((participant) =>
+    res.send(participant)
+  );
 });
 
 router.get("/participants", (req, res) => {
-  Participant.find({eventId: req.query.eventId}).then((participant) => {
+  Participant.find({ eventId: req.query.eventId }).then((participant) => {
     res.send(participant);
   });
+});
+
+router.get("/participating", (req, res) => {
+  Participant.findOne(
+    { participantId: req.query.userId, eventId: req.query.eventId },
+    function (error, result) {
+      console.log("called");
+      if (!error) {
+        if (result) {
+          console.log("user already signed up");
+          res.send(result);
+        } else {
+          console.log("not signed up")
+          res.send({});
+        }
+      } else {
+        console.log("error");
+      }
+    }
+  );
 });
 
 router.post("/dog", (req, res) => {
@@ -135,11 +182,32 @@ router.post("/dog", (req, res) => {
 });
 
 router.get("/dog", (req, res) => {
-  Dog.find({}).then((dog) => res.send(dog));
+  Dog.find({ ownerId: req.query.ownerId }).then((dogs) => res.send(dogs));
 });
 
-router.post("/deleteDog", (req, res) => {
-  Dog.find({dogId: req.query.dogId});
+router.post("/editUser", (req, res) => {
+  console.log(req);
+  User.findById(req.body.userid).then((user) => {
+    console.log(user);
+    user.name = req.body.newName;
+    user.bio = req.body.newBio;
+    user.contact = req.body.newContact;
+    // edit user
+    user.save();
+  });
+  res.send({});
+});
+
+router.post("/addDog", (req, res) => {
+  const NewDog = new Dog({
+    name: req.body.dogname,
+    dogId: "0",
+    breed: req.body.breed,
+    ownerId: req.body.ownerid,
+    bio: req.body.dogbio,
+  });
+
+  NewDog.save().then((dog) => res.send(dog));
 });
 
 // anything else falls to this "not found" case

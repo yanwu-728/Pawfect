@@ -6,6 +6,8 @@ import FindDog from "./pages/findDog.js";
 import NavBar from "./modules/NavBar.js";
 import MySchedule from "./pages/MySchedule.js";
 import Profile from "./pages/profile.js";
+import EditUser from "./pages/editUser.js";
+import AddDog from "./pages/addDog.js";
 
 import "../utilities.css";
 
@@ -48,9 +50,11 @@ const App = () => {
       <NavBar handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
       <Router>
         {/* <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} /> */}
-        <FindDog path="/finddog/" userId={userId}/>
-        <MySchedule path="/MySchedule/" />
+        <FindDog path="/finddog/" userId={userId} />
+        <MySchedule path="/MySchedule/" userId={userId}/>
         <Profile path="/profile/" userId={userId} />
+        <EditUser path="/editUser/" userId={userId} />
+        <AddDog path="/addDog/" userId={userId} />
         <NotFound default />
       </Router>
     </>

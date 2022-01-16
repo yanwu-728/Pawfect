@@ -5,7 +5,14 @@ import SingleEvent from "../modules/SingleEvent.js";
 import './MySchedule.css';
 import '../modules/NewEvent.css';
 
-const MySchedule = () => {
+/**
+ * My schedule is a page for a user's schedule
+ *
+ * Proptypes
+ * @param {string} userId
+ */
+
+const MySchedule = (props) => {
     const [event, setEvent] = useState([]);
 
     useEffect(() => {
@@ -19,10 +26,10 @@ const MySchedule = () => {
         setEvent([eventObj].concat(event));
     };
 
-    const HandleDelete = (eventId) => {
-        console.log('handle delete');
-        post("/api/deleteEvent", {eventId:eventId});
-    };
+    // const HandleDelete = (eventId) => {
+    //     console.log('handle delete');
+    //     post("/api/deleteEvent", {eventId:eventId});
+    // };
 
     let eventList = null;
     const hasEvent = event.length !== 0;
@@ -30,6 +37,7 @@ const MySchedule = () => {
     eventList = event.map((eventObj) => (
         <div key={eventObj.eventId}>
             <SingleEvent
+                userId={eventObj.userId}
                 eventId={eventObj.eventId}
                 location={eventObj.location}
                 breed={eventObj.breed}
@@ -38,14 +46,14 @@ const MySchedule = () => {
                 dogId={eventObj.dogId}
                 intro={eventObj.intro}
             />
-            <button
+            {/* <button
                 type="delete"
                 value="Delete"
                 className="NewEvent-button"
                 onClick={HandleDelete(eventObj.eventId)}
             > 
                 Delete 
-            </button>
+            </button> */}
         </div>
     ));
     } else {
@@ -54,7 +62,7 @@ const MySchedule = () => {
 
     return (
         <div>
-            <NewEvent />
+            <NewEvent userId={props.userId}/>
             <div className='MySchedule-event'>
                 {eventList}
             </div>
