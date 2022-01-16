@@ -22,7 +22,9 @@ import {get, post} from "../../utilities.js";
  const SingleEvent = (props) => {
 
   const HandleDelete = () => {
-    post("/api/deleteEvent", {eventId: props.eventId});
+    post("/api/deleteEvent", {eventId: props.eventId}).then((event) => {
+      console.log(event)
+    });
   };
 
   return (
@@ -37,9 +39,9 @@ import {get, post} from "../../utilities.js";
         value="Delete"
         className="NewEvent-button"
         onClick={HandleDelete}
-    > 
-    Delete 
-    </button>
+      > 
+      Delete 
+      </button>
     </div>
   );
 };
