@@ -29,8 +29,8 @@ import {get, post} from "../../utilities.js";
   };
 
   return (
-    <div className='SingleEvent-event'>
-      <div>
+    <div className="SingleEvent-container">
+      <div className='SingleEvent-event'>
         <li>Date: {moment(props.time).format('MMMM Do YYYY')} </li>
         <li>Location: {props.location}</li>
         <li>Breed: {props.breed}</li>
