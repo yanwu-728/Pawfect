@@ -178,7 +178,7 @@ router.post("/deleteparticipant", (req, res) => {
         if (result) {
           console.log("can withdraw");
           console.log(result);
-          Participant.remove({participantId: result.participantId, eventId: result.eventId});
+          Participant.deleteOne({participantId: req.body.participantId, eventId: req.body.eventId});
           console.log("removed")
           res.send(result);
         } else {
