@@ -72,11 +72,11 @@ router.get("/user", (req, res) => {
 router.post("/event", (req, res) => {
   Event.find({}).then((events) => {
     if (events.length !== 0) {
-      eventsLength = events[events.length-1].eventId + 1;
+      eventsLength = events[events.length - 1].eventId + 1;
     } else {
       eventsLength = 0;
-    };
-    
+    }
+
     const NewEvent = new Event({
       userId: req.body.userId,
       eventId: eventsLength,
@@ -106,15 +106,15 @@ router.get("/singleevent", (req, res) => {
 
 router.get("/filteredevents", (req, res) => {
   const body = {};
-  if (req.query.location !== "null"){
+  if (req.query.location !== "null") {
     body.location = req.query.location;
-  };
-  if (req.query.breed !== "null"){
+  }
+  if (req.query.breed !== "null") {
     body.breed = req.query.breed;
-  };
-  if (req.query.time !== "null"){
+  }
+  if (req.query.time !== "null") {
     body.time = req.query.time;
-  };
+  }
   Event.find(body).then((event) => res.send(event));
 });
 
@@ -164,7 +164,7 @@ router.get("/participating", (req, res) => {
           console.log("user already signed up");
           res.send(result);
         } else {
-          console.log("not signed up")
+          console.log("not signed up");
           res.send({});
         }
       } else {
@@ -183,11 +183,14 @@ router.post("/deleteparticipant", (req, res) => {
         if (result) {
           console.log("can withdraw");
           console.log(result);
-          Participant.deleteOne({participantId: req.body.participantId, eventId: req.body.eventId});
-          console.log("removed")
+          Participant.deleteOne({
+            participantId: req.body.participantId,
+            eventId: req.body.eventId,
+          });
+          console.log("removed");
           res.send(result);
         } else {
-          console.log("not signed up")
+          console.log("not signed up");
           res.send({});
         }
       } else {
@@ -199,7 +202,7 @@ router.post("/deleteparticipant", (req, res) => {
 
 router.post("/dog", (req, res) => {
   const NewDog = new Dog({
-    dogId: req.dogId,
+    dogId: dogsLength,
     breed: req.breed,
     dogPic: req.dogPic,
     ownerId: req.ownerId,
@@ -227,15 +230,22 @@ router.post("/editUser", (req, res) => {
 });
 
 router.post("/addDog", (req, res) => {
-  const NewDog = new Dog({
-    name: req.body.dogname,
-    dogId: "0",
-    breed: req.body.breed,
-    ownerId: req.body.ownerid,
-    bio: req.body.dogbio,
-  });
+  Dog.find({}).then((dogs) => {
+    if (dogs.length !== 0) {
+      dogsLength = dogs[dogs.length - 1].dogId + 1;
+    } else {
+      dogsLength = 0;
+    }
+    const NewDog = new Dog({
+      name: req.body.dogname,
+      dogId: dogsLength,
+      breed: req.body.breed,
+      ownerId: req.body.ownerid,
+      bio: req.body.dogbio,
+    });
 
-  NewDog.save().then((dog) => res.send(dog));
+    NewDog.save().then((dog) => res.send(dog));
+  });
 });
 
 // anything else falls to this "not found" case
