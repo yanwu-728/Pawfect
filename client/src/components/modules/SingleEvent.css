@@ -18,14 +18,16 @@
 
 .SingleEvent-button{
     flex: 1;
-    margin-left: 500px; 
+    margin-top: 60px;
+    margin-left: 80px; 
+    margin-right: 60px;
     font-family:'Roboto';
     font-size: 14px;
     font-weight: bold;
     background-color: #5B4C49;
-    padding: 5px 10px;
     color: white;
     box-shadow: 0 3px black;
+    height: 30px;
 }
 
 .SingleEvent-button:hover {
