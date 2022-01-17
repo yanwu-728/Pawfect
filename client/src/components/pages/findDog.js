@@ -14,9 +14,15 @@ const FindDog = (props) => {
     const [breed, setBreed] = useState(null);
     const [selectedDate, setDate] = useState(null);
     const [location, setLocation] = useState(null);
+    const [defaultText, setDefault] = useState(null);
   
     const changeBreed = (event) => {
-      setBreed(event.target.value);
+      if (event.target.value === "No Preference"){
+        setBreed(null);
+      }else{
+        setBreed(event.target.value);
+      }
+      
     };
   
     const changeDate = (date) => {
@@ -25,7 +31,12 @@ const FindDog = (props) => {
     }
 
     const changeLocation = (event) => {
+      if (event.target.value === "No Preference"){
+        setLocation(null);
+      }else{
         setLocation(event.target.value);
+      }
+        
     }
     
     useEffect(() => {
@@ -46,6 +57,13 @@ const FindDog = (props) => {
         setEvent(eventObjs);
       });
     };
+
+    const handleReset = () => {
+      setBreed(null);
+      setLocation(null);
+      setDate(null);
+      setDefault("none");
+    }
 
     let eventList = null;
     const hasEvent = event.length !== 0;
@@ -69,7 +87,7 @@ const FindDog = (props) => {
     return (
       <>
       <div className="FindDog-selector">
-        <Filter changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation}/>
+        <Filter changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation} defaultText={defaultText}/>
         <div className="filter">
         <p>The selected breed is {breed}.</p>
         <p>The selected time is {selectedDate}</p>
@@ -77,6 +95,7 @@ const FindDog = (props) => {
         </div>
         
         <p>
+
           <button
         type="submit"
         value="Submit"
@@ -84,6 +103,14 @@ const FindDog = (props) => {
         onClick={handleSubmit}
         >
           Find Dog
+        </button>
+        <button
+        type="submit"
+        value="Submit"
+        className="Reset-button"
+        onClick={handleReset}
+        >
+          Reset
         </button>
         </p>
       </div>

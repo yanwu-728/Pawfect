@@ -8,12 +8,13 @@ const Filter = (props) => {
     return (
         <div className="filter">
             <label htmlFor="dog-breeds">Breed:</label>
-            <select name="dog-breeds" id="dog-breeds" onChange={props.changeBreed}>
-                <option value="noPreference">No Preference</option>
-                <option value="goldenRetriever">Golden Retriever</option>
-                <option value="labrador">Labrador</option>
-                <option value="shibaInu">Shiba Inu</option>
-                <option value="corgi">Corgi</option>
+            <select value={props.defaultText} selected name="dog-breeds" id="dog-breeds" onChange={props.changeBreed}>
+                <option value="none" selected disabled hidden>Please Select</option>
+                <option value="No Preference">No Preference</option>
+                <option value="Golden Retriever">Golden Retriever</option>
+                <option value="Labrador">Labrador</option>
+                <option value="Shiba Inu">Shiba Inu</option>
+                <option value="Corgi">Corgi</option>
             </select>
             
             <DatePicker 
@@ -22,8 +23,9 @@ const Filter = (props) => {
             />
             
             <label htmlFor="locations">Location:</label>
-            <select name="locations" id="locations" onChange={props.changeLocation}>
-                <option value="noPreference">No Preference</option>
+            <select value={props.defaultText} selected name="locations" id="locations" onChange={props.changeLocation}>
+                <option value="none" selected disabled hidden>Please Select</option>
+                <option value="No Preference">No Preference</option>
                 <option value="MIT">MIT</option>
                 <option value="Harvard">Harvard</option>
                 <option value="Central Squre">Central Square</option>

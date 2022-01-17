@@ -18,15 +18,9 @@ const Feed = (props) => {
   if (!user) {
     return (
       <>
-<<<<<<< HEAD
-        <div className="welcome">
-          <h2>Hi Welcome to PAWFECT! </h2>
-          <h4>Please log in first.</h4>
-=======
         <div>
           <h2 class="welcome">Hi! Welcome to PAWFECT! </h2>
           <h4 class="welcome">Please log in first.</h4>
->>>>>>> d487c173a308b1f66ad8255174f3f94b1135ecaf
         </div>
         <div class="dogs" />;
       </>
@@ -34,17 +28,10 @@ const Feed = (props) => {
   }
   return (
     <>
-<<<<<<< HEAD
-      <div className="welcome"> 
-        <h2>Hi {user.name}! </h2>
-        <h3>Welcome to PAWFECT!</h3>
-        <h4>
-=======
       <div>
         <h2 class="welcome">Hi {user.name}! </h2>
         <h3 class="welcome">Welcome to PAWFECT!</h3>
         <h4 class="welcome">
->>>>>>> d487c173a308b1f66ad8255174f3f94b1135ecaf
           Please go to "Find a Dog!" page to see posted events or add your own on "My Schedule"
           page!
         </h4>

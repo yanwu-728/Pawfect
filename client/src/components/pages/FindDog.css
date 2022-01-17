@@ -21,7 +21,7 @@
     padding: 5px 10px;
     color: white;
     box-shadow: 0 3px black;
-    margin-left: 216px;
+    margin-left: 150px;
     margin-top: 35px;
 }
 
@@ -37,7 +37,7 @@
 .FindDog-selector{
     position: relative;
     width: 316px;
-    height: 350px;
+    height: 370px;
     left: 85px;
     top: 88px;
 
@@ -100,4 +100,24 @@
     margin-top: 5px;
     font-family: 'Roboto';
     font-weight: bold;
+}
+
+.Reset-button{
+    font-family:'Roboto';
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #5B4C49;
+    padding: 5px 10px;
+    color: white;
+    box-shadow: 0 3px black;
+    margin-top: 35px;
+}
+
+.Reset-button:hover {
+    background-color: #3F2D2A;
+}
+
+.Reset-button:active {
+    background-color: #3f2d2a;
+    transform: translateY(3px);
 }
