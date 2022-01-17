@@ -36,6 +36,10 @@ const DogCard = (props) => {
           <h4 className="Profile-subTitle">Dog bio:</h4>
           <div id="profile-description">{props.dogBio}</div>
         </div>
+        <div className="subContainer u-textCenter">
+          <h4 className="Profile-subTitle">Dog Id:</h4>
+          <div id="profile-description">{props.dogId}</div>
+        </div>
       </div>
     </div>
   );

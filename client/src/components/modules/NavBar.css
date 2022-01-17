@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&family=Permanent+Marker&display=swap");
 .NavBar-container {
   padding: var(--s) var(--m);
   background-color: var(--primary);
@@ -5,7 +6,8 @@
 
 .NavBar-title {
   color: var(--white);
-  font-size: 20px;
+  font-size: 30px;
+  font-family: "Permanent Marker", cursive;
 }
 
 .NavBar-linkContainer {

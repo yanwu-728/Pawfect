@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Open+Sans:wght@300;500&family=Permanent+Marker&display=swap");
+
 .Profile-avatarContainer {
   padding: 0 35%;
 }
@@ -42,6 +45,7 @@
 .Profile-name {
   font-size: 40px;
   font-weight: 300;
+  font-family: "Permanent Marker", cursive;
 }
 
 .editUser {
@@ -71,4 +75,5 @@
   font-weight: 300;
   font-size: 24px;
   margin: var(--m) var(--s);
+  font-family: "Architects Daughter", cursive;
 }

@@ -26,7 +26,7 @@ const Profile = (props) => {
   const hasDogs = dogs.length !== 0;
 
   if (!user) {
-    return <div> Loading! </div>;
+    return <div className="Profile-subTitle"> Please log in to view profile! </div>;
   }
   if (hasDogs) {
     dogsList = dogs.map((dogObj) => (
@@ -40,7 +40,7 @@ const Profile = (props) => {
       />
     ));
   } else {
-    dogsList = <div>No dogs!</div>;
+    dogsList = <div className="Profile-subTitle">No dogs!</div>;
   }
   return (
     <>
