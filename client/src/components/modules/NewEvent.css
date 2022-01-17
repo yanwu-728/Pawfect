@@ -1,4 +1,5 @@
 .NewEvent-button{
+    float: left;
     font-family:'Roboto';
     font-size: 14px;
     font-weight: bold;
@@ -7,7 +8,7 @@
     color: white;
     box-shadow: 0 3px black;
     margin-left: 230px;
-    margin-top: 16px;
+    margin-top: 0px;
 }
 
 .NewEvent-button:hover {
@@ -19,10 +20,14 @@
     transform: translateY(3px);
 }
 
+.NewEvent-button + .NewEvent-button{
+    margin-top: 10px;
+}
+
 .NewEvent-selector{
     position: relative;
     width: 316px;
-    height: 570px;
+    height: 600px;
     left: 85px;
     top: 88px;
 
