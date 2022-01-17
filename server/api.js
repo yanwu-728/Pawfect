@@ -62,16 +62,21 @@ router.get("/user", (req, res) => {
   // User.find({_id: req.query.userId}).then((user) => {
   //   res.send(user);
   // });
-  console.log(req.user._id);
+  // console.log(req.user._id);
   User.findById(req.user._id).then((user) => {
-    console.log(`user ${user}`);
+    // console.log(`user ${user}`);
     res.send(user);
   });
 });
 
 router.post("/event", (req, res) => {
   Event.find({}).then((events) => {
-    eventsLength = events[events.length-1].eventId + 1;
+    if (events.length !== 0) {
+      eventsLength = events[events.length-1].eventId + 1;
+    } else {
+      eventsLength = 0;
+    };
+    
     const NewEvent = new Event({
       userId: req.body.userId,
       eventId: eventsLength,
@@ -87,8 +92,8 @@ router.post("/event", (req, res) => {
   });
 });
 
-router.post("/deleteEvent", (req, res) => {
-  Event.deleteOne({eventId: req.body.eventId});
+router.post("/deleteEvent", auth.ensureLoggedIn, async (req, res) => {
+  await Event.deleteOne(req.body);
 });
 
 router.get("/event", (req, res) => {

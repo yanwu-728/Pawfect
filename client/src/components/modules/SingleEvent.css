@@ -1,15 +1,44 @@
+.SingleEvent-container{
+    display: flex;
+}
+
 .SingleEvent-event{
-    position: static;
+    flex: 0 0 65%;
     font-family: 'Roboto';
-    border-radius: 5px;
-    border-color: #BCCDD7;
+    border-radius: 3px;
+    border-color: #5C544C;
     width: 450px;
     height: 125px;
     top: 127px;
+    margin-top: 10px;
+    margin-left: 20px;
 }
 
-button{
+.SingleEvent-button{
+    flex: 1;
+    margin-left: 500px; 
+    font-family:'Roboto';
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #5B4C49;
+    padding: 5px 10px;
+    color: white;
+    box-shadow: 0 3px black;
+}
+
+.SingleEvent-button:hover {
+    background-color: #3F2D2A;
+}
+
+.SingleEvent-button:active {
+    background-color: #3f2d2a;
+    transform: translateY(3px);
+}
+
+.SingleEvent-line{
     display: block;
-    position: flex;
-    right: 10px;
+    border: 1px inset;
+    overflow: hidden;
+    color: #5C544C;
+    margin: 1em auto;
 }

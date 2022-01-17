@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import Feed from "./pages/Feed.js";
 import FindDog from "./pages/findDog.js";
 import NavBar from "./modules/NavBar.js";
 import MySchedule from "./pages/MySchedule.js";
@@ -51,10 +52,11 @@ const App = () => {
       <Router>
         {/* <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} /> */}
         <FindDog path="/finddog/" userId={userId} />
-        <MySchedule path="/MySchedule/" userId={userId}/>
+        <MySchedule path="/MySchedule/" userId={userId} />
         <Profile path="/profile/" userId={userId} />
         <EditUser path="/editUser/" userId={userId} />
         <AddDog path="/addDog/" userId={userId} />
+        <Feed path="/" userId={userId} />
         <NotFound default />
       </Router>
     </>
