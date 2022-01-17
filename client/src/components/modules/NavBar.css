@@ -2,6 +2,24 @@
 .NavBar-container {
   padding: var(--s) var(--m);
   background-color: var(--primary);
+  text-align: center;
+}
+
+.logo {
+  /* make it responsive */
+  max-width: 50%;
+  height: auto;
+  background-size: 200px;
+  width: 200px;
+  height: 80px;
+
+  /* it is optional, for making this div centered in parent*/
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../../public/logo.jpg");
 }
 
 .NavBar-title {
@@ -12,6 +30,7 @@
 
 .NavBar-linkContainer {
   margin-left: var(--l);
+  text-align: center;
 }
 
 .NavBar-link,
@@ -19,6 +38,7 @@
   color: var(--white);
   opacity: 0.6;
   text-decoration: none;
+  text-align: center;
 }
 
 .NavBar-link:hover {
@@ -31,4 +51,5 @@
 
 .NavBar-link + .NavBar-link {
   margin-left: var(--m);
+  text-align: center;
 }
