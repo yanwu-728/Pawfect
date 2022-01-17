@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Open+Sans:wght@300;500&family=Permanent+Marker&display=swap");
 .dogs {
   /* make it responsive */
   max-width: 100%;
@@ -25,5 +26,6 @@
 }
 
 .welcome {
-  align-items: flex-start;
+  font-family: "Architects Daughter", cursive;
+  padding-left: 50px;
 }

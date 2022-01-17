@@ -19,8 +19,8 @@ const Feed = (props) => {
     return (
       <>
         <div>
-          <h2>Hi Welcome to PAWFECT! </h2>
-          <h4>Please log in first.</h4>
+          <h2 class="welcome">Hi! Welcome to PAWFECT! </h2>
+          <h4 class="welcome">Please log in first.</h4>
         </div>
         <div class="dogs" />;
       </>
@@ -29,9 +29,9 @@ const Feed = (props) => {
   return (
     <>
       <div>
-        <h2>Hi {user.name}! </h2>
-        <h3>Welcome to PAWFECT!</h3>
-        <h4>
+        <h2 class="welcome">Hi {user.name}! </h2>
+        <h3 class="welcome">Welcome to PAWFECT!</h3>
+        <h4 class="welcome">
           Please go to "Find a Dog!" page to see posted events or add your own on "My Schedule"
           page!
         </h4>
