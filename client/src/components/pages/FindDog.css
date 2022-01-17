@@ -1,0 +1,103 @@
+.FindDog-event{
+    position: absolute;
+    width: 715px;
+    height: 815px;
+    left: 623px;
+    top: 105px;
+
+    background: #BCCDD7;
+    border: 3px solid #5C544C;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    overflow-x: scroll;
+}
+
+.FindDog-button{
+    font-family:'Roboto';
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #5B4C49;
+    padding: 5px 10px;
+    color: white;
+    box-shadow: 0 3px black;
+    margin-left: 216px;
+    margin-top: 35px;
+}
+
+.FindDog-button:hover {
+    background-color: #3F2D2A;
+}
+
+.FindDog-button:active {
+    background-color: #3f2d2a;
+    transform: translateY(3px);
+}
+
+.FindDog-selector{
+    position: relative;
+    width: 316px;
+    height: 350px;
+    left: 85px;
+    top: 88px;
+
+    background: rgba(216, 120, 46, 0.6);
+    border: 3px solid #5C544C;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    align-items: center;
+}
+
+.SignUp-button{
+    font-family:'Roboto';
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #5B4C49;
+    padding: 5px 10px;
+    color: white;
+    box-shadow: 0 3px black;
+}
+
+.SignUp-button:hover {
+    background-color: #3F2D2A;
+}
+
+.SignUp-button:active {
+    background-color: #3f2d2a;
+    transform: translateY(3px);
+}
+
+.Withdraw-button{
+    font-family:'Roboto';
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #5B4C49;
+    padding: 5px 10px;
+    color: white;
+    box-shadow: 0 3px black;
+}
+
+.Withdraw-button:hover {
+    background-color: #3F2D2A;
+}
+
+.Withdraw-button:active {
+    background-color: #3f2d2a;
+    transform: translateY(3px);
+}
+
+.Participant{
+    margin-left: 20px;
+    margin-right: 10px;
+    font-family: 'Roboto';
+    font-weight: bold;
+}
+
+.Participant_{
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: 5px;
+    font-family: 'Roboto';
+    font-weight: bold;
+}

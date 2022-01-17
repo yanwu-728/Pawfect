@@ -22,8 +22,12 @@
   right: 0;
   bottom: 0;
   background-image: url("../../public/dogs.jpg");
+
 }
 
 .welcome {
   align-items: flex-start;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }

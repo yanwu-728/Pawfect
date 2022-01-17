@@ -156,7 +156,7 @@ router.get("/participants", (req, res) => {
 
 router.get("/participating", (req, res) => {
   Participant.findOne(
-    { participantId: req.query.userId, eventId: req.query.eventId },
+    { participantId: req.query.participantId, eventId: req.query.eventId },
     function (error, result) {
       console.log("called");
       if (!error) {
@@ -174,27 +174,31 @@ router.get("/participating", (req, res) => {
   );
 });
 
-router.post("/deleteparticipant", (req, res) => {
-  Participant.findOne(
-    { participantId: req.body.participantId, eventId: req.body.eventId },
-    function (error, result) {
-      console.log("called");
-      if (!error) {
-        if (result) {
-          console.log("can withdraw");
-          console.log(result);
-          Participant.deleteOne({participantId: req.body.participantId, eventId: req.body.eventId});
-          console.log("removed")
-          res.send(result);
-        } else {
-          console.log("not signed up")
-          res.send({});
-        }
-      } else {
-        console.log("error");
-      }
-    }
-  );
+// router.post("/deleteparticipant", (req, res) => {
+//   Participant.findOne(
+//     { participantId: req.body.participantId, eventId: req.body.eventId },
+//     function (error, result) {
+//       console.log("called");
+//       if (!error) {
+//         if (result) {
+//           console.log("can withdraw");
+//           console.log(result);
+//           Participant.deleteOne({participantId: req.body.participantId, eventId: req.body.eventId});
+//           console.log("removed")
+//           res.send(result);
+//         } else {
+//           console.log("not signed up")
+//           res.send({});
+//         }
+//       } else {
+//         console.log("error");
+//       }
+//     }
+//   );
+// });
+
+router.post("/deleteparticipant", auth.ensureLoggedIn, async (req, res) => {
+  await Participant.deleteOne(req.body);
 });
 
 router.post("/dog", (req, res) => {

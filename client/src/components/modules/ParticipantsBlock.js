@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {get, post} from "../../utilities.js";
-
+import "../pages/FindDog.css";
 
 
 /**
@@ -67,66 +67,80 @@ const ParticipantsBlock =  (props) => {
             eventId: props.eventId,
         };
         console.log("ondelete");
-        // get("/api/participating", body).then((participant) => {
+        get("/api/participating", body).then((participant) => {
+            if(Object.keys(participant).length !== 0){
+                props.deleteParticipant(participant);
+                post("/api/deleteparticipant", body);
+                window.confirm('Sorry to see you go :(');
+            }else{
+                window.confirm('You have not signed up!')
+                };
+        });
+
+        // post("/api/deleteparticipant", body).then((participant) => {
+        //     console.log(participant);
         //     if(Object.keys(participant).length !== 0){
-        //         post("/api/deleteparticipant", body).then(() => {
-        //             props.deleteParticipant(participant);
-        //         })
+        //         props.deleteParticipant(participant);
         //         window.confirm('Sorry to see you go :(');
         //     }else{
         //         window.confirm('You have not signed up!')
         //         };
         // })
-        post("/api/deleteparticipant", body).then((participant) => {
-            console.log(participant);
-            if(Object.keys(participant).length !== 0){
-                props.deleteParticipant(participant);
-                window.confirm('Sorry to see you go :(');
-            }else{
-                window.confirm('You have not signed up!')
-                };
-        })
     }
       
       if (event.length > 0 && props.participants.length >= event[0].noParticipants){
           return (
-            <div>
-                The participants are: {props.participants.map((participant) => 
-                participant.participant_name
-                )}
+            <div className="Participant">
+                The participants are: 
+                {props.participants.map((participant) => 
+            (<div className="Participant_">
+                {participant.participant_name}
+            </div>)
+            )}
+                <p>
                     Slots have run out!
+                </p>
             </div>
         );
       }else{
         if (props.userId){
             return (
-          <div>
+          <div className="Participant">
             The participants are: {props.participants.map((participant) => 
-            participant.participant_name
+            (<div className="Participant_">
+                {participant.participant_name}
+            </div>)
             )}
-            <button
+            <p>
+                <button
             type="submit"
             value="Submit"
+            className="SignUp-button"
             onClick={handleSubmit}
             >
                 Sign Up!
-            </button>  
-            <button
+            </button> 
+                 <button
             type="delete"
             value="delete"
+            className="Withdraw-button"
             onClick={handleDelete}
             >
-                Withdraw :(
-            </button>  
+                Withdraw
+            </button> 
+             </p>
+             
             
         </div>
       )
         }else{
             return (
-                <div>
+                <div className="Participant">
                     <p>
                     The participants are: {props.participants.map((participant) => 
-            participant.participant_name
+            (<div className="Participant_">
+            {participant.participant_name}
+        </div>)
             )}
                     </p>
                     <p>Log in to sign up!</p>

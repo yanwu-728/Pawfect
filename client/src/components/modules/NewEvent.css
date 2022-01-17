@@ -7,6 +7,7 @@
     color: white;
     box-shadow: 0 3px black;
     margin-left: 230px;
+    margin-top: 16px;
 }
 
 .NewEvent-button:hover {
@@ -21,7 +22,7 @@
 .NewEvent-selector{
     position: relative;
     width: 316px;
-    height: 500px;
+    height: 570px;
     left: 85px;
     top: 88px;
 
@@ -33,4 +34,11 @@
     align-items: center;
 }
 
-
+.criteria{
+    font-family:'Roboto';
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 15px;
+    line-height: 1.6;
+}

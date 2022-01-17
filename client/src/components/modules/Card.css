@@ -1,0 +1,16 @@
+.Card-container{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.Card-line{
+    display: block;
+    border: 1px inset;
+    overflow: hidden;
+    color: #5C544C;
+    margin-top: 1em auto;
+    margin-bottom: 1em auto;
+    margin-left: 20px;
+    margin-right: 20px;
+}

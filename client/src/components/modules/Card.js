@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SingleEvent2 from "./SingleEvent2.js";
 import ParticipantsBlock from "./ParticipantsBlock.js";
 import {get} from "../../utilities.js";
-
+import "./Card.css";
 /**
  * Card is a component for displaying content like events and participants
  *
@@ -40,7 +40,7 @@ const Card = (props) => {
         _id={props.eventId}
         location={props.location}
         breed={props.breed}
-        time={props.selectedDate}
+        time={props.time}
         noParticipants={props.noParticipants}
         dogId={props.dogId}
         intro={props.intro}
@@ -52,6 +52,7 @@ const Card = (props) => {
         addNewParticipant={addNewParticipant}
         deleteParticipant={deleteParticipant}
         />
+        <hr className="Card-line"/>
     </div>
     );
 };

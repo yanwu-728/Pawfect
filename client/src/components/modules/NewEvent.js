@@ -69,20 +69,21 @@ const NewEventInput = (props) => {
         <div>
             <div className="NewEvent-selector">
             <Filter  changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation}/>
-                <p>Please enter the number of participants allowed: </p>
+            <div className="criteria">
+                <p>Number of participants allowed: </p>
                 <input 
                     type="number"
                     min="1"
                     value={noParticipants}
                     onChange={changeNoParticipant}
                 />
-                <p>Please enter the id of your dog: </p>
+                <p>ID of your dog: </p>
                 <input 
                     type="text"
                     value={dogId}
                     onChange={changeDogId}
                 />
-                <p>Please enter description:</p>
+                <p>Description:</p>
                 <input
                     type="text"
                     placeholder= {props.defaultText}
@@ -91,6 +92,8 @@ const NewEventInput = (props) => {
                 />
                 <p>The event is on {selectedDate} at {location} with a {breed} of id {dogId}. Currently, you have {noParticipants} participant(s). </p>
                 <p>Description: {intro}</p>
+            </div>
+                
                 <button
                     type="submit"
                     value="Submit"

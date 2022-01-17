@@ -18,7 +18,7 @@ const Feed = (props) => {
   if (!user) {
     return (
       <>
-        <div>
+        <div className="welcome">
           <h2>Hi Welcome to PAWFECT! </h2>
           <h4>Please log in first.</h4>
         </div>
@@ -28,7 +28,7 @@ const Feed = (props) => {
   }
   return (
     <>
-      <div>
+      <div className="welcome"> 
         <h2>Hi {user.name}! </h2>
         <h3>Welcome to PAWFECT!</h3>
         <h4>

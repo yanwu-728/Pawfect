@@ -5,7 +5,8 @@ import {get} from "../../utilities.js";
 import Card from "../modules/Card.js";
 import ParticipantsBlock from "../modules/ParticipantsBlock.js";
 import SingleEvent from "../modules/SingleEvent.js";
-
+import './FindDog.css';
+import "../modules/Filter.css";
 
 const FindDog = (props) => {
   const [event, setEvent] = useState([]);
@@ -67,24 +68,32 @@ const FindDog = (props) => {
 
     return (
       <>
+      <div className="FindDog-selector">
         <Filter changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation}/>
+        <div className="filter">
         <p>The selected breed is {breed}.</p>
         <p>The selected time is {selectedDate}</p>
         <p>The selected location is {location}.</p>
+        </div>
+        
         <p>
           <button
         type="submit"
         value="Submit"
-        className="Filter-button"
+        className="FindDog-button"
         onClick={handleSubmit}
         >
           Find Dog
         </button>
         </p>
+      </div>
+        
         
         <>
-        The current events are:
-        {eventList}
+        <div className='FindDog-event'>
+          {eventList}
+        </div>
+        
         </>
       </>
     );
