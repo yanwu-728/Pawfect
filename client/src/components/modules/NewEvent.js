@@ -49,10 +49,24 @@ const NewEventInput = (props) => {
         setIntro(event.target.value);
     }
 
+    const handleReset = () => {
+        setBreed("[breed]");
+        setLocation("[location]");
+        setDate("[date]");
+        setNoParticipants(0);
+        setDogId("0");
+        setIntro("");
+      }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         try{
-            props.onSubmit && props.onSubmit(location, breed, selectedDate, noParticipants, dogId, intro);
+            if (location !== "[location]" && breed !== "[breed]" && date !== "[date]") {
+                props.onSubmit && props.onSubmit(location, breed, selectedDate, noParticipants, dogId, intro);
+            } else {
+                window.alert("Input Event Invalid!");
+            }
+            
         } catch (error) {
             window.alert("Input invalid");
             window.location.reload();
@@ -61,7 +75,7 @@ const NewEventInput = (props) => {
         setBreed("[breed]");
         setDate("[date]");
         setNoParticipants(0);
-        setDogId("[dog id]");
+        setDogId("0");
         setIntro("");
     };
 
@@ -93,7 +107,14 @@ const NewEventInput = (props) => {
                 <p>The event is on {selectedDate} at {location} with a {breed} of id {dogId}. Currently, you have {noParticipants} participant(s). </p>
                 <p>Description: {intro}</p>
             </div>
-                
+                <button
+                    type="submit"
+                    value="Submit"
+                    className="NewEvent-button"
+                    onClick={handleReset}
+                >
+                    Reset
+                </button>
                 <button
                     type="submit"
                     value="Submit"
