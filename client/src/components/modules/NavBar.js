@@ -42,7 +42,7 @@ const NavBar = ({ userId, handleLogin, handleLogout }) => {
             Profile
           </Link>
         )} */}
-
+        <div class='paw'></div>
         <Link to="/finddog/" className="NavBar-link">
           Find a Dog!
         </Link>

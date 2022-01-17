@@ -19,6 +19,23 @@
   left: 0;
   right: 0;
   bottom: 0;
+  background-image: url("../../public/paw.jpg");
+}
+
+.logo {
+  /* make it responsive */
+  max-width: 50%;
+  height: auto;
+  background-size: 200px;
+  width: 200px;
+  height: 80px;
+
+  /* it is optional, for making this div centered in parent*/
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image: url("../../public/logo.jpg");
 }
 
