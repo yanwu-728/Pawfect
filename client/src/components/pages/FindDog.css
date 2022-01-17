@@ -1,9 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Open+Sans:wght@300;500&family=Permanent+Marker&display=swap");
+
 .FindDog-event{
     position: absolute;
     width: 715px;
     height: 815px;
     left: 623px;
-    top: 105px;
+    top: 135px;
 
     background: #BCCDD7;
     border: 3px solid #5C544C;
@@ -38,7 +41,7 @@
     position: relative;
     width: 316px;
     height: 370px;
-    left: 85px;
+    left: 140px;
     top: 88px;
 
     background: rgba(216, 120, 46, 0.6);

@@ -12,8 +12,11 @@ const GOOGLE_CLIENT_ID = "237465931636-o4q19fum61608nv3mh3r299u8d4hq5qp.apps.goo
  */
 const NavBar = ({ userId, handleLogin, handleLogout }) => {
   return (
-    <nav className="NavBar-container">
-      <div class="logo"></div>
+    <div>
+      <a href="/">
+        <div class="logo"></div>
+        </a>
+        <nav className="NavBar-container">
       {/* 
       <div className="NavBar-title u-inlineBlock">Pawfect</div> */}
       <div className="NavBar-linkContainer u-inlineBlock">
@@ -34,15 +37,16 @@ const NavBar = ({ userId, handleLogin, handleLogout }) => {
             className="NavBar-link NavBar-login"
           />
         )}
-        <Link to="/" className="NavBar-link">
+        
+        {/* <Link to="/" className="NavBar-link">
           Home
-        </Link>
+        </Link> */}
         {/* {userId && (
           <Link to={`/profile/${userId}`} className="NavBar-link">
             Profile
           </Link>
         )} */}
-        <div class='paw'></div>
+        {/* <div class="paw"></div> */}
         <Link to="/finddog/" className="NavBar-link">
           Find a Dog!
         </Link>
@@ -54,6 +58,8 @@ const NavBar = ({ userId, handleLogin, handleLogout }) => {
         </Link>
       </div>
     </nav>
+    </div>
+    
   );
 };
 

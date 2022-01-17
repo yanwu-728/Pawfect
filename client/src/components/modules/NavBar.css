@@ -2,7 +2,20 @@
 .NavBar-container {
   padding: var(--s) var(--m);
   background-color: var(--primary);
-  text-align: center;
+  text-align: left;
+  height: 66px;
+}
+
+.paw {
+  /* make it responsive */
+  /* make it responsive */
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  width: 80px;
+  object-fit: contain;
+
+  /* it is optional, for making this div centered in parent*/
 }
 
 .logo {
@@ -12,27 +25,11 @@
   background-size: 200px;
   width: 200px;
   height: 80px;
+  float: left;
 
-  /* it is optional, for making this div centered in parent*/
+  /* it is optional, for making this div centered in parent */
   margin: 0 auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("../../public/paw.jpg");
-}
-
-.logo {
-  /* make it responsive */
-  max-width: 50%;
-  height: auto;
-  background-size: 200px;
-  width: 200px;
-  height: 80px;
-
-  /* it is optional, for making this div centered in parent*/
-  margin: 0 auto;
-  top: 0;
+  top: -6px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -48,6 +45,7 @@
 .NavBar-linkContainer {
   margin-left: var(--l);
   text-align: center;
+  margin-top: 14px;
 }
 
 .NavBar-link,
