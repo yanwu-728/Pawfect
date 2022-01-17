@@ -49,9 +49,9 @@ const Profile = (props) => {
       </div> */}
       <h1 className="Profile-name u-textCenter">{user.name}</h1>
 
-      <button classname="buttons">
-        <Link to="/editUser/">Edit User Profile</Link>
-      </button>
+      <Link className="Profile-Links" to="/editUser/">
+        Edit User Profile
+      </Link>
 
       <hr className="Profile-linejj" />
       <div className="u-flex">
@@ -70,11 +70,9 @@ const Profile = (props) => {
 
         {dogsList}
 
-        <button classname="buttons">
-          <Link className="Profile-Links" to="/addDog/">
-            Click to add your dogs!
-          </Link>
-        </button>
+        <Link className="Profile-Links" to="/addDog/">
+          Click to add your dogs!
+        </Link>
       </div>
     </>
   );
