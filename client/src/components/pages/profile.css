@@ -92,3 +92,12 @@
   margin: var(--m) var(--s);
   font-family: "Architects Daughter", cursive;
 }
+
+.change {
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  font-family: "Architects Daughter", cursive;
+  font-size: 20px;
+}

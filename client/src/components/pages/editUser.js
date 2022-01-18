@@ -3,6 +3,7 @@ import { get, post } from "../../utilities";
 import { Link } from "@reach/router";
 
 import "../../utilities.css";
+import "./profile.css";
 
 const editUser = (props) => {
   const [newName, setName] = useState("");
@@ -27,7 +28,7 @@ const editUser = (props) => {
   };
 
   return (
-    <div>
+    <div class="change">
       <h1>Edit User Profile</h1>
       <label>Enter username: </label>
       <input type="text" id="username" name="username" value={newName} onChange={handleChange} />
@@ -38,12 +39,16 @@ const editUser = (props) => {
       <label>Enter contact info: </label>
       <input type="text" id="contact" name="contact" value={newContact} onChange={handleChange} />
       <div />
-      <button type="submit" value="Submit" onClick={handleSubmit}>
-        Submit
-      </button>
+
+      <a href="/profile">
+        <button className="Profile-Links" type="submit" value="Submit" onClick={handleSubmit}>
+          Submit
+        </button>
+      </a>
+      {/* 
       <button>
         <Link to="/profile/">Back to Profile</Link>
-      </button>
+      </button> */}
     </div>
   );
 };

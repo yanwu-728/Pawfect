@@ -3,6 +3,7 @@ import { get, post } from "../../utilities";
 import { Link } from "@reach/router";
 
 import "../../utilities.css";
+import "./profile.css";
 
 const addDog = (props) => {
   const [name, setName] = useState("");
@@ -27,7 +28,7 @@ const addDog = (props) => {
   };
 
   return (
-    <div>
+    <div class="change">
       <h1>New Dog Profile:</h1>
       <label>Enter dog name: </label>
       <input type="text" id="dogname" name="dogname" value={name} onChange={handleChange} />
@@ -49,13 +50,17 @@ const addDog = (props) => {
       <input type="text" id="bio" name="bio" value={bio} onChange={handleChange} />
       <div />
 
-      <button type="submit" value="Submit" onClick={handleSubmit}>
-        Submit
-      </button>
+      <a href="/profile">
+        <button className="Profile-Links" type="submit" value="Submit" onClick={handleSubmit}>
+          Submit
+        </button>
+      </a>
+
+      {/*       
 
       <button>
         <Link to="/profile/">Back to Profile</Link>
-      </button>
+      </button> */}
     </div>
   );
 };
