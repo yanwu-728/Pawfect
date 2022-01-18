@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
-import Feed from "./pages/Feed.js";
+import Feed from "./pages/feed.js";
 import FindDog from "./pages/findDog.js";
 import NavBar from "./modules/NavBar.js";
 import MySchedule from "./pages/MySchedule.js";
