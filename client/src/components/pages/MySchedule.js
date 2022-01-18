@@ -36,7 +36,7 @@ const MySchedule = (props) => {
             }
             setEvent(display);
     });
-    }, [userId]); // Need to query based on userId; also need to take into account events both as organizer and participant
+    }, [props.userId]); // Need to query based on userId; also need to take into account events both as organizer and participant
 
     let eventList = null;
     const hasEvent = event.length !== 0;
