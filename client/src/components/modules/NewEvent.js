@@ -50,12 +50,13 @@ const NewEventInput = (props) => {
     }
 
     const handleReset = () => {
-        setBreed("[breed]");
-        setLocation("[location]");
-        setDate("[date]");
+        setBreed(null);
+        setLocation(null);
+        setDate(null);
         setNoParticipants(0);
         setDogId("0");
         setIntro("");
+        window.location.reload();
       }
 
     const handleSubmit = (event) => {
@@ -71,12 +72,7 @@ const NewEventInput = (props) => {
             window.alert("Input invalid");
             window.location.reload();
         }
-        setLocation("[location]");
-        setBreed("[breed]");
-        setDate("[date]");
-        setNoParticipants(0);
-        setDogId("0");
-        setIntro("");
+        handleReset;
     };
 
     return (
