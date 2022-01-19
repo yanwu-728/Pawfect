@@ -35,6 +35,7 @@ const socketManager = require("./server-socket");
 // Server configuration below
 // TODO change connection URL after setting up your team database
 const mongoConnectionURL = process.env.ATLAS_SRV;
+// const mongoConnectionURL = "mongodb+srv://URLgrey:URLgreyisthebest@cluster0.ptp86.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 // TODO change database name to the name you chose
 const databaseName = "TeaCup";
 
