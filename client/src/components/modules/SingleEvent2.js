@@ -23,7 +23,7 @@ import {get, post} from "../../utilities.js";
 
     return (
       <div class='SingleEvent-event'>
-        <li>Date: {props.time} </li>
+        <li>Date: {moment(props.time).format('MMM Do YYYY')} </li>
         <li>Location: {props.location}</li>
         <li>Breed: {props.breed}</li>
         <li>Number of Participants Allowed: {props.noParticipants}</li>

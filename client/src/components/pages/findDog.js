@@ -42,7 +42,15 @@ const FindDog = (props) => {
     useEffect(() => {
       document.title = "Find Dog";
       get("/api/event").then((eventObjs) => {
-          setEvent(eventObjs);
+          // setEvent(eventObjs);
+          let display = [];
+            
+          for (let i=0; i<eventObjs.length; i++) {
+              if (Date.parse(eventObjs[i].time) > Date.now()) {
+                  display.push(eventObjs[i]);
+              };
+          }
+          setEvent(display);
   });
   }, []);
 

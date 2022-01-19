@@ -26,11 +26,10 @@ const MySchedule = (props) => {
     useEffect(() => {
         document.title = "My Schedule";
         get("/api/event").then((eventObjs) => {
-
             let display = [];
             
             for (let i=0; i<eventObjs.length; i++) {
-                if (eventObjs[i].userId == userId) {
+                if (eventObjs[i].userId == userId && Date.parse(eventObjs[i].time) > Date.now()) {
                     display.push(eventObjs[i]);
                 };
             }

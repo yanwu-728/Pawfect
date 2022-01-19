@@ -34,7 +34,7 @@ const NewEventInput = (props) => {
     }
   
     const changeDate = (date) => {
-        setDate(moment(date).format("MMM Do YY"));
+        setDate(moment(date).format());
     }
 
     const changeNoParticipant = (event) => {
@@ -104,7 +104,7 @@ const NewEventInput = (props) => {
                     value={intro}
                     onChange={changeIntro}
                 />
-                <p>The event is on {selectedDate} at {location} with a {breed} of id {dogId}. Currently, you have {noParticipants} participant(s). </p>
+                <p>The event is on {moment(selectedDate).format("MMM Do YY")} at {location} with a {breed} of id {dogId}. Currently, you have {noParticipants} participant(s). </p>
                 <p>Description: {intro}</p>
             </div>
                 <button
