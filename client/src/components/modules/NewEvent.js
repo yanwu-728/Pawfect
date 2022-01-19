@@ -84,7 +84,7 @@ const NewEventInput = (props) => {
             <div className="NewEvent-selector">
             <Filter  changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation}/>
             <div className="criteria">
-                <p>Number of participants allowed: </p>
+                <p>Number of participants allowed to join your event (at least 1): </p>
                 <input 
                     type="number"
                     min="1"
@@ -104,7 +104,7 @@ const NewEventInput = (props) => {
                     value={intro}
                     onChange={changeIntro}
                 />
-                <p>The event is on {moment(selectedDate).format("MMM Do YY")} at {location} with a {breed} of id {dogId}. Currently, you have {noParticipants} participant(s). </p>
+                <p>The event is on {moment(selectedDate).format("MMM Do YY")} at {location} with a {breed} of id {dogId}. ={noParticipants} participant(s) is/are allowed to sign up. </p>
                 <p>Description: {intro}</p>
             </div>
                 <button
