@@ -14,14 +14,14 @@ import '../modules/NewEvent.css';
 
 const MySchedule = (props) => {
     const [event, setEvent] = useState([]);
-    const [userId, setUserId] = useState("");
+    // const [userId, setUserId] = useState("");
 
-    useEffect(() => {
-        document.title = "User";
-        get("/api/user").then((user) => {
-            setUserId(user._id);
-        });
-    }, []);
+    // useEffect(() => {
+    //     document.title = "User";
+    //     get("/api/user").then((user) => {
+    //         setUserId(user._id);
+    //     });
+    // }, []);
 
     useEffect(() => {
         document.title = "My Schedule";
@@ -29,13 +29,13 @@ const MySchedule = (props) => {
             let display = [];
             
             for (let i=0; i<eventObjs.length; i++) {
-                if (eventObjs[i].userId == userId && Date.parse(eventObjs[i].time) > Date.now()) {
+                if (eventObjs[i].userId == props.userId && Date.parse(eventObjs[i].time) > Date.now()) {
                     display.push(eventObjs[i]);
                 };
             }
             setEvent(display);
     });
-    }, [userId]); // Need to query based on userId; also need to take into account events both as organizer and participant
+    }, [props.userId]); // Need to query based on userId; also need to take into account events both as organizer and participant
 
     let eventList = null;
     const hasEvent = event.length !== 0;
@@ -58,14 +58,23 @@ const MySchedule = (props) => {
         eventList = <div>No event!</div>;
     }
 
-    return (
-        <div>
-            <NewEvent userId={props.userId}/>
-            <div className='MySchedule-event'>
-                {eventList}
+    if (props.userId) {
+        return (
+            <div>
+                <NewEvent userId={props.userId}/>
+                <div className='MySchedule-event'>
+                    {eventList}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }else{
+        return (
+            <div className="MySchedule-notloggedin">
+                Please log in to continue!
+            </div>
+        )
+    }
+    
 };
 
 export default MySchedule

@@ -150,14 +150,7 @@ const NewEvent = (props) => {
             window.location.reload()
         );
     };
-    if (props.userId){
-        return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} />;
-    }else{
-        return(
-            <div>Please log in to post event!</div>
-        );
-        
-    }
+    return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} />;
     
 };
 

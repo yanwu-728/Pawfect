@@ -9,30 +9,34 @@ const Filter = (props) => {
         <html>
             <body>
                 <div className="filter">
-                <label htmlFor="dog-breeds">Breed:</label>
-                <datalist id="dog-breed" defaultValue="No Preference">
-                    <option>No Preference</option>
-                    {options.map(item => {
-                        return (<option value={item}>{item}</option>);
-                    })}
-                </datalist>
-                <input type="text" list="dog-breed" onChange={props.changeBreed}/>
-                
-                <DatePicker 
-                defaultValue={null}
-                onChange={props.changeDate} 
-                />
-                
-                <label htmlFor="locations">Location:</label>
-                <select defaultValue={props.defaultText} selected name="locations" id="locations" onChange={props.changeLocation}>
-                    {/* <option value="none" selected disabled hidden>Please Select</option> */}
-                    <option value="No Preference">No Preference</option>
-                    <option value="MIT">MIT</option>
-                    <option value="Harvard">Harvard</option>
-                    <option value="Central Squre">Central Square</option>
-                    <option value="Back Bay">Back Bay</option>
-                </select>
-            </div>
+                    <div className="filter-breed">
+                        <label htmlFor="dog-breeds">Breed:</label>
+                        <datalist id="dog-breed" defaultValue="No Preference">
+                            <option>No Preference</option>
+                            {options.map(item => {
+                                return (<option value={item}>{item}</option>);
+                            })}
+                        </datalist>
+                        <input type="text" list="dog-breed" onChange={props.changeBreed}/>
+                    </div>
+                    
+                    <div className="filter-date">
+                        <p>Date:</p>
+                        <DatePicker defaultValue={null} onChange={props.changeDate} />
+                    </div>
+                    
+                    <div className="filter-location">
+                        <label htmlFor="locations">Location:</label>
+                        <select defaultValue={props.defaultText} selected name="locations" id="locations" onChange={props.changeLocation}>
+                            {/* <option value="none" selected disabled hidden>Please Select</option> */}
+                            <option value="No Preference">No Preference</option>
+                            <option value="MIT">MIT</option>
+                            <option value="Harvard">Harvard</option>
+                            <option value="Central Squre">Central Square</option>
+                            <option value="Back Bay">Back Bay</option>
+                        </select>
+                    </div>
+                </div>
             </body>
         </html>
         
