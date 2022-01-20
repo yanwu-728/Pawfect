@@ -12,3 +12,10 @@
   border-radius: 20px;
   overflow-x: scroll;
 }
+
+.MySchedule-notloggedin {
+  text-align: center;
+  font-family: 'Roboto';
+  font-weight: bold;
+  font-size: 16px;
+}

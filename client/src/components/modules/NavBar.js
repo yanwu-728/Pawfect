@@ -14,7 +14,7 @@ const NavBar = ({ userId, handleLogin, handleLogout }) => {
   return (
     <div>
       <a href="/">
-        <div class="logo"></div>
+        <div className="logo"></div>
         </a>
         <nav className="NavBar-container">
       {/* 

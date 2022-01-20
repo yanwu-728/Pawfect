@@ -34,7 +34,7 @@ const NewEventInput = (props) => {
     }
   
     const changeDate = (date) => {
-        setDate(moment(date).format("MMM Do YY"));
+        setDate(moment(date).format());
     }
 
     const changeNoParticipant = (event) => {
@@ -50,12 +50,13 @@ const NewEventInput = (props) => {
     }
 
     const handleReset = () => {
-        setBreed("[breed]");
-        setLocation("[location]");
-        setDate("[date]");
+        setBreed(null);
+        setLocation(null);
+        setDate(null);
         setNoParticipants(0);
         setDogId("0");
         setIntro("");
+        window.location.reload();
       }
 
     const handleSubmit = (event) => {
@@ -71,12 +72,7 @@ const NewEventInput = (props) => {
             window.alert("Input invalid");
             window.location.reload();
         }
-        setLocation("[location]");
-        setBreed("[breed]");
-        setDate("[date]");
-        setNoParticipants(0);
-        setDogId("0");
-        setIntro("");
+        handleReset;
     };
 
     return (
@@ -84,7 +80,7 @@ const NewEventInput = (props) => {
             <div className="NewEvent-selector">
             <Filter  changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation}/>
             <div className="criteria">
-                <p>Number of participants allowed: </p>
+                <p>Number of participants allowed to join your event (at least 1): </p>
                 <input 
                     type="number"
                     min="1"
@@ -104,7 +100,7 @@ const NewEventInput = (props) => {
                     value={intro}
                     onChange={changeIntro}
                 />
-                <p>The event is on {selectedDate} at {location} with a {breed} of id {dogId}. Currently, you have {noParticipants} participant(s). </p>
+                <p>The event is on {moment(selectedDate).format("MMM Do YY")} at {location} with a {breed} of id {dogId}. ={noParticipants} participant(s) is/are allowed to sign up. </p>
                 <p>Description: {intro}</p>
             </div>
                 <button
@@ -154,14 +150,7 @@ const NewEvent = (props) => {
             window.location.reload()
         );
     };
-    if (props.userId){
-        return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} />;
-    }else{
-        return(
-            <div>Please log in to post event!</div>
-        );
-        
-    }
+    return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} />;
     
 };
 
