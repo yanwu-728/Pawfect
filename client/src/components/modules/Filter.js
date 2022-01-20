@@ -12,7 +12,6 @@ const containerStyle = {
 
 
 const Filter = (props) => {
-<<<<<<< HEAD
     const [center, setCenter] = useState({
         lat: 42.35405430000001,
         lng: -71.1026228,
@@ -23,6 +22,8 @@ const Filter = (props) => {
         lng: -71.1026228,
     })
 
+    const [address, setAddress] = useState("");
+
     const [autocomplete, setAutocomplete] = useState(null);
     const onLoad = (autocomplete) => {
         console.log('autocomplete');
@@ -30,12 +31,13 @@ const Filter = (props) => {
     };
     const onPlaceChanged = () => {
         if (autocomplete !== null) {
-            console.log(autocomplete.getPlace().geometry.location.toJSON().lat)
-            console.log(autocomplete.getPlace().geometry)
+            console.log(autocomplete.getPlace().formatted_address)
+            console.log(autocomplete.getPlace())
             setCoords({
                 lat: autocomplete.getPlace().geometry.location.toJSON().lat,
                 lng: autocomplete.getPlace().geometry.location.toJSON().lng,
-            })
+            });
+            setAddress(autocomplete.getPlace().formatted_address)
         }else{
             console.log('Autocomplete is not loaded yet!')
         }
@@ -110,7 +112,7 @@ const Filter = (props) => {
                 <option value="Back Bay">Back Bay</option>
             </select>
         </div>
-=======
+
     let options = ['Retrievers (Labrador)', 'French Bulldogs', 'German Shepherd Dogs', 'Retrievers (Golden) ', 'Bulldogs', 'Poodles ', 'Beagles', 'Rottweilers', 'Pointers (German Shorthaired)', 'Dachshunds', 'Pembroke Welsh Corgis', 'Australian Shepherds', 'Yorkshire Terriers', 'Boxers', 'Great Danes', 'Siberian Huskies', 'Cavalier King Charles Spaniels', 'Doberman Pinschers', 'Miniature Schnauzers', 'Shih Tzu', 'Boston Terriers', 'Bernese Mountain Dogs', 'Pomeranians', 'Havanese', 'Cane Corso', 'Spaniels (English Springer)', 'Shetland Sheepdogs', 'Brittanys', 'Pugs', 'Spaniels (Cocker)', 'Miniature American Shepherds', 'Border Collies', 'Mastiffs', 'Chihuahuas', 'Vizslas', 'Basset Hounds', 'Belgian Malinois', 'Maltese', 'Weimaraners', 'Collies', 'Newfoundlands', 'Rhodesian Ridgebacks', 'Shiba Inu', 'West Highland White Terriers', 'Bichons Frises', 'Bloodhounds', 'Spaniels (English Cocker)', 'Akitas', 'Portuguese Water Dogs', 'Retrievers (Chesapeake Bay)', 'Dalmatians', 'St. Bernards', 'Papillons', 'Australian Cattle Dogs', 'Bullmastiffs', 'Samoyeds', 'Scottish Terriers', 'Soft Coated Wheaten Terriers', 'Whippets', 'Pointers (German Wirehaired)', 'Chinese Shar-Pei', 'Airedale Terriers', 'Wirehaired Pointing Griffons', 'Bull Terriers', 'Alaskan Malamutes', 'Cardigan Welsh Corgis', 'Giant Schnauzers', 'Old English Sheepdogs', 'Italian Greyhounds', 'Great Pyrenees', 'Dogues de Bordeaux', 'Russell Terriers', 'Cairn Terriers', 'Irish Wolfhounds', 'Setters (Irish)', 'Greater Swiss Mountain Dogs', 'Miniature Pinschers', 'Lhasa Apsos', 'Chinese Crested', 'Coton de Tulear', 'Staffordshire Bull Terriers', 'American Staffordshire Terriers', 'Rat Terriers', 'Chow Chows', 'Anatolian Shepherd Dogs', 'Basenjis', 'Spaniels (Boykin)', 'Lagotti Romagnoli', 'Brussels Griffons', 'Retrievers (Nova Scotia Duck Tolling)', 'Norwegian Elkhounds', 'Standard Schnauzers', 'Dogo Argentinos', 'Bouviers des Flandres', 'Pekingese', 'Keeshonden', 'Border Terriers', 'Leonbergers', 'Tibetan Terriers', 'Neapolitan Mastiffs', 'Setters (English)', 'Retrievers (Flat-Coated)', 'Borzois', 'Fox Terriers (Wire)', 'Miniature Bull Terriers', 'Belgian Tervuren', 'Setters (Gordon)', 'Silky Terriers', 'Norwich Terriers', 'Spinoni Italiani', 'Japanese Chin', 'Welsh Terriers', 'Toy Fox Terriers', 'Schipperkes', 'Parson Russell Terriers', 'Pointers', 'Belgian Sheepdogs', 'Tibetan Spaniels', 'American Eskimo Dogs', 'Irish Terriers', 'Beaucerons', 'Afghan Hounds', 'Boerboels', 'Fox Terriers (Smooth)', 'Bearded Collies', 'Black Russian Terriers', 'Black and Tan Coonhounds', 'Spaniels (Welsh Springer)', 'American Hairless Terriers', 'Norfolk Terriers', 'Xoloitzcuintli', 'Manchester Terriers', 'Kerry Blue Terriers', 'Australian Terriers', 'Spaniels (Clumber)', 'Lakeland Terriers', 'Bluetick Coonhounds', 'English Toy Spaniels', 'German Pinschers', 'Tibetan Mastiffs', 'Bedlington Terriers', 'Greyhounds', 'Pulik', 'Salukis', 'Barbets', 'Redbone Coonhounds', 'Swedish Vallhunds', 'Sealyham Terriers', 'Spanish Water Dogs', 'Briards', 'Berger Picards', 'Entlebucher Mountain Dogs', 'Treeing Walker Coonhounds', 'Icelandic Sheepdogs', 'Wirehaired Vizslas', 'Pumik', 'Portuguese Podengo Pequenos', 'Spaniels (American Water)', 'Retrievers (Curly-Coated)', 'Spaniels (Field)', 'Lowchen', 'Nederlandse Kooikerhondjes', 'Affenpinschers', 'Petits Bassets Griffons Vendeens', 'Finnish Lapphunds', 'Scottish Deerhounds', 'Plott Hounds', 'Norwegian Buhunds', 'Glen of Imaal Terriers', 'Setters (Irish Red and White)', 'Ibizan Hounds', 'Spaniels (Sussex)', 'Bergamasco Sheepdogs', 'Spaniels (Irish Water)', 'Polish Lowland Sheepdogs', 'Otterhounds', 'Kuvaszok', 'Komondorok', 'Cirnechi dell Etna', 'Pharaoh Hounds', 'Dandie Dinmont Terriers', 'Pyrenean Shepherds', 'Skye Terriers', 'Canaan Dogs', 'American English Coonhounds', 'Chinooks', 'Finnish Spitz', 'Grand Basset Griffon Vendeens', 'Sloughis', 'Harriers', 'Cesky Terriers', 'American Foxhounds', 'Azawakhs', 'English Foxhounds', 'Norwegian Lundehunds'];
     return (
         <html>
@@ -147,7 +149,6 @@ const Filter = (props) => {
             </body>
         </html>
         
->>>>>>> d6007c2025144ce24f828b0514be22acfda9ce73
     )
 }
 
