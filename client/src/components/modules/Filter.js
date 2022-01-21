@@ -20,31 +20,7 @@ const Filter = (props) => {
     const [coords, setCoords] = useState({
         lat: 42.35405430000001,
         lng: -71.1026228,
-    })
-
-    const [address, setAddress] = useState("");
-
-    const [autocomplete, setAutocomplete] = useState(null);
-    const onLoad = (autocomplete) => {
-        console.log('autocomplete');
-        setAutocomplete(autocomplete);
-    };
-    const onPlaceChanged = () => {
-        if (autocomplete !== null) {
-            console.log(autocomplete.getPlace().formatted_address);
-            console.log(autocomplete.getPlace());
-            setCoords({
-                lat: autocomplete.getPlace().geometry.location.toJSON().lat,
-                lng: autocomplete.getPlace().geometry.location.toJSON().lng,
-            });
-            
-            setAddress(autocomplete.getPlace().formatted_address);
-            console.log(address);
-            props.changeLocation(address);
-        }else{
-            console.log('Autocomplete is not loaded yet!')
-        }
-    };
+    });
 
     const libraries = ["places"];
 
@@ -77,8 +53,8 @@ const Filter = (props) => {
         zoom={12}
       >
           <Autocomplete
-            onLoad={onLoad}
-            onPlaceChanged={onPlaceChanged}
+            onLoad={props.onLoad}
+            onPlaceChanged={props.onPlaceChanged}
           >
             <input
               type="text"
