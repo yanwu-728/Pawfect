@@ -85,8 +85,8 @@ const NewEventInput = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         try{
-            if (location !== "[location]" && breed !== "[breed]" && selectedDate !== "[date]") {
-                props.onSubmit && props.onSubmit(location, breed, selectedDate, noParticipants, dogId, intro);
+            if (address !== "[location]" && breed !== "[breed]" && selectedDate !== "[date]") {
+                props.onSubmit && props.onSubmit(address, coords['lat'], coords['lng'], breed, selectedDate, noParticipants, dogId, intro);
             } else {
                 window.alert("Input Event Invalid!");
             }
@@ -97,6 +97,19 @@ const NewEventInput = (props) => {
         }
         handleReset;
     };
+
+    const dogIds = [];
+
+    get("/api/dog", { ownerId: props.userId }).then((dogs) => {
+        for (let i=0;i<dogs.length;i++) {
+            console.log(dogs[i]);
+            dogIds.append(dogs[i].dogId);
+        }
+    });
+
+    useEffect(()=>{
+        console.log(dogIds)
+    }, [dogIds]);
 
     return (
         <div>
@@ -116,6 +129,14 @@ const NewEventInput = (props) => {
                     value={dogId}
                     onChange={changeDogId}
                 />
+                <label for="dog-id">ID of your dog:</label>
+                {/* <select id="dog-id" defaultValue="0">
+                    {dogIds.map(item => {
+                        return (<option value={item}>{item}</option>);
+                    })}
+                </select>
+                <input type="text" list="dog-id" onChange={changeDogId}/> */}
+
                 <p>Description:</p>
                 <input
                     type="text"
@@ -156,10 +177,12 @@ const NewEventInput = (props) => {
  */
 
 const NewEvent = (props) => {
-    const addEvent = (location, breed, selectedDate, noParticipants, dogId, intro) => {
+    const addEvent = (location, lat, lng, breed, selectedDate, noParticipants, dogId, intro) => {
         const body = { 
             userId: props.userId,
-            location: location,
+            address: location,
+            lat:lat,
+            lng:lng,
             breed: breed,
             time: selectedDate,
             noParticipants: noParticipants,
