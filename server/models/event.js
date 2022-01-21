@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const EventSchema = new mongoose.Schema({
   userId: String,
   eventId: Number,
-  location: String,
+  address: String,
+  lat: Number,
+  lng: Number,
   breed: String,
   time: String,
   noParticipants: Number,
