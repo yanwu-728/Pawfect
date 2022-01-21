@@ -226,6 +226,10 @@ router.post("/addDog", (req, res) => {
   });
 });
 
+router.post("/deleteDog", auth.ensureLoggedIn, async (req, res) => {
+  await Dog.deleteOne(req.body);
+});
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
