@@ -39,10 +39,13 @@ const Filter = (props) => {
                 <input type="text" list="dog-breed" onChange={props.changeBreed}/>
             </div>
             
-            <DatePicker 
+            <p>Choose a time:
+                <DatePicker 
             selected={null}
             onChange={props.changeDate} 
             />
+            </p>
+            
 
             <LoadScript
       googleMapsApiKey="AIzaSyAy7KnLyLW1vieNitfWQyHKvoquq2eN1tY" libraries={libraries}
@@ -58,7 +61,7 @@ const Filter = (props) => {
           >
             <input
               type="text"
-              placeholder="Customized your placeholder"
+              placeholder="Choose your location"
               style={{
                 boxSizing: `border-box`,
                 border: `1px solid transparent`,

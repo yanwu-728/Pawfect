@@ -16,6 +16,7 @@ const FindDog = (props) => {
     const [address, setAddress] = useState(null);
     const [defaultText, setDefault] = useState(null);
 
+    const [radius, setRadius] = useState(null);
     const [coords, setCoords] = useState({
         lat: 42.35405430000001,
         lng: -71.1026228,
@@ -35,6 +36,9 @@ const FindDog = (props) => {
       // setDate(moment(date).toDate());
     }
 
+    const changeRadius = (event) => {
+      setRadius(event.target.value);
+    }
     useEffect(() => {
       document.title = "Find Dog";
       get("/api/event").then((eventObjs) => {
@@ -51,12 +55,6 @@ const FindDog = (props) => {
   }, []);
 
     const handleSubmit = () => {
-      // useEffect(() => {
-      //   document.title = "Filter";
-      //   get("/api/filteredevents", {location: location, time: selectedDate, breed: breed}).then((eventObjs) => {
-      //     setEvent(eventObjs);
-      //   });
-      // }, []);
       get("/api/filteredevents", {location: location, time: selectedDate, breed: breed}).then((eventObjs) => {
         setEvent(eventObjs);
       });
@@ -117,10 +115,20 @@ const FindDog = (props) => {
       <>
       <div className="FindDog-selector">
         <Filter changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} defaultText={defaultText}/>
+        <p>See events in a radius of: 
+        <input 
+            type="number"
+            min="1"
+            value={radius}
+            onChange={changeRadius}
+        />
+        miles.
+        </p>
         <div className="filter">
         <p>The selected breed is {breed}.</p>
-        <p>The selected time is {selectedDate}</p>
+        <p>The selected time is {selectedDate}.</p>
         <p>The selected location is {address}.</p>
+        <p>The selected radius is {radius}.</p>
         </div>
         
         <p>
