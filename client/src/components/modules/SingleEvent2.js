@@ -22,7 +22,7 @@ import {get, post} from "../../utilities.js";
  const SingleEvent2 = (props) => {
 
     return (
-      <div class='SingleEvent-event'>
+      <div className='SingleEvent-event'>
         <li>Date: {moment(props.time).format('MMM Do YYYY')} </li>
         <li>Location: {props.location}</li>
         <li>Breed: {props.breed}</li>

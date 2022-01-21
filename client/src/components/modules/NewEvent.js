@@ -74,7 +74,7 @@ const NewEventInput = (props) => {
 
     const handleReset = () => {
         setBreed(null);
-        setLocation(null);
+        setAddress(null);
         setDate(null);
         setNoParticipants(0);
         setDogId("0");

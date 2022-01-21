@@ -11,7 +11,7 @@ import {get, post} from "../../utilities.js";
  * Proptypes
  * @param {string} userId
  * @param {string} eventId of the event
- * @param {string} location
+ * @param {string} address
  * @param {string} breed
  * @param {Date} time
  * @param {number} noParticipants
@@ -33,7 +33,7 @@ import {get, post} from "../../utilities.js";
       <div className='SingleEvent-event'>
         {/* <li>Date: {moment(props.time).format('MMMM Do YYYY')} </li> */}
         <li>Date: {moment(props.time).format('MMM Do YYYY')} </li>
-        <li>Location: {props.location}</li>
+        <li>Location: {props.address}</li>
         <li>Breed: {props.breed}</li>
         <li>Number of Participants Allowed: {props.noParticipants}</li>
         <li>Note: {props.intro}</li>

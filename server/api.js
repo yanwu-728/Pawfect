@@ -80,7 +80,7 @@ router.post("/event", (req, res) => {
     const NewEvent = new Event({
       userId: req.body.userId,
       eventId: eventsLength,
-      address: req.body.location,
+      address: req.body.address,
       lat: req.body.lat,
       lng: req.body.lng,
       breed: req.body.breed,
@@ -108,9 +108,6 @@ router.get("/singleevent", (req, res) => {
 
 router.get("/filteredevents", (req, res) => {
   const body = {};
-  if (req.query.location !== "null") {
-    body.location = req.query.location;
-  }
   if (req.query.breed !== "null") {
     body.breed = req.query.breed;
   }

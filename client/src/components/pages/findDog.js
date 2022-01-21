@@ -21,7 +21,7 @@ const FindDog = (props) => {
     const [address, setAddress] = useState(null);
     const [defaultText, setDefault] = useState(null);
 
-    const [radius, setRadius] = useState(null);
+    const [radius, setRadius] = useState(Infty);
     const [coords, setCoords] = useState(mit);
   
     const changeBreed = (event) => {
@@ -65,25 +65,18 @@ const FindDog = (props) => {
     };
 
     const handleSubmit = () => {
-      console.log("radius");
-      console.log(radius);
-      if (radius === null){
-        get("/api/filteredevents", {location: location, time: selectedDate, breed: breed, lat: coords.lat, lng: coords.lng, radius: radius}).then((eventObjs) => {
-          setEvent(eventObjs)}
-          )}else{
-        get("/api/filteredevents", {location: location, time: selectedDate, breed: breed, lat: coords.lat, lng: coords.lng, radius: radius}).then((eventObjs) => {
-        setEvent(eventObjs.filter(event => earthDistance(event.lat, event.lng, coords.lat, coords.lng) <= radius))
+
+      get("/api/filteredevents", {time: selectedDate, breed: breed, lat: coords.lat, lng: coords.lng, radius: radius}).then((eventObjs) => {
+        setEvent(eventObjs.filter(event => earthDistance(event.lat, event.lng, coords.lat, coords.lng) <= radius));
       });
       }
-
-    };
 
     const handleReset = () => {
       setBreed(null);
       setAddress(null);
       setDate(null);
       setDefault("none");
-      setRadius(null);
+      setRadius(Infty);
       setCoords(mit);
     }
 
@@ -93,7 +86,7 @@ const FindDog = (props) => {
     eventList = event.map((eventObj) => (
         <Card
         eventId={eventObj._id}
-        location={eventObj.location}
+        location={eventObj.address}
         breed={eventObj.breed}
         time={eventObj.time}
         noParticipants={eventObj.noParticipants}
