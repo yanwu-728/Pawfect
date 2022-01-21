@@ -17,14 +17,11 @@ const Filter = (props) => {
         lng: -71.1026228,
     });
 
-    const [coords, setCoords] = useState({
-        lat: 42.35405430000001,
-        lng: -71.1026228,
-    });
-
     const libraries = ["places"];
 
     let options = require('./breed_options.json');
+
+    console.log(props.coords);
 
     return (
         <div className="filter">
@@ -82,7 +79,7 @@ const Filter = (props) => {
             
           <Marker
             icon={"https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"}
-            position={coords}
+            position={props.coords}
             />
         <></>
       </GoogleMap>

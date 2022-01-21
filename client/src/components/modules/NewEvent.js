@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Filter from "./Filter.js";
 import "./NewEvent.css";
 import moment from 'moment';
@@ -14,20 +14,43 @@ import "react-datepicker/dist/react-datepicker.css";
  */
 const NewEventInput = (props) => {
     // const [eventId, setEventId] = useState(null);
-    const [location, setLocation] = useState("[location]");
     const [breed, setBreed] = useState("[breed]");
     const [selectedDate, setDate] = useState("[date]");
     const [noParticipants, setNoParticipants] = useState(0);
     const [dogId, setDogId] = useState("0");
     const [intro, setIntro] = useState("");
 
-    // const changeEventId = (value) => {
-    //     setEventId(value);
-    // }
+    const [address, setAddress] = useState("[location]");
+    
+    const [autocomplete, setAutocomplete] = useState(null);
+    const onLoad = (autocomplete) => {
+        console.log('autocomplete');
+        setAutocomplete(autocomplete);
+    };
 
-    const changeLocation = (event) => {
-        setLocation(event.target.value);
-    }
+    const [coords, setCoords] = useState({
+        lat: 42.35405430000001,
+        lng: -71.1026228,
+    });
+
+    const onPlaceChanged = () => {
+        if (autocomplete !== null) {
+            console.log(autocomplete.getPlace().formatted_address);
+            console.log(autocomplete.getPlace());
+            setCoords({
+                lat: autocomplete.getPlace().geometry.location.toJSON().lat,
+                lng: autocomplete.getPlace().geometry.location.toJSON().lng,
+            });
+            const loc = autocomplete.getPlace().formatted_address;
+            setAddress(loc);
+        }else{
+            console.log('Autocomplete is not loaded yet!')
+        }
+    };
+
+    useEffect(() => {
+        console.log(address)
+    }, [address]);
 
     const changeBreed = (event) => {
         setBreed(event.target.value);
@@ -78,7 +101,7 @@ const NewEventInput = (props) => {
     return (
         <div>
             <div className="NewEvent-selector">
-            <Filter  changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation}/>
+            <Filter  changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} coords={coords}/>
             <div className="criteria">
                 <p>Number of participants allowed to join your event (at least 1): </p>
                 <input 
@@ -100,7 +123,7 @@ const NewEventInput = (props) => {
                     value={intro}
                     onChange={changeIntro}
                 />
-                <p>The event is on {moment(selectedDate).format("MMM Do YY")} at {location} with a {breed} of id {dogId}. ={noParticipants} participant(s) is/are allowed to sign up. </p>
+                <p>The event is on {moment(selectedDate).format("MMM Do YY")} at {address} with a {breed} of id {dogId}. ={noParticipants} participant(s) is/are allowed to sign up. </p>
                 <p>Description: {intro}</p>
             </div>
                 <button

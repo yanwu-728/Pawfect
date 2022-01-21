@@ -14,14 +14,6 @@ import '../modules/NewEvent.css';
 
 const MySchedule = (props) => {
     const [event, setEvent] = useState([]);
-    // const [userId, setUserId] = useState("");
-
-    // useEffect(() => {
-    //     document.title = "User";
-    //     get("/api/user").then((user) => {
-    //         setUserId(user._id);
-    //     });
-    // }, []);
 
     useEffect(() => {
         document.title = "My Schedule";

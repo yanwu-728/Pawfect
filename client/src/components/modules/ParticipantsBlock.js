@@ -89,7 +89,8 @@ const ParticipantsBlock =  (props) => {
     }
       
       if (event.length > 0 && props.participants.length >= event[0].noParticipants){
-          return (
+          if (props.userId){
+              return (
             <div className="Participant">
                 The participants are: 
                 {props.participants.map((participant) => 
@@ -100,8 +101,31 @@ const ParticipantsBlock =  (props) => {
                 <p>
                     Slots have run out!
                 </p>
+                 <button
+            type="delete"
+            value="delete"
+            className="Withdraw-button"
+            onClick={handleDelete}
+            >
+                Withdraw
+            </button> 
             </div>
-        );
+        )}else{
+            return (
+                <div className="Participant">
+                    The participants are: 
+                    {props.participants.map((participant) => 
+                (<div className="Participant_">
+                    {participant.participant_name}
+                </div>)
+                )}
+                    <p>
+                        Slots have run out!
+                    </p>
+                <p>Log in to withdraw.</p>
+                </div>
+        )}
+          
       }else{
         if (props.userId){
             return (
