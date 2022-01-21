@@ -13,8 +13,13 @@ const FindDog = (props) => {
 
     const [breed, setBreed] = useState(null);
     const [selectedDate, setDate] = useState(null);
-    const [location, setLocation] = useState(null);
+    const [address, setAddress] = useState(null);
     const [defaultText, setDefault] = useState(null);
+
+    const [coords, setCoords] = useState({
+        lat: 42.35405430000001,
+        lng: -71.1026228,
+    });
   
     const changeBreed = (event) => {
       if (event.target.value === "No Preference"){
@@ -30,15 +35,6 @@ const FindDog = (props) => {
       // setDate(moment(date).toDate());
     }
 
-    const changeLocation = (event) => {
-      if (event.target.value === "No Preference"){
-        setLocation(null);
-      }else{
-        setLocation(event.target.value);
-      }
-        
-    }
-    
     useEffect(() => {
       document.title = "Find Dog";
       get("/api/event").then((eventObjs) => {
@@ -90,16 +86,41 @@ const FindDog = (props) => {
     ));
     } else {
         eventList = <div>No event!</div>;
-    }
+    };
+
+    const [autocomplete, setAutocomplete] = useState(null);
+    const onLoad = (autocomplete) => {
+        console.log('autocomplete');
+        setAutocomplete(autocomplete);
+    };
+
+    const onPlaceChanged = () => {
+        if (autocomplete !== null) {
+            console.log(autocomplete.getPlace().formatted_address);
+            console.log(autocomplete.getPlace());
+            setCoords({
+                lat: autocomplete.getPlace().geometry.location.toJSON().lat,
+                lng: autocomplete.getPlace().geometry.location.toJSON().lng,
+            });
+            const loc = autocomplete.getPlace().formatted_address;
+            setAddress(loc);
+        }else{
+            console.log('Autocomplete is not loaded yet!')
+        }
+    };
+
+    useEffect(() => {
+        console.log(address)
+    }, [address]);
 
     return (
       <>
       <div className="FindDog-selector">
-        <Filter changeBreed={changeBreed} changeDate={changeDate} changeLocation={changeLocation} defaultText={defaultText}/>
+        <Filter changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} defaultText={defaultText}/>
         <div className="filter">
         <p>The selected breed is {breed}.</p>
         <p>The selected time is {selectedDate}</p>
-        <p>The selected location is {location}.</p>
+        <p>The selected location is {address}.</p>
         </div>
         
         <p>
