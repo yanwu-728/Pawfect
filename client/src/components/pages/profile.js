@@ -28,6 +28,7 @@ const Profile = (props) => {
   if (!user) {
     return <div className="Profile-subTitle"> Please log in to view profile! </div>;
   }
+  let url = "https://drive.google.com/thumbnail?id=" + user.profilePic;
   if (hasDogs) {
     dogsList = dogs.map((dogObj) => (
       <DogCard
@@ -44,9 +45,9 @@ const Profile = (props) => {
   }
   return (
     <>
-      {/* <div className="Profile-avatarContainer">
-        <div className="Profile-avatar" />
-      </div> */}
+      <div className="Profile-avatarContainer">
+        <img src={url} alt="image" />
+      </div>
       <h1 className="Profile-name u-textCenter">{user.name}</h1>
 
       <Link className="Profile-Links" to="/editUser/">

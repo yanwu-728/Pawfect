@@ -200,6 +200,7 @@ router.post("/editUser", (req, res) => {
     user.name = req.body.newName;
     user.bio = req.body.newBio;
     user.contact = req.body.newContact;
+    user.profilePic = req.body.newImage;
     // edit user
     user.save();
   });
