@@ -147,22 +147,27 @@ const NewEventInput = (props) => {
                 <p>The event is on {moment(selectedDate).format("MMM Do YY")} at {address} with a {breed} of id {dogId}. ={noParticipants} participant(s) is/are allowed to sign up. </p>
                 <p>Description: {intro}</p>
             </div>
+            <p>
                 <button
                     type="submit"
                     value="Submit"
-                    className="NewEvent-button"
-                    onClick={handleReset}
-                >
-                    Reset
-                </button>
-                <button
-                    type="submit"
-                    value="Submit"
-                    className="NewEvent-button"
+                    className="Submit-button"
                     onClick={handleSubmit}
                 >
                     Submit
                 </button>
+
+                <button
+                    type="submit"
+                    value="Submit"
+                    className="Reset-button"
+                    onClick={handleReset}
+                >
+                    Reset
+                </button>
+            </p>
+                
+                
             </div>
         </div>
     );

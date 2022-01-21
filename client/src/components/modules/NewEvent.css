@@ -1,5 +1,4 @@
-.NewEvent-button{
-    float: left;
+.Submit-button{
     font-family:'Roboto';
     font-size: 14px;
     font-weight: bold;
@@ -7,10 +6,18 @@
     padding: 5px 10px;
     color: white;
     box-shadow: 0 3px black;
-    margin-left: 230px;
+    margin-left: 200px;
+}
+.Reset-button{
+    font-family:'Roboto';
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #5B4C49;
+    padding: 5px 10px;
+    color: white;
+    box-shadow: 0 3px black;
     margin-top: 0px;
 }
-
 .NewEvent-button:hover {
     background-color: #3F2D2A;
 }
@@ -26,7 +33,7 @@
 
 .NewEvent-selector{
     position: relative;
-    width: 316px;
+    width: 350px;
     height: 600px;
     left: 140px;
     top: 88px;

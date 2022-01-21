@@ -16,7 +16,7 @@ const FindDog = (props) => {
     const [address, setAddress] = useState(null);
     const [defaultText, setDefault] = useState(null);
 
-    const [radius, setRadius] = useState(null);
+    const [radius, setRadius] = useState(Math.pow(10, 1000));
     const [coords, setCoords] = useState({
         lat: 42.35405430000001,
         lng: -71.1026228,
@@ -54,9 +54,18 @@ const FindDog = (props) => {
   });
   }, []);
 
+    const earthDistance = (lat1, lng1, lat2, lng2) => {
+        const lat1rad = lat1 / (180/Math.PI);
+        const lng1rad = lng1 / (180/Math.PI);
+        const lat2rad = lat2 / (180/Math.PI);
+        const lng2rad = lng2 / (180/Math.PI);
+        return 3963 * Math.acos(Math.sin(lat1rad)*Math.sin(lat2rad) + Math.cos(lat1rad)*Math.cos(lat2rad)*Math.cos(lng2rad - lng1rad))
+    };
+
     const handleSubmit = () => {
-      get("/api/filteredevents", {location: address, time: selectedDate, breed: breed}).then((eventObjs) => {
-        setEvent(eventObjs);
+
+      get("/api/filteredevents", {location: address, time: selectedDate, breed: breed, lat: coords.lat, lng: coords.lng, radius: radius}).then((eventObjs) => {
+        setEvent(eventObjs.filter(event => earthDistance(event.lat, event.lng, coords.lat, coords.lng) <= radius));
       });
     };
 
@@ -119,7 +128,7 @@ const FindDog = (props) => {
       <>
       <div className="FindDog-selector">
       <Filter changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} coords={coords} defaultText={defaultText}/>
-        <p>See events in a radius of: 
+        <p className="filter">See events in a radius of: 
         <input 
             type="number"
             min="1"
