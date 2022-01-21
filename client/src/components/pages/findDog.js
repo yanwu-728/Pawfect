@@ -13,7 +13,7 @@ const FindDog = (props) => {
 
     const [breed, setBreed] = useState(null);
     const [selectedDate, setDate] = useState(null);
-    const [location, setLocation] = useState(null);
+    const [location, setLocation] = useState("No Preference");
     const [defaultText, setDefault] = useState(null);
   
     const changeBreed = (event) => {
@@ -30,11 +30,11 @@ const FindDog = (props) => {
       // setDate(moment(date).toDate());
     }
 
-    const changeLocation = (event) => {
-      if (event.target.value === "No Preference"){
+    const changeLocation = (address) => {
+      if (address === "No Preference"){
         setLocation(null);
       }else{
-        setLocation(event.target.value);
+        setLocation(address);
       }
         
     }

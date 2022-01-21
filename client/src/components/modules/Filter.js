@@ -37,10 +37,10 @@ const Filter = (props) => {
                 lat: autocomplete.getPlace().geometry.location.toJSON().lat,
                 lng: autocomplete.getPlace().geometry.location.toJSON().lng,
             });
-            const loc = autocomplete.getPlace().formatted_address
-            console.log(loc);
-            setAddress("hello");
+            
+            setAddress(autocomplete.getPlace().formatted_address);
             console.log(address);
+            props.changeLocation(address);
         }else{
             console.log('Autocomplete is not loaded yet!')
         }
