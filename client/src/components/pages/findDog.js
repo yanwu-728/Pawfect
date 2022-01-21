@@ -9,6 +9,11 @@ import './FindDog.css';
 import "../modules/Filter.css";
 
 const FindDog = (props) => {
+  const Infty = Math.pow(10, 1000);
+  const mit = {
+    lat: 42.35405430000001,
+    lng: -71.1026228,
+};
   const [event, setEvent] = useState([]);
 
     const [breed, setBreed] = useState(null);
@@ -16,11 +21,8 @@ const FindDog = (props) => {
     const [address, setAddress] = useState(null);
     const [defaultText, setDefault] = useState(null);
 
-    const [radius, setRadius] = useState(Math.pow(10, 1000));
-    const [coords, setCoords] = useState({
-        lat: 42.35405430000001,
-        lng: -71.1026228,
-    });
+    const [radius, setRadius] = useState(null);
+    const [coords, setCoords] = useState(mit);
   
     const changeBreed = (event) => {
       if (event.target.value === "No Preference"){
@@ -63,16 +65,26 @@ const FindDog = (props) => {
     };
 
     const handleSubmit = () => {
-      get("/api/filteredevents", {location: location, time: selectedDate, breed: breed, lat: coords.lat, lng: coords.lng, radius: radius}).then((eventObjs) => {
-        setEvent(eventObjs.filter(event => earthDistance(event.lat, event.lng, coords.lat, coords.lng) <= radius));
+      console.log("radius");
+      console.log(radius);
+      if (radius === null){
+        get("/api/filteredevents", {location: location, time: selectedDate, breed: breed, lat: coords.lat, lng: coords.lng, radius: radius}).then((eventObjs) => {
+          setEvent(eventObjs)}
+          )}else{
+        get("/api/filteredevents", {location: location, time: selectedDate, breed: breed, lat: coords.lat, lng: coords.lng, radius: radius}).then((eventObjs) => {
+        setEvent(eventObjs.filter(event => earthDistance(event.lat, event.lng, coords.lat, coords.lng) <= radius))
       });
+      }
+
     };
 
     const handleReset = () => {
       setBreed(null);
-      setLocation(null);
+      setAddress(null);
       setDate(null);
       setDefault("none");
+      setRadius(null);
+      setCoords(mit);
     }
 
     let eventList = null;
