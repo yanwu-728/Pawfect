@@ -80,7 +80,7 @@ router.post("/event", (req, res) => {
     const NewEvent = new Event({
       userId: req.body.userId,
       eventId: eventsLength,
-      address: req.body.location,
+      address: req.body.address,
       lat: req.body.lat,
       lng: req.body.lng,
       breed: req.body.breed,

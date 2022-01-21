@@ -55,7 +55,7 @@ const FindDog = (props) => {
   }, []);
 
     const handleSubmit = () => {
-      get("/api/filteredevents", {location: location, time: selectedDate, breed: breed}).then((eventObjs) => {
+      get("/api/filteredevents", {location: address, time: selectedDate, breed: breed}).then((eventObjs) => {
         setEvent(eventObjs);
       });
     };
@@ -73,7 +73,7 @@ const FindDog = (props) => {
     eventList = event.map((eventObj) => (
         <Card
         eventId={eventObj._id}
-        location={eventObj.location}
+        location={eventObj.address}
         breed={eventObj.breed}
         time={eventObj.time}
         noParticipants={eventObj.noParticipants}

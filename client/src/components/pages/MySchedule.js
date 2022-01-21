@@ -37,7 +37,7 @@ const MySchedule = (props) => {
             <SingleEvent
                 userId={eventObj.userId}
                 eventId={eventObj.eventId}
-                location={eventObj.location}
+                address={eventObj.address}
                 breed={eventObj.breed}
                 time={eventObj.time}
                 noParticipants={eventObj.noParticipants}
