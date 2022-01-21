@@ -113,10 +113,14 @@ const FindDog = (props) => {
         console.log(address)
     }, [address]);
 
+  //   useEffect(() => {
+  //     console.log(coords)
+  // }, [coords]);
+
     return (
       <>
       <div className="FindDog-selector">
-        <Filter changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} defaultText={defaultText}/>
+        <Filter changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} coords={coords} defaultText={defaultText}/>
         <div className="filter">
         <p>The selected breed is {breed}.</p>
         <p>The selected time is {selectedDate}</p>
