@@ -4,7 +4,7 @@
   border: solid black;
   flex-basis: content;
   justify-content: space-between;
-  background-color: #c9a477;
+  background-color: #bccdd7;
   font-family: "Roboto";
   border-radius: 5px;
   border-color: #000000;
@@ -13,4 +13,19 @@
 .subContainer {
   flex-grow: 1;
   flex-basis: auto;
+}
+
+.deleteButton {
+  flex: 1;
+  text-align: center;
+  margin-top: 60px;
+  margin-left: 80px;
+  margin-right: 60px;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #5b4c49;
+  color: white;
+  box-shadow: 0 3px black;
+  height: 30px;
 }

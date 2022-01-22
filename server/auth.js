@@ -30,6 +30,7 @@ function getOrCreateUser(user) {
       googleid: user.sub,
       bio: defaultbio,
       contact: defaultcontact,
+      profilePic: "",
     });
 
     return newUser.save();

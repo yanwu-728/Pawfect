@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Open+Sans:wght@300;500&family=Permanent+Marker&display=swap");
 
 .Profile-avatarContainer {
-  padding: 0 35%;
+  padding: 0 40%;
 }
 
 .Profile-avatar {
@@ -83,12 +83,14 @@
   font-weight: bold;
   border-radius: 5px;
   margin-left: var(--m);
-  background-color: #ba7a3f;
+  background-color: #dfa16e;
+  /* opacity: 0.6; */
 }
 
 .Profile-subTitle {
   font-weight: 300;
   font-size: 24px;
+  font-weight: bold;
   margin: var(--m) var(--s);
   font-family: "Architects Daughter", cursive;
 }

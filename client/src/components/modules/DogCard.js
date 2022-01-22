@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { get } from "../../utilities";
+import { get, post } from "../../utilities";
 import "./DogCard.css";
 
 // import "./Card.css";
@@ -21,6 +21,13 @@ const DogCard = (props) => {
   //     setComments(comments.concat([commentObj]));
   //   };
 
+  const HandleDeleteDog = () => {
+    post("/api/deleteDog", { dogId: props.dogId }).then((dog) => {
+      console.log(dog);
+    });
+    window.location.reload();
+  };
+
   return (
     <div className="subContainer">
       <div className="SingleDog">
@@ -41,6 +48,9 @@ const DogCard = (props) => {
           <div id="profile-description">{props.dogId}</div>
         </div>
       </div>
+      <button type="delete" value="Delete" classname="deleteButton" onClick={HandleDeleteDog}>
+        Delete Dog
+      </button>
     </div>
   );
 };

@@ -200,6 +200,7 @@ router.post("/editUser", (req, res) => {
     user.name = req.body.newName;
     user.bio = req.body.newBio;
     user.contact = req.body.newContact;
+    user.profilePic = req.body.newImage;
     // edit user
     user.save();
   });
@@ -223,6 +224,10 @@ router.post("/dog", (req, res) => {
     
     NewDog.save().then((dog) => res.send(dog));
   });
+});
+
+router.post("/deleteDog", auth.ensureLoggedIn, async (req, res) => {
+  await Dog.deleteOne(req.body);
 });
 
 // anything else falls to this "not found" case
