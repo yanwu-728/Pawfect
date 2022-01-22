@@ -112,6 +112,7 @@ const NewEventInput = (props) => {
                     value={noParticipants}
                     onChange={changeNoParticipant}
                 />
+                
                 <label for="dog-id">ID of your dog:</label>
                 <select id="dog-id" defaultValue="0">
                     {props.dogIds.map(item => {
