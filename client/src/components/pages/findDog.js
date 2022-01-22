@@ -9,7 +9,8 @@ import './FindDog.css';
 import "../modules/Filter.css";
 
 const FindDog = (props) => {
-  const Infty = Math.pow(10, 1000);
+  const Infty = 1000;
+  const dayTime = 8.64*Math.pow(10, 7);
   const mit = {
     lat: 42.35405430000001,
     lng: -71.1026228,
@@ -20,7 +21,8 @@ const FindDog = (props) => {
     const [selectedDate, setDate] = useState(null);
     const [address, setAddress] = useState(null);
     const [defaultText, setDefault] = useState(null);
-
+    
+    const [timeRange, setTimeRange] = useState(Infty);
     const [radius, setRadius] = useState(Infty);
     const [coords, setCoords] = useState(mit);
   
@@ -34,7 +36,7 @@ const FindDog = (props) => {
     };
   
     const changeDate = (date) => {
-      setDate(moment(date).format("MMM Do YY"));
+      setDate(moment(date).format());
       // setDate(moment(date).toDate());
     }
 
@@ -64,10 +66,22 @@ const FindDog = (props) => {
         return 3963 * Math.acos(Math.sin(lat1rad)*Math.sin(lat2rad) + Math.cos(lat1rad)*Math.cos(lat2rad)*Math.cos(lng2rad - lng1rad))
     };
 
+    console.log("distance from US to SG");
+    console.log(earthDistance(1.3521, 103.8198, 42.3601, -71.0589));
+    
     const handleSubmit = () => {
       console.log("filtering events")
+      console.log(Date.parse(selectedDate))
       get("/api/filteredevents", {time: selectedDate, breed: breed, lat: coords.lat, lng: coords.lng, radius: radius}).then((eventObjs) => {
-        setEvent(eventObjs.filter(event => earthDistance(event.lat, event.lng, coords.lat, coords.lng) <= radius));
+        console.log("eventTime")
+        console.log(Date.parse(eventObjs[0].time));
+        if (selectedDate === null) {
+          console.log(Date.now());
+          setEvent(eventObjs.filter((event => (earthDistance(event.lat, event.lng, coords.lat, coords.lng) <= radius) && (Date.parse(event.time) > Date.now()))));
+        }else{
+          setEvent(eventObjs.filter((event => (earthDistance(event.lat, event.lng, coords.lat, coords.lng) <= radius) && (Date.parse(selectedDate) - dayTime <= Date.parse(event.time)) && (Date.parse(event.time) <= Date.parse(selectedDate) + dayTime) && (Date.parse(event.time) > Date.now()))));
+
+        }
       });
       }
 

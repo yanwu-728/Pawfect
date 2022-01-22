@@ -111,9 +111,9 @@ router.get("/filteredevents", (req, res) => {
   if (req.query.breed !== "null") {
     body.breed = req.query.breed;
   }
-  if (req.query.time !== "null") {
-    body.time = req.query.time;
-  }
+  // if (req.query.time !== "null") {
+  //   body.time = req.query.time;
+  // }
   Event.find(body).then((event) => res.send(event));
 });
 
