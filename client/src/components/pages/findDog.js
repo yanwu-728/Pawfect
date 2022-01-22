@@ -65,7 +65,7 @@ const FindDog = (props) => {
     };
 
     const handleSubmit = () => {
-
+      console.log("filtering events")
       get("/api/filteredevents", {time: selectedDate, breed: breed, lat: coords.lat, lng: coords.lng, radius: radius}).then((eventObjs) => {
         setEvent(eventObjs.filter(event => earthDistance(event.lat, event.lng, coords.lat, coords.lng) <= radius));
       });
