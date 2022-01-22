@@ -85,10 +85,10 @@ const NewEventInput = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         try{
-            if (address !== "[location]" && breed !== "[breed]" && selectedDate !== "[date]") {
+            if (address !== "[location]" && breed !== "[breed]" && selectedDate !== "[date]" && noParticipants > 0) {
                 props.onSubmit && props.onSubmit(address, coords['lat'], coords['lng'], breed, selectedDate, noParticipants, dogId, intro);
             } else {
-                window.alert("Input Event Invalid!");
+                window.alert("Input Event Invalid! Please enter address, breed, date and have a number of participant greater than 0");
             }
             
         } catch (error) {
@@ -98,19 +98,8 @@ const NewEventInput = (props) => {
         handleReset;
     };
 
-    const dogIds = [];
-
-    get("/api/dog", { ownerId: props.userId }).then((dogs) => {
-        for (let i=0;i<dogs.length;i++) {
-            console.log(dogs[i]);
-            dogIds.append(dogs[i].dogId);
-        }
-    });
-
-    useEffect(()=>{
-        console.log(dogIds)
-    }, [dogIds]);
-
+    console.log(props.dogIds);
+    
     return (
         <div>
             <div className="NewEvent-selector">
@@ -123,19 +112,12 @@ const NewEventInput = (props) => {
                     value={noParticipants}
                     onChange={changeNoParticipant}
                 />
-                <p>ID of your dog: </p>
-                <input 
-                    type="text"
-                    value={dogId}
-                    onChange={changeDogId}
-                />
                 <label for="dog-id">ID of your dog:</label>
-                {/* <select id="dog-id" defaultValue="0">
-                    {dogIds.map(item => {
+                <select id="dog-id" defaultValue="0">
+                    {props.dogIds.map(item => {
                         return (<option value={item}>{item}</option>);
                     })}
                 </select>
-                <input type="text" list="dog-id" onChange={changeDogId}/> */}
 
                 <p>Description:</p>
                 <input
@@ -201,7 +183,26 @@ const NewEvent = (props) => {
             window.location.reload()
         );
     };
-    return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} />;
+
+    // useEffect(() => {
+    //     let dogIds = [];
+    //     get("/api/dog", { ownerId: props.userId }).then((dogs) => {
+    //         console.log(dogs);
+    //         for (let i=0;i<dogs.length;i++) {
+    //             console.log(dogs[i]);
+    //             dogIds.append(dogs[i].dogId);
+    //         };
+    //     });
+    // }, [props.userId]);
+
+    let dogIds = [];
+    get("/api/dog", { ownerId: props.userId }).then((dogs) => {
+        for (let i=0;i<dogs.length;i++) {
+            dogIds.push(dogs[i].dogId);
+        };
+    });
+
+    return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} dogIds={dogIds} />;
     
 };
 

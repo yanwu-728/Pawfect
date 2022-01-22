@@ -177,17 +177,17 @@ router.post("/deleteparticipant", auth.ensureLoggedIn, async (req, res) => {
   await Participant.deleteOne(req.body);
 });
 
-router.post("/dog", (req, res) => {
-  const NewDog = new Dog({
-    dogId: dogsLength,
-    breed: req.breed,
-    dogPic: req.dogPic,
-    ownerId: req.ownerId,
-    bio: req.bio,
-  });
+// router.post("/dog", (req, res) => {
+//   const NewDog = new Dog({
+//     dogId: dogsLength,
+//     breed: req.breed,
+//     dogPic: req.dogPic,
+//     ownerId: req.ownerId,
+//     bio: req.bio,
+//   });
 
-  NewDog.save().then((dog) => res.send(dog));
-});
+//   NewDog.save().then((dog) => res.send(dog));
+// });
 
 router.get("/dog", (req, res) => {
   Dog.find({ ownerId: req.query.ownerId }).then((dogs) => res.send(dogs));
@@ -206,7 +206,7 @@ router.post("/editUser", (req, res) => {
   res.send({});
 });
 
-router.post("/addDog", (req, res) => {
+router.post("/dog", (req, res) => {
   Dog.find({}).then((dogs) => {
     if (dogs.length !== 0) {
       dogsLength = dogs[dogs.length - 1].dogId + 1;
@@ -220,7 +220,7 @@ router.post("/addDog", (req, res) => {
       ownerId: req.body.ownerid,
       bio: req.body.dogbio,
     });
-
+    
     NewDog.save().then((dog) => res.send(dog));
   });
 });

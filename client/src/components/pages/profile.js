@@ -13,13 +13,12 @@ const Profile = (props) => {
 
   useEffect(() => {
     document.title = "Profile Page";
-    console.log(props.userId);
     get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
 
     get("/api/dog", { ownerId: props.userId }).then((dogs) => {
       setDogs(dogs);
     });
-  }, []);
+  }, [props.userId]);
 
   let dogsList = null;
   console.log(dogs.length);
