@@ -15,6 +15,10 @@
   flex-basis: auto;
 }
 
+.dogImage {
+  border-radius: 50%;
+}
+
 .deleteButton {
   flex: 1;
   text-align: center;

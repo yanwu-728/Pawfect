@@ -220,8 +220,9 @@ router.post("/dog", (req, res) => {
       breed: req.body.breed,
       ownerId: req.body.ownerid,
       bio: req.body.dogbio,
+      dogPic: req.body.dogPic,
     });
-    
+
     NewDog.save().then((dog) => res.send(dog));
   });
 });

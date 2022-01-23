@@ -13,6 +13,7 @@ import "./DogCard.css";
  * @param {string} breed
  * @param {string} ownerId
  * @param {string} dogBio
+ * @param {string} dogPic
  */
 const DogCard = (props) => {
   // this gets called when the user pushes "Submit", so their
@@ -28,9 +29,14 @@ const DogCard = (props) => {
     window.location.reload();
   };
 
+  let url = "https://drive.google.com/thumbnail?id=" + props.dogPic;
+
   return (
     <div className="subContainer">
       <div className="SingleDog">
+        <div className="subContainer u-textCenter">
+          <img src={url} alt="image" className="dogImage" />
+        </div>
         <div className="subContainer u-textCenter">
           <h4 className="Profile-subTitle">Dog name:</h4>
           <div id="profile-description">{props.dogName}</div>

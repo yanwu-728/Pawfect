@@ -9,6 +9,9 @@ const addDog = (props) => {
   const [name, setName] = useState("");
   const [breed, setBreed] = useState("");
   const [bio, setBio] = useState("");
+  const [dogPic, setImage] = useState("");
+  const keyword = "file/d/";
+  const viewkey = "/view";
 
   // called whenever the user types in the new post input box
 
@@ -18,11 +21,18 @@ const addDog = (props) => {
 
   const changeBreed = (event) => {
     setBreed(event.target.value);
-  }
+  };
 
   const changeBio = (event) => {
     setBio(event.target.value);
-  }
+  };
+
+  const changeImage = () => {
+    const url = document.getElementById("image").value;
+    const secondhalf = url.slice(url.indexOf(keyword) + keyword.length);
+    const imageid = secondhalf.substr(0, secondhalf.indexOf(viewkey));
+    setImage(imageid);
+  };
 
   // const handleChange = () => {
   //   setName(document.getElementById("dogname").value);
@@ -37,6 +47,7 @@ const addDog = (props) => {
       dogname: name,
       breed: breed,
       dogbio: bio,
+      dogPic: dogPic,
     }).then(submit);
   };
 
@@ -44,7 +55,7 @@ const addDog = (props) => {
   //   console.log(name, breed, bio);
   // }, [name, breed, bio]);
 
-  let options = require('../modules/breed_options.json');
+  let options = require("../modules/breed_options.json");
 
   return (
     <div className="change">
@@ -56,17 +67,21 @@ const addDog = (props) => {
       <label>Select dog breed: </label>
 
       <label htmlFor="dog-breeds">Breed:</label>
-        <datalist id="dog-breed" defaultValue="No Preference">
-            {options.map(item => {
-                return (<option value={item}>{item}</option>);
-            })}
-        </datalist>
-        <input type="text" list="dog-breed" onChange={changeBreed}/>
+      <datalist id="dog-breed" defaultValue="No Preference">
+        {options.map((item) => {
+          return <option value={item}>{item}</option>;
+        })}
+      </datalist>
+      <input type="text" list="dog-breed" onChange={changeBreed} />
 
       <div />
 
       <label>Enter Bio: </label>
       <input type="text" id="bio" name="bio" value={bio} onChange={changeBio} />
+      <div />
+
+      <label>Enter dog image google drive link: </label>
+      <input type="text" id="image" name="image" value={dogPic} onChange={changeImage} />
       <div />
 
       <a href="/profile">

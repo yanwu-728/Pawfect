@@ -37,6 +37,7 @@ const Profile = (props) => {
         breed={dogObj.breed}
         ownerId={dogObj.ownerId}
         dogBio={dogObj.bio}
+        dogPic={dogObj.dogPic}
       />
     ));
   } else {
@@ -45,7 +46,7 @@ const Profile = (props) => {
   return (
     <>
       <div className="Profile-avatarContainer">
-        <img src={url} alt="image" />
+        <img src={url} alt="image" className="Profile-image" />
       </div>
       <h1 className="Profile-name u-textCenter">{user.name}</h1>
 
