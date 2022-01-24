@@ -18,7 +18,6 @@ const ParticipantsBlock =  (props) => {
     
     useEffect(() => {
         document.title = "My Schedule";
-        // console.log(user)
         if (props.userId) {
             get("/api/user", {userId: props.userId}).then((res) => {
                 console.log(res.name)
@@ -77,15 +76,6 @@ const ParticipantsBlock =  (props) => {
                 };
         });
 
-        // post("/api/deleteparticipant", body).then((participant) => {
-        //     console.log(participant);
-        //     if(Object.keys(participant).length !== 0){
-        //         props.deleteParticipant(participant);
-        //         window.confirm('Sorry to see you go :(');
-        //     }else{
-        //         window.confirm('You have not signed up!')
-        //         };
-        // })
     }
       
       if (event.length > 0 && props.participants.length >= event[0].noParticipants){

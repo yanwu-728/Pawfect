@@ -24,7 +24,6 @@ const NewEventInput = (props) => {
     
     const [autocomplete, setAutocomplete] = useState(null);
     const onLoad = (autocomplete) => {
-        console.log('autocomplete');
         setAutocomplete(autocomplete);
     };
 
@@ -36,7 +35,6 @@ const NewEventInput = (props) => {
     const onPlaceChanged = () => {
         if (autocomplete !== null) {
             console.log(autocomplete.getPlace().formatted_address);
-            console.log(autocomplete.getPlace());
             setCoords({
                 lat: autocomplete.getPlace().geometry.location.toJSON().lat,
                 lng: autocomplete.getPlace().geometry.location.toJSON().lng,
@@ -47,10 +45,6 @@ const NewEventInput = (props) => {
             console.log('Autocomplete is not loaded yet!')
         }
     };
-
-    useEffect(() => {
-        console.log(address)
-    }, [address]);
 
     const changeBreed = (event) => {
         setBreed(event.target.value);
@@ -98,32 +92,42 @@ const NewEventInput = (props) => {
         handleReset;
     };
 
+    // let options = props.dogIds.map(item => item);
     console.log(props.dogIds);
+    let options = props.dogIds.map((item) => {
+		console.log(`BEFORE: ${item}`)
+	    const result = (<option value={item}>{item}</option>)
+		console.log(`AFTER: ${result}`) 
+		return result;
+});
+    // let options = props.dogIds.map(item => <option value={item}>{item}</option>);
+    
+    // console.log('option');
+    // console.log(options);
+    
     
     return (
         <div>
             <div className="NewEvent-selector">
             <Filter  changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} coords={coords}/>
             <div className="criteria">
-                <p>Number of participants allowed to join your event (at least 1): </p>
+                <div>Allowed number of participants (at least 1): </div>
                 <input 
                     type="number"
                     min="1"
                     value={noParticipants}
                     onChange={changeNoParticipant}
                 />
-                
-                <label for="dog-id">ID of your dog:</label>
+                <p></p>
+                <label htmlFor="dog-id">ID of your dog: </label>
                 <select id="dog-id" defaultValue="0">
-                    {props.dogIds.map(item => {
-                        return (<option value={item}>{item}</option>);
-                    })}
+                    {options}
                 </select>
 
-                <p>Description:</p>
+                <p></p>
                 <input
                     type="text"
-                    placeholder= {props.defaultText}
+                    placeholder= "Description"
                     value={intro}
                     onChange={changeIntro}
                 />
@@ -186,18 +190,7 @@ const NewEvent = (props) => {
         );
     };
 
-    // useEffect(() => {
-    //     let dogIds = [];
-    //     get("/api/dog", { ownerId: props.userId }).then((dogs) => {
-    //         console.log(dogs);
-    //         for (let i=0;i<dogs.length;i++) {
-    //             console.log(dogs[i]);
-    //             dogIds.append(dogs[i].dogId);
-    //         };
-    //     });
-    // }, [props.userId]);
-
-    let dogIds = [];
+    const dogIds = [];
     get("/api/dog", { ownerId: props.userId }).then((dogs) => {
         for (let i=0;i<dogs.length;i++) {
             dogIds.push(dogs[i].dogId);

@@ -138,10 +138,6 @@ const FindDog = (props) => {
         console.log(address)
     }, [address]);
 
-  //   useEffect(() => {
-  //     console.log(coords)
-  // }, [coords]);
-
     return (
       <>
       <div className="FindDog-selector">

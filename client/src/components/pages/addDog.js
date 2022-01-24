@@ -51,10 +51,6 @@ const addDog = (props) => {
     }).then(submit);
   };
 
-  // useEffect(()=>{
-  //   console.log(name, breed, bio);
-  // }, [name, breed, bio]);
-
   let options = require("../modules/breed_options.json");
 
   return (
