@@ -127,7 +127,8 @@ const NewEventInput = (props) => {
                     value={intro}
                     onChange={changeIntro}
                 />
-                <p>The event is on {moment(selectedDate).format("MMM Do YY")} at {address} with a {breed} of id {dogId}. ={noParticipants} participant(s) is/are allowed to sign up. </p>
+                <p>The event is on {moment(selectedDate).format("MMM Do YY")} at {address} with a {breed} of id {dogId}. </p>
+                <p> {noParticipants} participant(s) is/are allowed to sign up. </p>
                 <p>Description: {intro}</p>
             </div>
             <p>
