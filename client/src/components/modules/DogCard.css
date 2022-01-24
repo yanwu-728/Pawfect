@@ -5,7 +5,8 @@
 .SingleDog {
   display: flex;
   flex-direction: column;
-  border: solid black;
+  border: solid #5c544c;
+  border-width: 3px;
   flex-basis: content;
   justify-content: space-between;
   background-color: #bccdd7;

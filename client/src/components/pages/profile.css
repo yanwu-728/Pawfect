@@ -105,11 +105,12 @@
 }
 
 .Profile-subContainer {
-  border: solid black;
+  border: solid #5c544c;
+  border-width: 3px;
   font-weight: bold;
   border-radius: 5px;
   width: 35%;
-  margin-left: 5%;
+  margin-left: 6%;
   background-color: #dfa16e;
   padding-bottom: 10px;
   margin-top: 6%;
@@ -144,11 +145,26 @@
 .dogList {
   position: absolute;
   width: 615px;
-  height: 685px;
-  left: 700px;
+  height: 680px;
+  left: 720px;
   top: 170px;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  overflow-x: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #bccdd7;
+  border-radius: 20px;
+  border: 2px solid black;
+  background-clip: content-box;
 }
