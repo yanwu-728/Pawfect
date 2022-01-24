@@ -16,7 +16,12 @@
 }
 
 .dogImage {
+  margin-top: 10px;
   border-radius: 50%;
+  width: auto;
+  /* height: auto;
+  max-width: 250px; */
+  max-height: 250px;
 }
 
 .deleteButton {

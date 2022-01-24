@@ -29,7 +29,7 @@ const DogCard = (props) => {
     window.location.reload();
   };
 
-  let url = "https://drive.google.com/thumbnail?id=" + props.dogPic;
+  let url = "https://drive.google.com/uc?id=" + props.dogPic;
 
   return (
     <div className="subContainer">
