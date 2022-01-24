@@ -32,7 +32,7 @@ const DogCard = (props) => {
   let url = "https://drive.google.com/uc?id=" + props.dogPic;
 
   return (
-    <div className="subContainer">
+    <div className="subContainer slides">
       <div className="SingleDog">
         <div className="subContainer u-textCenter">
           <img src={url} alt="image" className="dogImage" />
@@ -53,10 +53,10 @@ const DogCard = (props) => {
           <h4 className="Profile-subTitle">Dog Id:</h4>
           <div id="profile-description">{props.dogId}</div>
         </div>
+        <button type="delete" value="Delete" className="deleteButton" onClick={HandleDeleteDog}>
+          Delete Dog
+        </button>
       </div>
-      <button type="delete" value="Delete" classname="deleteButton" onClick={HandleDeleteDog}>
-        Delete Dog
-      </button>
     </div>
   );
 };
