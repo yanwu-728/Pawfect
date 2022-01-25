@@ -1,13 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&family=Permanent+Marker&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Open+Sans:wght@300;500&family=Permanent+Marker&display=swap");
+
 .SingleDog {
   display: flex;
   flex-direction: column;
-  border: solid black;
+  border: solid #5c544c;
+  border-width: 3px;
   flex-basis: content;
   justify-content: space-between;
   background-color: #bccdd7;
   font-family: "Roboto";
-  border-radius: 5px;
+  border-radius: 20px;
   border-color: #000000;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 35px;
 }
 
 .subContainer {
@@ -25,16 +33,17 @@
 }
 
 .deleteButton {
-  flex: 1;
-  text-align: center;
-  margin-top: 60px;
-  margin-left: 80px;
-  margin-right: 60px;
   font-family: "Roboto";
   font-size: 14px;
   font-weight: bold;
   background-color: #5b4c49;
+  padding: 5px 10px;
   color: white;
   box-shadow: 0 3px black;
-  height: 30px;
+  margin-top: 20px;
+  width: 20%;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-left: 40%;
 }

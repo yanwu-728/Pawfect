@@ -3,17 +3,17 @@
 }
 
 .SingleEvent-event{
+    display: block;
     flex: 0 0 65%;
     font-family: 'Roboto';
     font-weight: bold;
     border-radius: 3px;
     font-size: 16px;
     border-color: #5C544C;
-    width: 450px;
-    height: 125px;
-    top: 127px;
-    margin-top: 10px;
-    margin-left: 20px;
+    width: 550px;
+    height: 175px;
+    top: 120px;
+    /* margin-left: 20px; */
     line-height: 1.6;
 }
 
@@ -40,10 +40,10 @@
     transform: translateY(3px);
 }
 
-.SingleEvent-line{
+/* .SingleEvent-line{
     display: block;
     border: 1px inset;
     overflow: hidden;
     color: #5C544C;
     margin: 1em auto;
-}
+} */

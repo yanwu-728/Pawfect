@@ -3,7 +3,7 @@
   /* make it responsive */
   max-width: 100%;
   width: 100%;
-  height: auto;
+  height: 10px;
 
   /* div height to be the same as width*/
   padding-top: 40%;
@@ -32,4 +32,30 @@
   /* margin-bottom: 20px; */
   /* max-width: 500px;
   max-height: 200px; */
+}
+
+.slides {
+  padding-top: 40px;
+  margin-left: 30%;
+  width: 40%;
+}
+.slideBackground {
+  background-image: url("../../public/dogs2.jpg");
+  height: 600px;
+}
+
+.dogSlides {
+  display: flex;
+  flex-direction: column;
+  border: solid #5c544c;
+  border-width: 3px;
+  flex-basis: content;
+  justify-content: space-between;
+  background-color: #bccdd7;
+  font-family: "Roboto";
+  border-radius: 20px;
+  border-color: #000000;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 35px;
 }

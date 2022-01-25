@@ -21,7 +21,7 @@ const Filter = (props) => {
 
     let options = require('./breed_options.json');
 
-    console.log(props.coords);
+    // console.log(props.coords);
 
     return (
         <div className="filter">
@@ -30,7 +30,7 @@ const Filter = (props) => {
                 <datalist id="dog-breed" defaultValue="No Preference">
                     <option>No Preference</option>
                     {options.map(item => {
-                        return (<option value={item}>{item}</option>);
+                        return (<option key={item} value={item}>{item}</option>);
                     })}
                 </datalist>
                 <input type="text" list="dog-breed" onChange={props.changeBreed}/>

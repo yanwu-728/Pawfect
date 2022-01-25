@@ -21,7 +21,6 @@ const Profile = (props) => {
   }, [props.userId]);
 
   let dogsList = null;
-  console.log(dogs.length);
   const hasDogs = dogs.length !== 0;
 
   if (!user) {
@@ -29,9 +28,11 @@ const Profile = (props) => {
   }
   let url = "https://drive.google.com/uc?id=" + user.profilePic;
   if (hasDogs) {
+    // var slideIndex = 0;
+
     dogsList = dogs.map((dogObj) => (
       <DogCard
-        // key={`Card_${dogObj._id}`}
+        className="mySlides"
         dogId={dogObj.dogId}
         dogName={dogObj.name}
         breed={dogObj.breed}
@@ -45,38 +46,36 @@ const Profile = (props) => {
   }
   return (
     <>
-      <div className="Profile-avatarContainer">
-        <img src={url} alt="image" className="Profile-image" />
-      </div>
-      <h1 className="Profile-name u-textCenter">{user.name}</h1>
-
-
-      <hr className="Profile-linejj" />
       <div className="u-flex">
-        <div className="Profile-subContainer"></div>
         <div className="Profile-subContainer u-textCenter">
+          <div>
+            <img src={url} alt="image" className="Profile-image" />
+          </div>
+          <h1 className="Profile-name u-textCenter">{user.name}</h1>
           <h4 className="Profile-subTitle">About me:</h4>
 
           <div id="profile-description">{user.bio}</div>
           <h4 className="Profile-subTitle">Contact:</h4>
           <div id="contact">{user.contact}</div>
+          <div className="editContainer">
+            <Link className="Profile-Links" to="/editUser/">
+              Edit User Profile
+            </Link>
+          </div>
         </div>
-        
-      </div>
-      <h>
-        <Link className="Profile-Links" to="/editUser/">
-          Edit User Profile
-        </Link>
-        </h>
-      <hr className="Profile-line" />
-      <div className="u-flex">
-        <h4 className="Profile-subTitle">Your Dogs:</h4>
+        <div className="dogSection">
+          <div className="u-flex">
+            <div>
+              <h4 className="Profile-subTitle">Your Dogs:</h4>
+            </div>
 
-        {dogsList}
+            <div className="dogList">{dogsList}</div>
 
-        <Link className="Profile-Links" to="/addDog/">
-          Click to add your dogs!
-        </Link>
+            <Link to="/addDog/" className="Profile-addDog">
+              Click to add your dogs!
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );

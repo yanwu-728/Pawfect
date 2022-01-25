@@ -10,6 +10,7 @@ import {get, post} from "../../utilities.js";
  * 
  * Proptypes
  * @param {string} userId
+ * @param {string} creatorId
  * @param {string} eventId of the event
  * @param {string} address
  * @param {string} breed
@@ -28,27 +29,44 @@ import {get, post} from "../../utilities.js";
     window.location.reload();
   };
 
-  return (
-    <div className="SingleEvent-container">
-      <div className='SingleEvent-event'>
-        {/* <li>Date: {moment(props.time).format('MMMM Do YYYY')} </li> */}
-        <li>Date: {moment(props.time).format('MMM Do YYYY')} </li>
-        <li>Location: {props.address}</li>
-        <li>Breed: {props.breed}</li>
-        <li>Number of Participants Allowed: {props.noParticipants}</li>
-        <li>Note: {props.intro}</li>
-        <hr className="SingleEvent-line"/>
+  if (props.userId == props.creatorId) {
+    return (
+      <div className="SingleEvent-container">
+        <div className='SingleEvent-event'>
+          <div>Role: Host</div>
+          <li>Date: {moment(props.time).format('MMM Do YYYY')} </li>
+          <li>Location: {props.address}</li>
+          <li>Breed: {props.breed}</li>
+          <li>Number of Participants Allowed: {props.noParticipants}</li>
+          <li>Note: {props.intro}</li>
+          <hr className="SingleEvent-line"/>
+        </div>
+        <button
+          type="delete"
+          value="Delete"
+          className="SingleEvent-button"
+          onClick={HandleDelete}
+        > 
+          Delete 
+        </button>
       </div>
-      <button
-        type="delete"
-        value="Delete"
-        className="SingleEvent-button"
-        onClick={HandleDelete}
-      > 
-        Delete 
-      </button>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="SingleEvent-container">
+        <div className='SingleEvent-event'>
+          <div>Role: Participant</div>
+          <li>Date: {moment(props.time).format('MMM Do YYYY')} </li>
+          <li>Location: {props.address}</li>
+          <li>Breed: {props.breed}</li>
+          <li>Number of Participants Allowed: {props.noParticipants}</li>
+          <li>Note: {props.intro}</li>
+          <hr className="SingleEvent-line"/>
+        </div>
+      </div>
+    );
+  }
+  
 };
 
 export default SingleEvent;

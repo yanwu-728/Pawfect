@@ -59,6 +59,10 @@
   text-align: center;
 }
 
+img {
+  background: url("../../public/small_paw.png") no-repeat;
+}
+
 .NavBar-link:hover {
   opacity: 0.8;
 }
