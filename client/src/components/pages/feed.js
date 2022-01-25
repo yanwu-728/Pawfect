@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import DogCard from "../modules/DogCard.js";
 import { get } from "../../utilities";
 import "./feed.css";
+import SlideShow from "../Modules/SlideShow.js";
 
 const Feed = (props) => {
   const [user, setUser] = useState();
@@ -82,28 +83,30 @@ const Feed = (props) => {
           <h2 class="welcome">Hi! Welcome to PAWFECT! </h2>
           <h4 class="welcome">Please log in first.</h4>
         </div>
-
-        <div className="slideBackground">
-          <div className="slides">{allDogsList}</div>
-        </div>
-
-        {/* <div class="dogs"></div> */}
+        {/* <div class="dogs" />; */}
+        <SlideShow userId={user}></SlideShow>
       </>
     );
   }
   return (
     <>
-      <div>
-        <h2 className="welcome">Hi {user.name}! </h2>
-        <h3 className="welcome">Welcome to PAWFECT!</h3>
-        <h4 className="welcome">
-          Please go to "Find a Dog!" page to see posted events or add your own on "My Schedule"
-          page!
-        </h4>
-      </div>
-      <div className="slideBackground">
-        <div className="slides">{allDogsList}</div>
-      </div>
+    <p>
+      <SlideShow></SlideShow>
+    </p>
+      <p>
+        <div class="welcome">
+          <h2>Hi {user.name}! </h2>
+          <h3>Welcome to PAWFECT!</h3>
+          <h4>
+            Please go to "Find a Dog!" page to see posted events or add your own on "My Schedule"
+            page!
+          </h4>
+        </div>
+        
+      </p>
+      {/* <div class="dogs" />; */}
+      
+
     </>
   );
 };

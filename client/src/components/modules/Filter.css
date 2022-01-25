@@ -7,6 +7,7 @@
     line-height: 1.6;
 }
 
+<<<<<<< HEAD
 .filter-bar{
     border:5px #5B4C49;
     padding-left: 10px;
@@ -16,4 +17,8 @@
     border-radius: 5px;
     float: center;
     margin-bottom: 20px;
+=======
+.filter-breed{
+    margin-top: 10px;
+>>>>>>> 937973794e12be9294811c5913fe67cdc6ad83cc
 }

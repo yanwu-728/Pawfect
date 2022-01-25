@@ -17,6 +17,8 @@ const NavBar = ({ userId, handleLogin, handleLogout }) => {
       <a href="/">
         <div className="logo"></div>
         </a>
+        <div className="paw"></div>
+
         <nav className="NavBar-container">
       {/* 
       <div className="NavBar-title u-inlineBlock">Pawfect</div> */}

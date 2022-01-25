@@ -190,7 +190,11 @@ router.post("/deleteparticipant", auth.ensureLoggedIn, async (req, res) => {
 // });
 
 router.get("/dog", (req, res) => {
-  Dog.find({ ownerId: req.query.ownerId }).then((dogs) => res.send(dogs));
+  if (req.query.ownerId){
+    Dog.find({ ownerId: req.query.ownerId }).then((dogs) => res.send(dogs));
+  }else{
+    Dog.find({}).then((dogs) => res.send(dogs));
+  }
 });
 router.get("/allDogs", (req, res) => {
   Dog.find({}).then((dogs) => res.send(dogs));
