@@ -6,7 +6,7 @@
 }
 .Profile-image {
   margin-top: 10px;
-  border-radius: 50%;
+  border-radius: 20%;
   width: auto;
   max-height: 250px;
   /* display: block;
@@ -108,7 +108,7 @@
   border: solid #5c544c;
   border-width: 3px;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 20px;
   width: 35%;
   margin-left: 6%;
   background-color: #dfa16e;

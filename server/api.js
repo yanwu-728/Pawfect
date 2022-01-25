@@ -192,6 +192,9 @@ router.post("/deleteparticipant", auth.ensureLoggedIn, async (req, res) => {
 router.get("/dog", (req, res) => {
   Dog.find({ ownerId: req.query.ownerId }).then((dogs) => res.send(dogs));
 });
+router.get("/allDogs", (req, res) => {
+  Dog.find({}).then((dogs) => res.send(dogs));
+});
 
 router.post("/editUser", (req, res) => {
   console.log(req);

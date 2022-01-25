@@ -32,7 +32,7 @@ const DogCard = (props) => {
   let url = "https://drive.google.com/uc?id=" + props.dogPic;
 
   return (
-    <div className="subContainer slides">
+    <div className="subContainer ">
       <div className="SingleDog">
         <div className="subContainer u-textCenter">
           <img src={url} alt="image" className="dogImage" />
