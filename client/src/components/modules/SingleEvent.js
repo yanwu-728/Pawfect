@@ -54,7 +54,7 @@ import {get, post} from "../../utilities.js";
   } else {
     return (
       <div className="SingleEvent-container">
-        <div className='SingleEvent-event'>
+        <span className='SingleEvent-event'>
           <div>Role: Participant</div>
           <li>Date: {moment(props.time).format('MMM Do YYYY')} </li>
           <li>Location: {props.address}</li>
@@ -62,7 +62,7 @@ import {get, post} from "../../utilities.js";
           <li>Number of Participants Allowed: {props.noParticipants}</li>
           <li>Note: {props.intro}</li>
           <hr className="SingleEvent-line"/>
-        </div>
+        </span>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Filter from "./Filter.js";
 import "./NewEvent.css";
+import "./Filter.css";
 import moment from 'moment';
 import {get, post} from "../../utilities.js";
 import "react-datepicker/dist/react-datepicker.css";
@@ -103,7 +104,7 @@ const NewEventInput = (props) => {
     return (
         <div>
             <div className="NewEvent-selector">
-            <Filter  changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} coords={coords}/>
+            <Filter  changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} coords={coords} date={selectedDate}/>
             <div className="criteria">
                 <div>Allowed number of participants (at least 1): </div>
                 <input 
@@ -111,16 +112,18 @@ const NewEventInput = (props) => {
                     min="1"
                     value={noParticipants}
                     onChange={changeNoParticipant}
+                    className="filter-bar"
                 />
                 <br></br>
 
-                <label htmlFor="dog-id">ID of your dog: </label>
                 <select 
                     id="dog-id" 
                     onChange={changeDogId}
                     value={dogId}
+                    className="filter-bar"
+                    defaultText="Dog Id"
                 >
-                    <option value="">Please select</option>
+                    <option value="">Id of your dog</option>
                     {options}
                 </select>
                 <br></br>
@@ -130,6 +133,7 @@ const NewEventInput = (props) => {
                     placeholder= "Description"
                     value={intro}
                     onChange={changeIntro}
+                    className="filter-bar"
                 />
                 <div>The event is on {moment(selectedDate).format("MMM Do YY")} at {address} with a {breed} of id {dogId}. </div>
                 <div> {noParticipants} participant(s) is/are allowed to sign up. </div>

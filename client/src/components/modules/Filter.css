@@ -7,6 +7,17 @@
     line-height: 1.6;
 }
 
+.filter-bar{
+    border:5px #5B4C49;
+    padding-left: 10px;
+    /* margin-top: 10px; */
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    float: center;
+    margin-bottom: 20px;
+}
+
 .filter-breed{
     margin-top: 10px;
 }
