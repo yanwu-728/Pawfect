@@ -17,14 +17,14 @@ const NewEventInput = (props) => {
     const [breed, setBreed] = useState("[breed]");
     const [selectedDate, setDate] = useState("[date]");
     const [noParticipants, setNoParticipants] = useState(0);
-    const [dogId, setDogId] = useState("0");
     const [intro, setIntro] = useState("");
+    const [options, setOptions] = useState([]);
+    const [dogId, setDogId] = useState(0);
 
     const [address, setAddress] = useState("[location]");
     
     const [autocomplete, setAutocomplete] = useState(null);
     const onLoad = (autocomplete) => {
-        console.log('autocomplete');
         setAutocomplete(autocomplete);
     };
 
@@ -36,7 +36,6 @@ const NewEventInput = (props) => {
     const onPlaceChanged = () => {
         if (autocomplete !== null) {
             console.log(autocomplete.getPlace().formatted_address);
-            console.log(autocomplete.getPlace());
             setCoords({
                 lat: autocomplete.getPlace().geometry.location.toJSON().lat,
                 lng: autocomplete.getPlace().geometry.location.toJSON().lng,
@@ -47,10 +46,6 @@ const NewEventInput = (props) => {
             console.log('Autocomplete is not loaded yet!')
         }
     };
-
-    useEffect(() => {
-        console.log(address)
-    }, [address]);
 
     const changeBreed = (event) => {
         setBreed(event.target.value);
@@ -98,40 +93,49 @@ const NewEventInput = (props) => {
         handleReset;
     };
 
-    console.log(props.dogIds);
+    useEffect(()=>{
+        setOptions(
+            props.dogIds.map((item) => <option key={item} value={item}>{item}</option>)   
+        )
+}, [props.dogIds]);
+    
     
     return (
         <div>
             <div className="NewEvent-selector">
             <Filter  changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} coords={coords}/>
             <div className="criteria">
-                <p>Number of participants allowed to join your event (at least 1): </p>
+                <div>Allowed number of participants (at least 1): </div>
                 <input 
                     type="number"
                     min="1"
                     value={noParticipants}
                     onChange={changeNoParticipant}
                 />
-                
-                <label for="dog-id">ID of your dog:</label>
-                <select id="dog-id" defaultValue="0">
-                    {props.dogIds.map(item => {
-                        return (<option value={item}>{item}</option>);
-                    })}
-                </select>
+                <br></br>
 
-                <p>Description:</p>
+                <label htmlFor="dog-id">ID of your dog: </label>
+                <select 
+                    id="dog-id" 
+                    onChange={changeDogId}
+                    value={dogId}
+                >
+                    <option value="">Please select</option>
+                    {options}
+                </select>
+                <br></br>
+
                 <input
                     type="text"
-                    placeholder= {props.defaultText}
+                    placeholder= "Description"
                     value={intro}
                     onChange={changeIntro}
                 />
-                <p>The event is on {moment(selectedDate).format("MMM Do YY")} at {address} with a {breed} of id {dogId}. </p>
-                <p> {noParticipants} participant(s) is/are allowed to sign up. </p>
-                <p>Description: {intro}</p>
+                <div>The event is on {moment(selectedDate).format("MMM Do YY")} at {address} with a {breed} of id {dogId}. </div>
+                <div> {noParticipants} participant(s) is/are allowed to sign up. </div>
+                <div>Description: {intro}</div>
             </div>
-            <p>
+            <div>
                 <button
                     type="submit"
                     value="Submit"
@@ -149,7 +153,7 @@ const NewEventInput = (props) => {
                 >
                     Reset
                 </button>
-            </p>
+            </div>
                 
                 
             </div>
@@ -185,26 +189,20 @@ const NewEvent = (props) => {
             window.location.reload()
         );
     };
+    const [id, setId] = useState([]);
 
-    // useEffect(() => {
-    //     let dogIds = [];
-    //     get("/api/dog", { ownerId: props.userId }).then((dogs) => {
-    //         console.log(dogs);
-    //         for (let i=0;i<dogs.length;i++) {
-    //             console.log(dogs[i]);
-    //             dogIds.append(dogs[i].dogId);
-    //         };
-    //     });
-    // }, [props.userId]);
+    useEffect(()=>{
+        get("/api/dog", { ownerId: props.userId }).then((dogs) => {
+            let newIds = [...id];
+            for (let i=0;i<dogs.length;i++) {
+                newIds.push(dogs[i].dogId);
+            };
+            setId(newIds);
+        });
+    }, []);
+    
 
-    let dogIds = [];
-    get("/api/dog", { ownerId: props.userId }).then((dogs) => {
-        for (let i=0;i<dogs.length;i++) {
-            dogIds.push(dogs[i].dogId);
-        };
-    });
-
-    return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} dogIds={dogIds} />;
+    return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} dogIds={id} />;
     
 };
 

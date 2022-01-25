@@ -32,11 +32,11 @@
 }
 
 .NewEvent-selector{
-    position: relative;
+    position: absolute;
     width: 350px;
-    height: 600px;
+    height: 815px;
     left: 140px;
-    top: 88px;
+    top: 135px;
 
     background: rgba(216, 120, 46, 0.6);
     border: 3px solid #5C544C;

@@ -14,6 +14,22 @@ import '../modules/NewEvent.css';
 
 const MySchedule = (props) => {
     const [event, setEvent] = useState([]);
+    const [eventIds, setEventIds] = useState([]);
+
+    useEffect(() => {
+        document.title = "My Schedule";
+        let events = [];
+        get("/api/participant", {participantId: props.userId}).then((participant) => {
+        
+            for (let i=0; i<participant.length; i++) {
+                events.push(participant[i].eventId);
+            }
+
+        });
+
+        setEventIds(events);
+    }, [props.userId]);
+
 
     useEffect(() => {
         document.title = "My Schedule";
@@ -21,13 +37,15 @@ const MySchedule = (props) => {
             let display = [];
             
             for (let i=0; i<eventObjs.length; i++) {
-                if (eventObjs[i].userId == props.userId && Date.parse(eventObjs[i].time) > Date.now()) {
+                if ((eventObjs[i].userId == props.userId || eventIds.includes(eventObjs[i]._id)) && Date.parse(eventObjs[i].time) > Date.now()) {
                     display.push(eventObjs[i]);
                 };
             }
             setEvent(display);
-    });
-    }, [props.userId]); // Need to query based on userId; also need to take into account events both as organizer and participant
+        }
+        );
+    }, [props.userId, eventIds]); // Need to query based on userId; also need to take into account events both as organizer and participant
+
 
     let eventList = null;
     const hasEvent = event.length !== 0;
@@ -35,7 +53,8 @@ const MySchedule = (props) => {
     eventList = event.map((eventObj) => (
         <div key={eventObj.eventId}>
             <SingleEvent
-                userId={eventObj.userId}
+                userId={props.userId}
+                creatorId={eventObj.userId}
                 eventId={eventObj.eventId}
                 address={eventObj.address}
                 breed={eventObj.breed}
