@@ -2,9 +2,9 @@
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 800px;
+  max-width: 80vw;
   position: relative;
-  margin-left: 330px;
+  margin-left: 10vw;
   align-items: center;
 }
 
@@ -16,24 +16,33 @@
 }
 
 .box{
-  height: 500px;
-  width: 800px;
-  border-radius: 50px;
+  height: 80vh;
+  width: 80vw;
+  /* border-radius: 50px; */
   align-items: center;
   text-align: center;
 }
 .slide-image{
   object-position: center;
-  object-fit: cover;
+  object-fit: fill;
   position: relative;
-  height: 150%;
-  max-width: 100%;
+  min-height: 100%;
+  min-width: 100%; 
+  /* fix width to width of parent */
   /* max-height: 100%; */
   margin-left: auto;
   margin-right: auto;
-  display: flex;
+  display: block;
+  /* transform: translate(-50%, -50%); */
 }
 
+.name{
+  z-index: 100;
+  position: absolute;
+  bottom: 2vh;
+  left: 2vw;
+  background-color: black;
+}
 /* Fading animation */
 .fade {
     -webkit-animation-name: fade;
