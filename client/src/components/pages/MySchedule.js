@@ -28,18 +28,15 @@ const MySchedule = (props) => {
         });
 
         setEventIds(events);
-        console.log(eventIds);
     }, [props.userId]);
 
 
     useEffect(() => {
         document.title = "My Schedule";
-        console.log(eventIds);
         get("/api/event").then((eventObjs) => {
             let display = [];
             
             for (let i=0; i<eventObjs.length; i++) {
-                console.log(eventIds, eventObjs[i].eventId);
                 if ((eventObjs[i].userId == props.userId || eventIds.includes(eventObjs[i]._id)) && Date.parse(eventObjs[i].time) > Date.now()) {
                     display.push(eventObjs[i]);
                 };

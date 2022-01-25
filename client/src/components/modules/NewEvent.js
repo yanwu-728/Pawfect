@@ -17,8 +17,9 @@ const NewEventInput = (props) => {
     const [breed, setBreed] = useState("[breed]");
     const [selectedDate, setDate] = useState("[date]");
     const [noParticipants, setNoParticipants] = useState(0);
-    const [dogId, setDogId] = useState("0");
     const [intro, setIntro] = useState("");
+    const [options, setOptions] = useState([]);
+    const [dogId, setDogId] = useState(0);
 
     const [address, setAddress] = useState("[location]");
     
@@ -92,18 +93,11 @@ const NewEventInput = (props) => {
         handleReset;
     };
 
-    // let options = props.dogIds.map(item => item);
-    console.log(props.dogIds);
-    let options = props.dogIds.map((item) => {
-		console.log(`BEFORE: ${item}`)
-	    const result = (<option value={item}>{item}</option>)
-		console.log(`AFTER: ${result}`) 
-		return result;
-});
-    // let options = props.dogIds.map(item => <option value={item}>{item}</option>);
-    
-    // console.log('option');
-    // console.log(options);
+    useEffect(()=>{
+        setOptions(
+            props.dogIds.map((item) => <option key={item} value={item}>{item}</option>)   
+        )
+}, [props.dogIds]);
     
     
     return (
@@ -118,24 +112,30 @@ const NewEventInput = (props) => {
                     value={noParticipants}
                     onChange={changeNoParticipant}
                 />
-                <p></p>
+                <br></br>
+
                 <label htmlFor="dog-id">ID of your dog: </label>
-                <select id="dog-id" defaultValue="0">
+                <select 
+                    id="dog-id" 
+                    onChange={changeDogId}
+                    value={dogId}
+                >
+                    <option value="">Please select</option>
                     {options}
                 </select>
+                <br></br>
 
-                <p></p>
                 <input
                     type="text"
                     placeholder= "Description"
                     value={intro}
                     onChange={changeIntro}
                 />
-                <p>The event is on {moment(selectedDate).format("MMM Do YY")} at {address} with a {breed} of id {dogId}. </p>
-                <p> {noParticipants} participant(s) is/are allowed to sign up. </p>
-                <p>Description: {intro}</p>
+                <div>The event is on {moment(selectedDate).format("MMM Do YY")} at {address} with a {breed} of id {dogId}. </div>
+                <div> {noParticipants} participant(s) is/are allowed to sign up. </div>
+                <div>Description: {intro}</div>
             </div>
-            <p>
+            <div>
                 <button
                     type="submit"
                     value="Submit"
@@ -153,7 +153,7 @@ const NewEventInput = (props) => {
                 >
                     Reset
                 </button>
-            </p>
+            </div>
                 
                 
             </div>
@@ -189,15 +189,20 @@ const NewEvent = (props) => {
             window.location.reload()
         );
     };
+    const [id, setId] = useState([]);
 
-    const dogIds = [];
-    get("/api/dog", { ownerId: props.userId }).then((dogs) => {
-        for (let i=0;i<dogs.length;i++) {
-            dogIds.push(dogs[i].dogId);
-        };
-    });
+    useEffect(()=>{
+        get("/api/dog", { ownerId: props.userId }).then((dogs) => {
+            let newIds = [...id];
+            for (let i=0;i<dogs.length;i++) {
+                newIds.push(dogs[i].dogId);
+            };
+            setId(newIds);
+        });
+    }, []);
+    
 
-    return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} dogIds={dogIds} />;
+    return <NewEventInput defaultText="Enter Text Here" onSubmit={addEvent} dogIds={id} />;
     
 };
 
