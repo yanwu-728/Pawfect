@@ -21,10 +21,12 @@ const FindDog = (props) => {
     const [selectedDate, setDate] = useState(null);
     const [address, setAddress] = useState(null);
     const [defaultText, setDefault] = useState(null);
+    const [displayDate, setDisplayDate] = useState(null);
     
     const [timeRange, setTimeRange] = useState(Infty);
     const [radius, setRadius] = useState(Infty);
     const [coords, setCoords] = useState(mit);
+    const [center, setCenter] = useState(mit);
   
     const changeBreed = (event) => {
       if (event.target.value === "No Preference"){
@@ -37,6 +39,7 @@ const FindDog = (props) => {
   
     const changeDate = (date) => {
       setDate(moment(date).format());
+      setDisplayDate(moment(date).format("MMM Do YY"));
       // setDate(moment(date).toDate());
     }
 
@@ -92,6 +95,7 @@ const FindDog = (props) => {
       setDefault("none");
       setRadius(Infty);
       setCoords(mit);
+      setCenter(mit);
     }
 
     let eventList = null;
@@ -129,6 +133,10 @@ const FindDog = (props) => {
             });
             const loc = autocomplete.getPlace().formatted_address;
             setAddress(loc);
+            setCenter({
+              lat: autocomplete.getPlace().geometry.location.toJSON().lat,
+              lng: autocomplete.getPlace().geometry.location.toJSON().lng,
+            })
         }else{
             console.log('Autocomplete is not loaded yet!')
         }
@@ -141,22 +149,23 @@ const FindDog = (props) => {
     return (
       <>
       <div className="FindDog-selector">
-      <Filter changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} coords={coords} defaultText={defaultText}/>
-        <p className="filter">See events in a radius of: 
+      <Filter changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} coords={coords} center={center} defaultText={defaultText}/>
+      <div className="filter">
+        See events in a radius of: 
         <input 
             type="number"
             min="1"
             value={radius}
             onChange={changeRadius}
+            className="filter-bar"
         />
         miles.
-        </p>
-        <div className="filter">
         <p>The selected breed is {breed}.</p>
-        <p>The selected time is {selectedDate}.</p>
+        <p>The selected time is {displayDate}.</p>
         <p>The selected location is {address}.</p>
         <p>The selected radius is {radius}.</p>
-        </div>
+      </div>
+        
         
         <p>
 

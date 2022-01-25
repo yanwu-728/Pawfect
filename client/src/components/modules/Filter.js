@@ -6,18 +6,15 @@ import {GoogleMap, LoadScript, Autocomplete, Marker} from '@react-google-maps/ap
 import MyGoogleMap from "./map_components/MyGoogleMap.js";
 
 const containerStyle = {
-    width: '300px',
-    height: '300px'
+    width: '21vw',
+    height: '38vh'
   };
 
 
 const Filter = (props) => {
     const [selectedDate, setDate] = useState(null);
 
-    const [center, setCenter] = useState({
-        lat: 42.35405430000001,
-        lng: -71.1026228,
-    });
+    
 
     const libraries = ["places"];
 
@@ -51,7 +48,7 @@ const Filter = (props) => {
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={props.center}
         zoom={12}
       >
           <Autocomplete

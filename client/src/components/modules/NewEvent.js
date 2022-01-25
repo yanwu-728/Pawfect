@@ -34,6 +34,11 @@ const NewEventInput = (props) => {
         lng: -71.1026228,
     });
 
+    const [center, setCenter] = useState({
+        lat: 42.35405430000001,
+        lng: -71.1026228,
+    });
+
     const onPlaceChanged = () => {
         if (autocomplete !== null) {
             console.log(autocomplete.getPlace().formatted_address);
@@ -43,6 +48,10 @@ const NewEventInput = (props) => {
             });
             const loc = autocomplete.getPlace().formatted_address;
             setAddress(loc);
+            setCenter({
+                lat: autocomplete.getPlace().geometry.location.toJSON().lat,
+                lng: autocomplete.getPlace().geometry.location.toJSON().lng,
+            });
         }else{
             console.log('Autocomplete is not loaded yet!')
         }
@@ -104,7 +113,7 @@ const NewEventInput = (props) => {
     return (
         <div>
             <div className="NewEvent-selector">
-            <Filter  changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} coords={coords} date={selectedDate}/>
+            <Filter  changeBreed={changeBreed} changeDate={changeDate} onPlaceChanged={onPlaceChanged} onLoad={onLoad} coords={coords} center={center} date={selectedDate}/>
             <div className="criteria">
                 <div>Allowed number of participants (at least 1): </div>
                 <input 

@@ -1,12 +1,12 @@
 .MySchedule-event {
   position: absolute;
-  width: 715px;
-  height: 815px;
-  left: 623px;
-  top: 135px;
+  width: 50vw;
+  height: 110vh;
+  left: 43vw;
+  top: 18vh;
 
   background: #bccdd7;
-  border: 3px solid #5c544c;
+  /* border: 3px solid #5c544c; */
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
