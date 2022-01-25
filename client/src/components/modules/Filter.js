@@ -12,6 +12,8 @@ const containerStyle = {
 
 
 const Filter = (props) => {
+    const [selectedDate, setDate] = useState(null);
+
     const [center, setCenter] = useState({
         lat: 42.35405430000001,
         lng: -71.1026228,
@@ -26,22 +28,22 @@ const Filter = (props) => {
     return (
         <div className="filter">
             <div className="filter-breed">
-                <label htmlFor="dog-breeds">Breed:</label>
+                {/* <label htmlFor="dog-breeds" >Breed: </label> */}
                 <datalist id="dog-breed" defaultValue="No Preference">
-                    <option>No Preference</option>
+                    <option value="No Preference">No Preference</option>
                     {options.map(item => {
                         return (<option key={item} value={item}>{item}</option>);
                     })}
                 </datalist>
-                <input type="text" list="dog-breed" onChange={props.changeBreed}/>
+                <input type="text" list="dog-breed" onChange={props.changeBreed} className="filter-bar" placeholder="Select Breed"/>
             </div>
             
-            <p>Choose a time:
-                <DatePicker 
+            <DatePicker 
             selected={null}
-            onChange={props.changeDate} 
+            onChange={props.changeDate}
+            className="filter-bar" 
+            placeholderText="Select Date"
             />
-            </p>
             
 
             <LoadScript
@@ -58,7 +60,8 @@ const Filter = (props) => {
           >
             <input
               type="text"
-              placeholder="Choose your location"
+              placeholder="Select Location"
+              className="filter-bar"
               style={{
                 boxSizing: `border-box`,
                 border: `1px solid transparent`,
