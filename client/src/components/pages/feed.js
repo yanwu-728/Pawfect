@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import DogCard from "../modules/DogCard.js";
 import { get } from "../../utilities";
 import "./feed.css";
-import SlideShow from "../Modules/SlideShow.js";
+import SlideShow from "../modules/SlideShow.js";
 
 const Feed = (props) => {
   const [user, setUser] = useState();
