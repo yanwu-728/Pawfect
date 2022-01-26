@@ -10,7 +10,7 @@ const SlideShow = (props) => {
     useEffect(() => {
         document.title = "Slide show";
         get("/api/dog").then((dogObjs) => {
-            setDogs(dogObjs.map((dog) => dog.dogPic));
+            setDogs(dogObjs);
             // setDogs(dogObjs);
           });
     }, []);
@@ -24,8 +24,10 @@ const SlideShow = (props) => {
             setDogList(dogs.map((dog) => (
                 <div className="each-slide">
                     <div className="box">
-                        <img src={url+dog} className="slide-image"></img>
+                        <img src={url+dog.dogPic} alt={dog.name} className="slide-image"></img>
+                        <div className="name">{dog.name}</div>
                     </div>
+                    
                 {/* //     <div style={{'backgroundImage': `url(${url+dog})`}}></div> */}
                     
                 </div>

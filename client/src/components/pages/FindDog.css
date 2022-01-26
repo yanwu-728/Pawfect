@@ -3,10 +3,10 @@
 
 .FindDog-event{
     position: absolute;
-    width: 715px;
-    height: 815px;
-    left: 623px;
-    top: 135px;
+    width: 50vw;
+    height: 110vh;
+    left: 43vw;
+    top: 18vh;
 
     background: #BCCDD7;
     /* border: 3px solid #5C544C; */
@@ -24,8 +24,7 @@
     padding: 5px 10px;
     color: white;
     box-shadow: 0 3px black;
-    margin-left: 150px;
-    margin-top: 20px;
+    margin-left: 13vw;
 }
 
 .FindDog-button:hover {
@@ -39,10 +38,10 @@
 
 .FindDog-selector{
     position: absolute;
-    width: 350px;
-    height: 740px;
-    left: 140px;
-    top: 150px;
+    width: 25vw;
+    height: 97vh;
+    left: 10vw;
+    top: 23vh;
 
     background: rgba(216, 120, 46, 0.6);
     /* border: 3px solid #5C544C; */
@@ -91,16 +90,16 @@
 }
 
 .Participant{
-    margin-left: 20px;
-    margin-right: 10px;
+    margin-left: 2vw;
+    margin-right: 2vw;
     font-family: 'Roboto';
     font-weight: bold;
 }
 
 .Participant_{
-    margin-left: 20px;
-    margin-right: 10px;
-    margin-top: 5px;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-top: 1vh;
     font-family: 'Roboto';
     font-weight: bold;
 }
@@ -113,7 +112,7 @@
     padding: 5px 10px;
     color: white;
     box-shadow: 0 3px black;
-    margin-top: 35px;
+    margin-top: 2vh;
 }
 
 .Reset-button:hover {

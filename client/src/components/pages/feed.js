@@ -79,12 +79,18 @@ const Feed = (props) => {
   if (!user) {
     return (
       <>
-        <div>
-          <h2 class="welcome">Hi! Welcome to PAWFECT! </h2>
-          <h4 class="welcome">Please log in first.</h4>
-        </div>
+        
         {/* <div class="dogs" />; */}
-        <SlideShow userId={user}></SlideShow>
+        <p>
+          <SlideShow userId={user}></SlideShow>
+        </p>
+        <p>
+          <div class="welcome">
+          <h2>Hi! Welcome to PAWFECT! </h2>
+          <h4>Please log in first.</h4>
+        </div>
+        </p>
+        
       </>
     );
   }

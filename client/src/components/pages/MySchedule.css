@@ -1,9 +1,9 @@
 .MySchedule-event {
   position: absolute;
-  width: 715px;
-  height: 815px;
-  left: 623px;
-  top: 135px;
+  width: 50vw;
+  height: 110vh;
+  left: 43vw;
+  top: 18vh;
 
   background: #bccdd7;
   border: 3px;

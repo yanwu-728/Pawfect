@@ -6,7 +6,7 @@
     padding: 5px 10px;
     color: white;
     box-shadow: 0 3px black;
-    margin-left: 200px;
+    margin-left: 13vw;
 }
 .Reset-button{
     font-family:'Roboto';
@@ -33,10 +33,10 @@
 
 .NewEvent-selector{
     position: absolute;
-    width: 350px;
-    height: 815px;
-    left: 140px;
-    top: 135px;
+    width: 25vw;
+    height: 105vh;
+    left: 10vw;
+    top: 23vh;
 
     background: rgba(216, 120, 46, 0.6);
     border: 3px;
@@ -51,6 +51,6 @@
     font-size: 16px;
     font-weight: bold;
     margin-top: 10px;
-    margin-left: 15px;
+    margin-left: 2vw;
     line-height: 1.6;
 }
