@@ -47,3 +47,12 @@
   margin-bottom: 20px;
   margin-left: 40%;
 }
+
+.deleteButton:hover {
+  background-color: #3F2D2A;
+}
+
+.deleteButton:active {
+  background-color: #3f2d2a;
+  transform: translateY(3px);
+}

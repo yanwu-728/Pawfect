@@ -6,6 +6,7 @@ import DogCard from "../modules/DogCard.js";
 
 import "../../utilities.css";
 import "./profile.css";
+import "../modules/SingleEvent.css";
 
 const Profile = (props) => {
   const [user, setUser] = useState();
@@ -58,7 +59,7 @@ const Profile = (props) => {
           <h4 className="Profile-subTitle">Contact:</h4>
           <div id="contact">{user.contact}</div>
           <div className="editContainer">
-            <Link className="Profile-Links" to="/editUser/">
+            <Link className="Profile-Links profile-button" to="/editUser/">
               Edit User Profile
             </Link>
           </div>
@@ -71,8 +72,8 @@ const Profile = (props) => {
 
             <div className="dogList">{dogsList}</div>
 
-            <Link to="/addDog/" className="Profile-addDog">
-              Click to add your dogs!
+            <Link to="/addDog/" className="profile-button">
+              Add Dog
             </Link>
           </div>
         </div>

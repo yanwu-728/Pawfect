@@ -75,7 +75,6 @@ const NewEventInput = (props) => {
         setNoParticipants(0);
         setDogId("0");
         setIntro("");
-        window.location.reload();
       }
 
     const handleSubmit = (event) => {

@@ -148,6 +148,7 @@ const FindDog = (props) => {
             min="1"
             value={radius}
             onChange={changeRadius}
+            className="FindDog-bar"
         />
         miles.
         </p>
@@ -155,7 +156,7 @@ const FindDog = (props) => {
         <p>The selected breed is {breed}.</p>
         <p>The selected time is {selectedDate}.</p>
         <p>The selected location is {address}.</p>
-        <p>The selected radius is {radius}.</p>
+        <p>The selected radius is {radius} miles.</p>
         </div>
         
         <p>

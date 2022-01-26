@@ -124,3 +124,14 @@
     background-color: #3f2d2a;
     transform: translateY(3px);
 }
+
+.FindDog-bar{
+    border:5px #5B4C49;
+    padding-left: 10px;
+    width: 75px;
+    height: 30px;
+    border-radius: 5px;
+    float: center;
+    margin-bottom: 20px;
+    margin: 5px;
+}
